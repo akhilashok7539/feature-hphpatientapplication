@@ -1,0 +1,9 @@
+<div class="page-wrapper">
+    <h6>Cancel Booking</h6>
+    <p style="font-size: 15px;">Are you sure want to cancel?</p>
+    <div class="row">
+        <button class="btn btn-danger"(click)="cancel()" [disabled]="isLoading"><i class="fa" [ngClass]="{'fa-spin fa-spinner': isLoading, 'fa-check': !isLoading}"></i>{{button}}</button>
+        
+    </div>
+    <p style="font-weight: 100;margin-top: 28px;color: #dc3545;" (click)="close()">No,I dont want to cancel</p>
+    </div>

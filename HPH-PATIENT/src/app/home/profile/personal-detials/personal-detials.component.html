@@ -1,0 +1,45 @@
+<div class="page-wrapper">
+    <div class="row" style="    color: #00B3DA;float: right;font-size: 20px;font-weight: bold;padding: 10px;">
+        <p (click)="update()" style="cursor: pointer;">Save</p>
+    </div>
+    <form [formGroup]="editProfileForm">
+
+    <div class="row" style="padding: 10px;">
+        <!-- <div class="col-sm-4">
+        </div> -->
+        <div class="col-sm-4">
+            <!-- <label for="">First Name</label> -->
+            <label for="">First Name</label>
+            <input [(ngModel)]="patientModel.firstName" formControlName="firstName"  class="form-control" type="text">
+        </div>
+        <div class="col-sm-4">
+            <!-- <label for="">First Name</label> -->
+            <label for="">Last Name</label>
+            <input  [(ngModel)]="patientModel.lastName"  formControlName="lastName" class="form-control" type="text">
+        </div>
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4" style="margin-top: 10px;">
+            <!-- <label for="">First Name</label> -->
+            <label for="">Phone Number</label>
+            <a routerLink="/changeMob"> &nbsp; EDIT </a>
+
+            <input disabled class="form-control" type="text"  [(ngModel)]="patientModel.mobNo"formControlName="mobNo">
+        </div>
+
+        <div class="col-sm-4" style="margin-top: 10px;">
+            <!-- <label for="">First Name</label> -->
+            <label for="">Gender</label>
+            <select class="form-control" [(ngModel)]="patientModel.gender" formControlName="gender" >
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+        </div>
+        <div class="col-sm-4" style="margin-top: 10px;">
+            <label for="">Date of birth</label>
+            <input [(ngModel)]="patientModel.dob" formControlName="dob" type="date" class="form-control">
+        </div>
+    </div>
+</form>
+    
+</div>

@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+
+
+
+$HPH-ADMINS-primary: mat-palette($mat-indigo);
+$HPH-ADMINS-accent: mat-palette($mat-pink, A200, A100, A400);
+
+$HPH-ADMINS-warn: mat-palette($mat-red);
+
+$HPH-ADMINS-theme: mat-light-theme($HPH-ADMINS-primary, $HPH-ADMINS-accent, $HPH-ADMINS-warn);
+
+@include angular-material-theme($HPH-ADMINS-theme);
+

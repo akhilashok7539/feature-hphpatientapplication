@@ -1,0 +1,14 @@
+<div class="page-wrapper">
+<h6 style="text-align: center; font-weight: bold;">Doctor Details</h6>
+<hr>
+<div class="row">
+    <div class="col-sm-12">
+            <img src="{{apiUrl}}/doctor/profilePic/{{DoctorDetails.doctorId}}" style="height: 137px;width: 118px;" alt="">
+    
+                <h6>Doctor Name : {{DoctorDetails.firstName}}  {{DoctorDetails.lastName}}</h6>
+                <h6>Speciality : {{DoctorDetails.spec.description}}</h6>
+                <h6>City : {{DoctorDetails.city.cityName}}</h6>
+                <h6>Hospital: {{DoctorDetails.hospital.hospitalName}}</h6>
+    </div>
+</div>
+</div>

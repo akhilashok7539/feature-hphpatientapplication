@@ -1,0 +1,6 @@
+::ng-deep .mat-tab-label .mat-tab-label-content{
+    font-weight: bold !important;
+}
+.btn{
+    font-size: 11px;
+}

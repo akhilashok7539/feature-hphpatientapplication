@@ -1,0 +1,55 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title"> Command Center</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <input class="form-control"type="text"  name="searchString"  [(ngModel)]="searchString"  (keyup)="applyFilter(searchString)"  placeholder="Search here" aria-label="Search">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                       
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="ccName">
+                                <mat-header-cell *matHeaderCellDef> CC Name </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef> Email ID</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.email}}  </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="mobNo">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.mobNo}}  </mat-cell>
+                            </ng-container>   
+                            <ng-container matColumnDef="profileStatus">
+                                <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.profileStatus}}  </mat-cell>
+                            </ng-container>
+        
+        
+        
+        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+        
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                        </mat-paginator>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+
+        

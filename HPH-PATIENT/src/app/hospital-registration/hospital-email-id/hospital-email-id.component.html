@@ -1,0 +1,41 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+        <form [formGroup]="registrationForm" class="form-detail" id="myform">
+
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Hospital Registration</h4>
+                            <p>Please complete to create your account.</p>
+                            <div class="row" style="margin-top: 16px;">
+                                <div class="col-sm-12">
+                                    <label for="your_email">Email Id</label>
+                                    <input type="text" [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }"
+                                        [(ngModel)]="model.emailId" formControlName="emailId"
+                                        name="emailId" class="form-control" required>
+                                    <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                                        <div *ngIf="f.emailId.errors.required">Email ID is required</div>
+                                        <div *ngIf="f.emailId.errors.email">Email must be a valid email address</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-top: 20px;">
+                                <div class="col-sm-6">
+                                    <button class="loginbtn" (click)="next()">Send OTP</button>
+            
+                                      </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

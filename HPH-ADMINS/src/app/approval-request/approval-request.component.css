@@ -1,0 +1,13 @@
+::ng-deep .mat-sort-header-container {
+    align-items: center;
+}
+
+::ng-deep .mat-header-cell {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+}
+.page-title{
+    font-weight: normal;
+    font-size: 21px !important;
+    margin-bottom: 20px;
+}

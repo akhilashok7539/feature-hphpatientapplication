@@ -1,0 +1,64 @@
+<app-navigation></app-navigation>
+<div class="page-wrapper">
+    <div class="container">
+        <h6 style="float: right; "> Patient ID :  <strong> {{patiendId}}</strong></h6>
+        <h6 style="color: #8A8A8A;">My Profile</h6>
+      
+
+        <mat-accordion>
+            <!-- Personal Details Section -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Personal Details
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- <app-personaldetails></app-personaldetails> -->
+                <app-personal-detials></app-personal-detials>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                       Manage Address
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- <app-personaldetails></app-personaldetails> -->
+                <app-addressdetails></app-addressdetails>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        Health Records
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- <app-personaldetails></app-personaldetails> -->
+                <app-patienthealthrecords></app-patienthealthrecords>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Relative Health Records
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- <app-personaldetails></app-personaldetails> -->
+                <app-relativehelathrecords> </app-relativehelathrecords>
+            </mat-expansion-panel>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Reset Password
+                    </mat-panel-title>
+    
+                </mat-expansion-panel-header>
+                <!-- <app-personaldetails></app-personaldetails> -->
+                <app-resetpassword></app-resetpassword>
+            </mat-expansion-panel>
+            </mat-accordion>
+            
+    </div>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,26 @@
+.container{
+    background: linear-gradient(90deg, #141E30 0%, #243B55 100%);
+    padding: 42px;
+    border-radius: 29px 0px 0px 29px;
+    margin-right: 1px;
+    
+}
+h1{
+    color: white;
+    letter-spacing: 1.56px;
+    font-size: 20px;
+}
+@media (min-width: 1200px)
+{
+    .container {
+    max-width: 1300px;
+}
+}
+p{
+    margin-top: 29px;
+    color: white;
+    letter-spacing: 1.28px;
+    font-size: 13px;
+    line-height: 27.2px;
+    text-align: left;
+}

@@ -1,0 +1,10 @@
+.row{
+    padding: 10px 0px 0px 134px;
+}
+img{
+    border: 6px solid #00b3da;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    margin-bottom: 10px;
+}

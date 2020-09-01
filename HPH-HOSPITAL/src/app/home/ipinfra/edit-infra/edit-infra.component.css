@@ -1,0 +1,46 @@
+.page-wrapper {
+    left: 0;
+    margin-left: 8px;
+    padding-top: 50px;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+@media (min-width: 1200px)
+{.container {
+    max-width: 1287px;
+}}
+.m-t-20 {
+    float: left;
+    margin-top: 20px !important;
+}
+
+.submit-btn {
+    border-radius: 0px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    background: #0085B2;
+    min-width: 200px;
+    padding: 8px 20px;
+    text-transform: capitalize;
+}
+.mat-radio-button {
+    display: inline-block;
+    -webkit-tap-highlight-color: transparent;
+    outline: 0;
+    margin: 11px;
+}
+/* ::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle{
+    background-color: #0085b2 !important;
+}
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle{
+    background-color: #0085b2 !important;
+
+} */
+.radioButtons{
+    font-size: 15px;
+    margin: 11px;
+
+}

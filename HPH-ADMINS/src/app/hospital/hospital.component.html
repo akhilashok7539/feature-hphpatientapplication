@@ -1,0 +1,153 @@
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-2">
+                <h4 class="page-title">Hospital</h4>
+
+            </div>
+            <div class="col-sm-2">
+                <a class="btn btn btn-primary   " style="color: white;" (click)="addHsopital()"><i
+                        class="fa fa-plus"></i> Add Hospital</a>
+
+            </div>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-2">
+                <select style="    margin-bottom: 5px;"  class="form-control"  [(ngModel)]="cityId" [ngModelOptions]="{standalone: true}"  (change)="getcitSelected($event)">
+                    <option value="" selected disabled>Choose City</option>
+                    <option value="" *ngFor="let citys of citys " value="{{citys.cityId}}">{{citys.cityName}}</option>
+                </select>
+            </div>
+            <div class="col-sm-4" >
+                <!-- (keyup)="onKey($event)" -->
+                <input class="form-control" type="text" name="searchString" [(ngModel)]="searchString"
+                 (keyup)="applyFilter(searchString)" placeholder="Search here......" aria-label="Search">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <a class="btn btn btn-danger   " style="color: white;margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                    (click)="buttonselected('Active')">Active</a>
+
+                <a class="btn btn btn-success   " style="color: white;margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                    (click)="buttonselected('In-Active')">Inactive</a>
+
+                <a class="btn btn btn-warning  " style="color: white; margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                    (click)="buttonselected('Pending')">Pending</a>
+
+
+            </div>
+            <div class="col-sm-3">
+            </div>  
+        
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+
+                    <!-- <table class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Hospital Name</th>
+                                <th>Contact No</th>
+                                <th>Establishment Registration Proof</th>
+                                <th>Profile Status</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            | filter : 'hospitalName' : searchString; let i = index 
+                            <tr
+                                *ngFor="let hospitals of doctorslist  ">
+
+                                <td>{{hospitals.hospitalName}}</td>
+                                <td>{{hospitals.phone}}</td>
+                                <td><img src="assets/img/pdf.png" style="margin-left: 76px;"></td>
+                                <th style="font-weight: bold;color: green;">{{hospitals.profileStatus}}</th>
+                                <td> <button (click)="edit(hospitals)" class="btn btn-success">Edit </button> </td>
+                                <td> <button (click)="view(hospitals)" class="btn btn-warning">View </button></td>
+
+                                <td><button (click)="statuschange(hospitals)" class="btn btn-primary"
+                                        *ngIf="hospitals.profileStatus == 'ACTIVE'">InActivate</button>
+                                    <button (click)="status(hospitals)" class="btn btn-danger"
+                                        *ngIf="hospitals.profileStatus == 'INACTIVE'  ">Activate</button></td>
+
+
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+                    <mat-table #table [dataSource]="dataSource">
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="Hospitalname">
+                            <mat-header-cell *matHeaderCellDef> Hospita Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.hospitalName}} </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="contactno">
+                            <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.phone}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="city">
+                            <mat-header-cell *matHeaderCellDef>City Name</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.city.cityName}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> <h6 style="color: green;font-size: 14px;
+                                margin-top: 8px;">{{element.profileStatus}}</h6> </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="edit">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> <button (click)="edit(element)" class="btn btn-success">Edit </button>  </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="view">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> <button (click)="view(element)" class="btn btn-success">View </button>  </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="inactive">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> 
+                                <button (click)="statuschange(element)" class="btn btn-primary">Inactivate</button>
+                                <button (click)="percentage(element)" class="btn btn-success">%</button>
+                             
+                           </mat-cell>
+                        </ng-container>
+                        <!-- <ng-container matColumnDef="percentage">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> 
+                           </mat-cell>
+                        </ng-container> -->
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <h4 *ngIf="messages == 'No Hospital Found' " style="    padding: 113px;
+                    text-align: center;">No Hospital list found</h4>
+
+                        <!-- <ul  class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul> -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>

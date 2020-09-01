@@ -1,0 +1,23 @@
+
+    <app-header></app-header>
+    <app-sidebar></app-sidebar>
+    <div class="page-wrapper">
+        <div class="row" style="    margin-top: 100px;">
+            <div class="col-sm-4 offset-4">
+                <mat-card>
+                <h5>Choose a Active Hospital</h5>
+
+                    <select class="form-control"  [(ngModel)]="hospital" (change)="getchange(hospital)">
+                        <!-- <option  *ngFor="let doc of privatepractice" value="4001">Private Practice</option> -->
+                        <!-- <option  value="ddsdsf" ></option> -->
+                       
+                        <option  *ngFor="let doc of doctordetails"  [ngValue]="doc "> 
+                            <p *ngIf="doc.privatePratice == true">Private practice</p>
+                            <p *ngIf="doc.privatePratice == false">{{doc.hospital.hospitalName}}</p></option>
+                    </select>
+                    <h5>Current Profile status : <p> {{currentProfileStatus}}  </p> </h5>
+                </mat-card>
+            </div>
+          
+        </div>
+    </div>

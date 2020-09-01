@@ -1,0 +1,75 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <p style="cursor: pointer; padding-left: 29px; margin-top: 68px;font-size: 19px;"> <a routerLink="/ipinfra"><i
+                style="color: black;">IP Infra</i></a> &nbsp; <i class="fa fa-angle-double-right"></i> &nbsp; <i
+            style="color:#1492E6;">Add IP Infra</i> </p>
+    <div class="container" style="    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px;
+    background-color: #F8FAFB;
+    margin-top: 25px;
+    margin-left: 31px;">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>IP Infra</h3>
+            </div>
+        </div>
+        <div class="row" style="     padding: 34px;   background-color: WHITE;">
+        <div class="col-lg-12">
+            
+            <form [formGroup]="inForm">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Room Name <span class="text-danger">*</span></label>
+                            <input class="form-control" [(ngModel)]="roomNames" formControlName="roomNames" type="text" 
+                            [ngClass]="{ 'is-invalid': submitted && f.roomNames.errors }">
+                            <div *ngIf="submitted && f.roomNames.errors" class="invalid-feedback">
+                                <div *ngIf="f.roomNames.errors.required"> Room Name is required</div>
+                            </div>
+                        
+                        
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Cost <span class="text-danger">*</span></label>
+                            <input class="form-control" [(ngModel)]=" cost" formControlName="cost" type="number" 
+                            [ngClass]="{ 'is-invalid': submitted && f.cost.errors }">
+                            <div *ngIf="submitted && f.cost.errors" class="invalid-feedback">
+                                <div *ngIf="f.cost.errors.required"> Cost is required</div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Feature <span class="text-danger">*</span></label>
+                            <textarea class="form-control" [(ngModel)]=" feature" formControlName="feature" type="text" 
+                            [ngClass]="{ 'is-invalid': submitted && f.feature.errors }"></textarea>
+                            <div *ngIf="submitted && f.feature.errors" class="invalid-feedback">
+                                <div *ngIf="f.feature.errors.required">Feature is required</div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Image <span class="text-danger">*</span></label>
+                            <input class="form-control" (change)="addPhoto($event)" formControlName="photo" type="file" 
+                            [ngClass]="{ 'is-invalid': submitted && f.photo.errors }">
+                            <div *ngIf="submitted && f.photo.errors" class="invalid-feedback">
+                                <div *ngIf="f.photo.errors.required">photo is required</div>
+                            </div>
+                          
+                        </div>
+                    </div>     
+                </div>
+            
+                <div class="m-t-20 text-center">
+                    <button class="btn btn-primary submit-btn" (click)="create()">Create </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>

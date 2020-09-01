@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title"> Speciality</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <input class="form-control"type="text"  name="searchString"  [(ngModel)]="searchString"  (keyup)="applyFilter(searchString)"  placeholder="Search here" aria-label="Search">
+                    <a  class="btn btn btn-primary  float-right" style="color: white;" (click)="addDepat()"><i class="fa fa-plus"></i> Add Speciality </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                       
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="specName">
+                                <mat-header-cell *matHeaderCellDef> Speciality Name </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="Delete">
+                                <mat-header-cell *matHeaderCellDef> Delete</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> <button (click)="delete(element)" class="btn btn-dark">Delete</button> </mat-cell>
+                            </ng-container>
+        
+        
+        
+        
+        
+        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+        
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                            >
+                        </mat-paginator>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+
+        

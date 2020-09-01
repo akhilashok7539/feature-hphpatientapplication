@@ -1,0 +1,5 @@
+<div class="row">
+    <h3>Please click below button to complte the doctor profile</h3>
+    <button class="button" (click)="changeStatus()" [disabled]="isLoading"> <i class="fa"
+        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{completeprofile}}</button>
+</div>

@@ -1,0 +1,73 @@
+/* .form-control{
+    border-radius: 25px;
+    border:   1px solid rgb(13, 114, 230);
+    padding: 20px; 
+    width: 500px;
+    height: 10px;  
+    float: right;
+    margin-left: 38px;
+    margin-right: -2px;
+    margin-top: -3px;
+}
+  .btn-info{
+      padding-left: 10px;
+  }
+     */
+
+  /* .form-control{
+    border-radius: 25px;
+    border:   1px solid rgb(13, 114, 230);
+    padding: 20px; 
+    width: 500px;
+    height: 10px;  
+    float: right;
+    margin-left: 38px;
+    margin-right: -2px;
+    margin-top: -3px;
+} */
+.btn-info{
+    padding-left: 10px;
+}
+  
+::ng-deep .mat-header-cell {
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 16px;
+} 
+::ng-deep .mat-header-row, mat-row {
+  margin-bottom: 11px;
+}
+.btn-danger {
+  color: white;
+  background: #009efb;
+  margin-bottom: 5px;
+  width: 125px;
+  margin-left: 8px;
+  border: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.btn-success{
+  color: #009efb !important;
+  background: white;
+  margin-bottom: 5px;
+  width: 125px;
+  margin-left: 8px;
+  border: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.btn-warning{
+  color: #009efb !important;
+  background: white;
+  margin-bottom: 5px;
+  width: 125px;
+  margin-left: 8px;
+  border: none;
+  box-shadow: 0px 3px 6px #00000029;
+}
+.selectbox{
+  height: 40px;
+  margin-left: 92px;
+  width: 89px;
+  border: 1px solid #009efb;
+  padding-left: 10px;
+  outline: none;
+}

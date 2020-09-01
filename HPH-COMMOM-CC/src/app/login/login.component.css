@@ -1,0 +1,14 @@
+
+.side{
+    width: 20vw;
+    height: 23vw;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(28, 100, 207);
+    color: white;
+    text-align: center;
+} 

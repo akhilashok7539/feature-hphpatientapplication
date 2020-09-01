@@ -1,0 +1,76 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase; font-weight: bold;">
+                    HISTORY</h4>
+
+            </div>
+
+
+
+        </div>
+        <!-- <form [formGroup]="history"> -->
+            <div class="row">
+                <p style="    margin-top: 16px; margin-right: 22px;margin-left: 15px;">Select a date</p>
+                <input type="date" [(ngModel)]="dateSelected" 
+                    (change)="getHistoryBydate(dateSelected)" style="    width: 146px;
+    padding: 9px;border: none;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 0px;
+    background: white;
+    color: black;">
+            </div>
+        <!-- </form> -->
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-border table-striped custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>PATIENT NAME</th>
+                            <th>TIME SLOTS</th>
+                            <th>STATUS</th>
+                            <th>MEDICAL HISTORY</th>
+                            <th>TEST RESULT</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  *ngFor='let appointment of historydata'>
+
+                            <td> {{appointment.patient.firstName}} {{appointment.patient.lastName}}</td>
+                            <td>{{appointment.time}}</td>
+                            <!-- <td></td> -->
+                            <td > <button style="   background: #156AA0 !important;border: none;padding: 2px;color: white;">{{appointment.status}}</button> </td>
+                            
+                            <td><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png"/></td>
+                            <td><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6 *ngIf = "history== null " style="text-align: center; font-size: 18px;margin-top: 100px;">There is no history available</h6>
+                <ul class="nav nav-pills" style="padding-left: 31vw; margin-top: 48px;">
+                    <!-- <a style="font-weight: bold;padding: 10px;"
+                        >Previous</a> -->
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link " style="color: white;    padding: 9px 17px;" (click)="setPage(i,$event)"
+                            [ngClass]="{active:i==page}">{{i+1}}</a>
+                    </li>
+                    <!-- <a style="font-weight: bold; padding: 10px;">Next</a> -->
+                </ul>
+            </div>
+        </div>
+    </div>

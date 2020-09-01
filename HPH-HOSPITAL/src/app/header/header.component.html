@@ -1,0 +1,41 @@
+<div class="main-wrapper">
+    <div class="header">
+        <div class="header-left">
+            <a class="logo">
+              <!-- <span>HPH101-HOSPITAL</span> -->
+              <img  class="img" src="./assets/img/logo.png" alt="">
+            </a>
+        </div>
+        <!-- <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a> -->
+        <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar" ><i class="fa fa-bars"></i></a>
+        
+        
+        <ul class="nav user-menu float-right">
+       
+            <li class="nav-item dropdown has-arrow" style="    top: 6px;
+            background: #F3F5F7 ;
+            height: 44px;
+            padding: 14px 32px;
+            border-radius: 30px;">
+                
+                {{uname}}
+            </li>
+            <li class="nav-item dropdown has-arrow"  (click)="logout()" style="    top: 6px;
+          
+            height: 44px; cursor: pointer;
+            padding: 14px 32px;color: black;
+            border-radius: 30px;">
+              <i class="fa fa-sign-out"></i> Logout
+            </li>
+        </ul>
+        <div class="dropdown mobile-user-menu float-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+            
+            <div class="dropdown-menu dropdown-menu-right">
+               <a class="dropdown-item"> {{uname}}</a>
+                <a class="dropdown-item" (click)="logout()" >Logout</a>
+            </div>
+        </div>
+    </div>
+    <!-- </div> -->
+    <!-- <app-sidebar></app-sidebar> -->

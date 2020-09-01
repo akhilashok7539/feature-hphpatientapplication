@@ -1,0 +1,12 @@
+.imglogoheader{
+    margin-top: 14px;
+    width: 87px;
+    margin-left: -128px;
+}
+@media screen and (max-width: 991px) {
+    .imglogoheader{
+        margin-top: 14px;
+        width: 87px;
+        margin-left: 0;
+    }
+}

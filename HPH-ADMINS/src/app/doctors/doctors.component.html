@@ -1,0 +1,79 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <!-- <table class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>DOCTOR NAME</th>
+                                <th>CONTACT NUMBER</th>
+                                <th>EMAIL ID</th>
+                                <th>HOSPITAL NAME</th>
+                                <th></th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let doc of doctorslist ">
+                                <td>{{doc.firstName}}{{doc.lastName}}</td>
+                                <td>{{doc.mobNo}}</td>
+                                <td>{{doc.email}}</td>
+                                <td>{{doc.hospital.hospitalName}}</td>
+
+                                <td> <button class="btn btn-warning" (click)="view(doc)">  View</button> </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h5 *ngIf="Messages == 'No data found'">No Doctors found</h5>
+                    <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                        <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+                        </li>
+                    </ul> -->
+                    <mat-table   #table [dataSource]="dataSource" >
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="Doctorname">
+                            <mat-header-cell *matHeaderCellDef> Doctor Name  </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.firstName}} {{element.lastName}} </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="mobno">
+                            <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.mobNo}}  </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef> Email ID</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="hospitalname">
+                            <mat-header-cell *matHeaderCellDef> Hopsital Name</mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.hospital.hospitalName}} </mat-cell>
+                        </ng-container>
+    
+    
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+    
+    
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,29 @@
+.alignment{
+    margin-left: 279px;
+    margin-top: -30px;
+    font-size: 19px;
+}
+
+.background{
+    border-radius: 100%;
+    background: #009efb61;
+    width: 45px;
+    height: 45px;
+    margin-left: auto;
+    margin-right: auto;
+}
+p{
+    text-align: center;
+    padding-top: 12px;
+}
+h5{
+    text-align: center;
+    margin-top: 10px;
+}
+
+button{
+    background: white;
+    box-shadow: 0px 3px 6px #00000029;
+    color: black;
+
+}

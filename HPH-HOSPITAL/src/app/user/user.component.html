@@ -1,0 +1,72 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">Users</h4>
+
+            </div>
+            <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="    width: 62%;color: white;border: none;" (click)="adduser()"><i
+                        class="fa fa-plus"></i> Add users </a>
+            </div>
+            <div class="col-sm-5">
+                
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-11">
+            <div class="table-responsive">
+                
+
+
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="name">
+                        <mat-header-cell *matHeaderCellDef> NAME </mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.name}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                    <ng-container matColumnDef="email">
+                        <mat-header-cell *matHeaderCellDef> EMAIL</mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.email}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="phone">
+                        <mat-header-cell *matHeaderCellDef> PHONE NUMBER</mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.phone}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="destination">
+                        <mat-header-cell *matHeaderCellDef> DESIGINATION</mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.hospitalDesgination.designation}}</mat-cell>
+                    </ng-container>
+
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+                <!-- <h4 style="text-align: center; margin-top: 97px;" *ngIf="error == 'No Departments found'"> No Departments found</h4> -->
+
+                <!-- [pageSizeOptions]="pageLimit" -->
+                <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                    (page)="changePage($event)">
+                </mat-paginator>
+              
+            </div>
+        </div>
+    </div>

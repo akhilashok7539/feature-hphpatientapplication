@@ -1,0 +1,87 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <p style="padding-left: 29px; margin-top: 68px;font-size: 19px;"> <a routerLink="/doctorLeave"><i
+                style="color: black;">Doctor</i></a> &nbsp; <i class="fa fa-angle-double-right"></i> &nbsp; <i
+            style="color:#1492E6;">Add Leave</i> </p>
+    <div class="container" style="    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px;
+    background-color: #F8FAFB;
+    margin-top: 25px;
+    margin-left: 31px;">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Availability Update</h3>
+            </div>
+        </div>
+        <div class="row" style="     padding: 34px;   background-color: WHITE;">
+            <div class="col-lg-12">
+                <form [formGroup]="leaveForm">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label>Doctor Name </label>
+                            <select class="form-control" [(ngModel)]="doctorSelected"  formControlName="firstName" (change)="getDocTimeSlots(doctorSelected)">
+                               <option value="" selected disabled>Select a doctor</option>
+                                <option *ngFor='let doc of doctors' value="{{doc.doctorId}}"> 
+                                    {{doc.firstName}}{{doc.lastName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Select a Date</label>
+                            <input class="form-control"  type="date" [(ngModel)]="doctorModel.date" formControlName="date">
+
+                        </div>
+                    </div>
+                    <!-- <div class="col-sm-2">
+                        <div class="form-group">
+                            <label>Select Ending Date</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div> -->
+                </div>
+                <div class="row">
+                    <div class="col-sm-4" style="margin-bottom: 20px;">
+                        <label>Reason</label>
+
+                        <textarea class="form-control" rows="3" [(ngModel)]="doctorModel.reason" formControlName="reason"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3" *ngFor='let time of timeSlotes'>
+                        <div class="card" style=" background: #F6F6F6;
+                        padding: 11px 51px 15px 13px;
+                        width: 294px;">
+                         <div class="row">
+                            <h4 style="   padding-left: 39px;
+                            padding-top: 9px;"> Day : {{time.day}}</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-10" >
+                                <h4 style="    padding-left: 22px;
+                                padding-top: 9px;"> Timing : {{time.timng}}</h4>
+                            </div>
+                          
+                               <div class="col-sm-2" style="    top: 11px;">
+                                   <input type="checkbox" formControlName="lastName" 
+                                   (change)="onChange(time.timng, $event.target.checked)">
+                               </div>
+                        </div>
+                         
+                         
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="row">
+                    <button class="submit-btn" (click)="addLeave()">Submit</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>

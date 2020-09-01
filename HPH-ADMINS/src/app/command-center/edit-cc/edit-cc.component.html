@@ -1,0 +1,72 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Edit CC</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form [formGroup]="editCCForm" >
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label> Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text"[(ngModel)]="doctorModel.name" formControlName="name" 
+                                    [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+                                    <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                                        <div *ngIf="f.name.errors.required"> Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control"  [(ngModel)]="doctorModel.mobNo" formControlName="mobNo" type="text"
+                                    [ngClass]="{ 'is-invalid': submitted && f.mobNo.errors }">
+                                    <div *ngIf="submitted && f.mobNo.errors" class="invalid-feedback">
+                                        <div *ngIf="f.mobNo.errors.required">Phone Number is required</div>
+                                        <div *ngIf="f.mobNo.errors.pattern">Phone number must be valid number</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Email Id<span class="text-danger">*</span></label>
+                                    <input class="form-control" [(ngModel)]="doctorModel.email" [(ngModel)]="doctorModel.email" formControlName="email" type="text"
+                                    [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">email ID is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid Email ID</div>
+                                    </div>
+                                </div>
+                            </div>
+                       
+                         <!-- <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Password <span class="text-danger">*</span></label>
+                                                <input class="form-control" [(ngModel)]="doctorModel.password" formControlName="password" type="password">
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <div class="form-group">
+                                                <label>Confirm Password <span class="text-danger">*</span></label>
+                                                
+                                                <input class="form-control" [(ngModel)]="doctorModel.confirmPassword" formControlName="confirmPassword" [type]="show ? 'text' : 'password'" >
+                                               
+                                                <input type="checkbox" (click)="password()"> Show Password
+                                            </div>
+                                            
+                                    </div> -->
+                        </div>
+                    
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn"  (click)="update()">Update CC</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

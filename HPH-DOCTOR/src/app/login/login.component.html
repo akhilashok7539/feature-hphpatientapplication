@@ -1,0 +1,98 @@
+<div class="main-wrapper">
+    <div class="header">
+        <div class="header-left">
+            <a class="logo">
+                 <!-- <span>HPH101+ </span> -->
+            </a>
+        </div> 
+   </div>
+</div>
+
+ <!-- <div class="page-content" >
+    <div class="form-v4-content" >
+        <div class="form-left" >
+                <img  class="side" src="assets/img/lgn.jpg">
+        </div>
+        <form class="form-detail" [formGroup]="loginForm">
+           
+            <h2>DOCTOR</h2>
+   
+            <div class="form-group">
+                <div class="form-row">
+                    <label for="first_name">User Name</label>
+                    <input type="text" name="first_name" id="first_name" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+                    class="input-text" [(ngModel)]="loginmodel.userName" formControlName="userName">
+                    <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                    <div *ngIf="f.userName.errors.required">userName is required</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <div class="form-row  ">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" 
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                    class="input-text" required [(ngModel)]="loginmodel.password" formControlName="password">
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">password is required</div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="form-row-last">
+                <input type="submit" name="register" class="register" (click)="login()" value="Login">
+                <a style="padding-left: 46px;" routerLink="/forgotpassword" >Forgot your Password?</a>
+            </div>
+           
+        </form>
+    </div>
+
+</div> -->
+
+
+<div class="main-wrapper account-wrapper">
+    <div class="account-page">
+        <div class="account-center">
+            <div class="account-box">
+                <form class="form-signin" [formGroup]="loginForm">
+                    <div class="account-logo">
+                        <a ><img src="assets/img/logo.png" alt=""><h3>Doctor Login</h3></a>
+                    </div>
+                    <div class="form-group">
+                        <label>Username </label>
+                        <input type="text" autofocus="" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"
+                        [(ngModel)]="loginmodel.userName" formControlName="userName">
+                        <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                            <div *ngIf="f.userName.errors.required">Username is required</div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" class="form-control" [(ngModel)]="loginmodel.password" formControlName="password" 
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                            <div *ngIf="f.password.errors.required">Password is required</div>
+                        </div>
+                    </div>
+                
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary account-btn" (click)="login()">Login</button>
+                        <p style="text-align: center; margin-top: 20px;" routerLink="/forgotpassword" >Forgot your Password?</p>
+                    </div>
+                 <!-- <div style="color: red; font-size: medium; text-align: center;">{{error}}</div> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--FOOTER SECTION-->
+
+
+<div class="footer">
+    <p>(c) DEVELOPED AND MAINTAINED BY PRVAK TECHNOLOGY SOLUTIONS PVT LTD</p>
+</div>

@@ -1,0 +1,180 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h4 class="page-title"> Hospital Details</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Hospital Name </label>
+                            <h6 class="alignment">{{name}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <h6 class="alignment">{{mob}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Email ID</label>
+                            <h6 class="alignment">{{email}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Contact Person Name</label>
+                            <h6 class="alignment">{{contactName}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Contact Person Number</label>
+                            <h6 class="alignment">{{contactPhone}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Contact Person Email ID </label>
+                            <h6 class="alignment">{{contactEmail}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>City</label>
+                            <h6 class="alignment">{{city}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Hospital Type</label>
+                            <h6 class="alignment">{{hospitalType}}</h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Establishment ID Proof</label>
+                            <h6 class="alignment"><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png"
+                                    (click)="downloadEstaIdProof()"></h6>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Owners ID Proof</label>
+                            <h6 class="alignment"><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png"
+                                    (click)="downloadOwnerIdProof()"></h6>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-sm-5" *ngIf="profileStatus == 'ACTIVE'">
+                        <div class="form-group">
+                            <label>View All Doctors</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6" *ngIf="profileStatus == 'ACTIVE'">
+                        <button (click)="getAllDoctors()" style="    margin-left: -11px;" class="btn btn-primary">View
+                            All Doctors</button>
+                    </div>
+                    <div class="col-sm-5" *ngIf="profileStatus == 'ACTIVE'">
+                        <div class="form-group">
+                            <label>View All Command Center</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6" *ngIf="profileStatus == 'ACTIVE'">
+                        <button (click)="viewCC()" style="    margin-left: -11px;" class="btn btn-primary">View
+                            All Command Center</button>
+                    </div>
+                    <div class="col-sm-5" *ngIf="profileStatus == 'ACTIVE'">
+                        <div class="form-group">
+                            <label>View Appointments</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6" *ngIf="profileStatus == 'ACTIVE'">
+                        <button (click)="getappointments()" style="    margin-left: -11px;" class="btn btn-primary">View
+                            Appointments</button>
+                    </div>
+                    <!-- <div class="col-sm-5" *ngIf="profileStatus == 'ACTIVE'">
+                        <div class="form-group">
+                            <label>Edit Percentage</label>
+
+                        </div>
+                    </div>
+                    <div class="col-sm-6" *ngIf="profileStatus == 'ACTIVE'">
+
+                        <button (click)="editPercentage()" style="    margin-left: -11px;" class="btn btn-primary">Edit
+                            Percentage</button>
+                    </div> -->
+                    <div class="col-sm-4 offset-lg-5">
+
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;margin-bottom: 15px;" *ngIf="profileStatus == 'ACTIVE'">
+                    <div class="col-sm-12">
+                        <button  *ngIf="adminpercentagemessage == 'data found'"(click)="editPercentage()" style="   float: right;" class="btn btn-primary">Edit
+                        </button>
+                        <h3 style="text-align: center;">Percentage</h3>
+                   
+                    </div>
+
+                </div>
+
+                <div class="row" *ngIf="profileStatus == 'ACTIVE'">
+                    <div class="col-sm-4">
+                        <mat-card>
+                            <div class="background">
+                                <p>{{adminPercentage}}%</p>
+                            </div>
+
+                            <h5>Admin Percentage</h5>
+                        </mat-card>
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-card>
+                            <div class="background">
+                                <p>{{hospitalPercentage}}%</p>
+                            </div>
+
+                            <h5>Hospital Percentage</h5>
+
+                        </mat-card>
+
+
+                    </div>
+                    <div class="col-sm-4">
+                        <mat-card>
+                            <div class="background">
+                                <p>{{patientPercentage}}%</p>
+                            </div>
+                            <h5>Patient Percentage</h5>
+
+                        </mat-card>
+
+
+                    </div>
+                </div>
+
+                <div class="m-t-20 text-center">
+
+                </div>
+
+            </div>
+        </div>
+    </div>

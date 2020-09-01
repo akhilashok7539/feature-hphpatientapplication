@@ -1,0 +1,82 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase; font-weight: bold;">
+                    Leave Record</h4>
+
+            </div>
+            <!-- <div class="col-sm-1">
+            
+
+            </div> -->
+            <div class="col-sm-3">
+                <button style="    padding: 11px;" (click)="addleave()">Add leave</button>
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-border table-striped custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>DATE</th>
+                            <th>TIME</th>
+                            <th>REASON</th>
+
+                            <th>STATUS</th>
+                           
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let leave of docLeaves">
+
+                            <td>{{leave.date}}</td>
+                            <td>{{leave.time}}</td>
+                            <td>{{leave.reason}}</td>
+                            <td> <button>{{leave.leaveStatus}}</button> </td>
+                        </tr>
+                    </tbody>
+
+
+
+
+                </table>
+
+                <!-- <ul class="nav nav-pills" style="padding-left: 40vw;
+                    margin-top: 48px;">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{'active':i==page}">{{i+1}}</a>
+
+                    </li>
+                </ul> -->
+<h6 *ngIf="appointmentmessage == 'No appointments found'" style="text-align: center; font-size: 18px;margin-top: 100px;"> No appointments found on {{date}}</h6>
+
+                <ul class="nav nav-pills" style="    justify-content: center; margin-top: 48px;">
+                    <!-- <a style="font-weight: bold;padding: 10px;"
+                        >Previous</a> -->
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link " style="color: white;    padding: 9px 17px;" (click)="setPage(i,$event)"
+                            [ngClass]="{active:i==page}">{{i+1}}</a>
+
+                    </li>
+                    <!-- <a style="font-weight: bold; padding: 10px;">Next</a> -->
+                </ul>
+            </div>
+        </div>
+    </div>

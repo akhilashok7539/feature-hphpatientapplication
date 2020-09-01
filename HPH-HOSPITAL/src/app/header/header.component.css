@@ -1,0 +1,13 @@
+img{
+    padding-top: 15px;
+    width: 68px;
+}
+a{
+    float: left;
+}
+@media only screen and (max-width: 991px)
+{
+    a{
+        float: none;
+    }
+}

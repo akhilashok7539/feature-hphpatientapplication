@@ -1,0 +1,25 @@
+img{
+    margin-right: auto;
+    /* float: right; */
+    display: block;
+    margin-left: auto;
+    width: 237px;
+
+}
+.page-wrapper{
+    background: #E8F6FF;
+}
+
+h4{
+    color: #3D4461;
+    font-weight: bold;
+    /* width: 409px; */
+    font-size: 31px;
+}
+h5{
+    color: #FF5851;
+    font-size: 26px;
+}
+p{
+    margin-top: 20px;
+}

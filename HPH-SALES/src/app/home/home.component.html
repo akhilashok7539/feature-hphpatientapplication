@@ -1,0 +1,258 @@
+<app-header></app-header>
+<!-- <div class="page-wrapper"> -->
+
+
+<div class="tab_container">
+    <input id="tab1" type="radio" name="tabs" checked (click)="getallMappedTosales()">
+    <label for="tab1"><i class="fa fa-calendar" aria-hidden="true"></i><span>
+            <h5 (click)="getallMappedTosales()">Approval Request</h5>
+        </span></label>
+
+    <input id="tab2" type="radio" name="tabs" (click)="getallmappedHospitals()">
+    <label for="tab2"><i class="fa fa-history"></i><span>
+            <h5 (click)="getallmappedHospitals()">Hospitals</h5>
+        </span></label>
+    <input id="tab3" type="radio" name="tabs" (click)="getallmappedHospitalsSalesApproved()">
+    <label for="tab3"><i class="fa fa-check"></i><span>
+            <h5 (click)="getallmappedHospitals()">Wating for admin approval</h5>
+        </span></label>
+    <input id="tab4" type="radio" name="tabs" (click)="getallmappedHospitalsSalesReject()">
+    <label for="tab4"><i class="fa fa-ban"></i><span>
+            <h5 (click)="getallmappedHospitals()">Sales Reject</h5>
+        </span></label>
+    <input id="tab5" type="radio" name="tabs" (click)="getallDoctors()">
+    <label for="tab5"><i class="fa fa-user" aria-hidden="true"></i><span>
+            <h5 (click)="getallDoctors()">Doctros</h5>
+        </span></label>
+
+    <!-- VERIFY REQUEST SECTION -->
+    <section id="content1" class="tab-content">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-8 col-3">
+                    <h4 class="page-title">Verify Request</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Hospital Name</th>
+                                    <th>Contact No</th>
+                                    <th>Profile Status</th>
+                                    <th>View</th>
+                                    <th>Approve</th>
+                                    <th>Reject</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mappeddata of mappeddata">
+                                    <td>{{mappeddata.hospitalName}}</td>
+                                    <td>{{mappeddata.contactPhone}}</td>
+                                    <td *ngIf="mappeddata.profileStatus == 'MAPPED_TO_SALES'"
+                                        style="font-weight: bold;color: green;">MAPPED TO SALES</td>
+                                    <td> <button (click)="viewHospitlas(mappeddata)" class="btn btn-warning">View
+                                        </button></td>
+                                    <td><button (click)="approve(mappeddata)" class="btn btn-danger"
+                                            style="background-color:royalblue;color: white;">Approve</button></td>
+                                    <td><button (click)="Reject(mappeddata)" class="btn btn-danger"
+                                            style="background-color:rgb(216, 56, 69);color: white;">Reject</button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="setPage(i,$event)"
+                                    [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- GET ACTIVE HOSPITAL AND ADD HOSPITAL SECTION -->
+    <section id="content2" class="tab-content">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Hospital</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+
+
+                    <a class="btn btn btn-primary btn-rounded  " (click)="addHsopital()"><i class="fa fa-plus"></i> Add
+                        Hospital</a>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Hospital Name</th>
+                                    <th>Contact No</th>
+                                    <th>Profile Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let results of allhospitalss">
+                                    <td>{{results.hospitalName}}</td>
+                                    <td>{{results.contactPhone}}</td>
+                                    <td style="font-weight: bold;color: green;">{{results.profileStatus}}</td>
+                                    <td> <button (click)="view(results)" class="btn btn-warning">View </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="getActive(i,$event)"
+                                    [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- SALES APPROVED REQUEST SECTION -->
+    <section id="content3" class="tab-content">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-8 col-3">
+                    <h4 class="page-title">Sales Approved</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Hospital Name</th>
+                                    <th>Contact No</th>
+                                    <th>Profile Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let mappeddata of approvedData">
+                                    <td>{{mappeddata.hospitalName}}</td>
+                                    <td>{{mappeddata.contactPhone}}</td>
+                                    <td *ngIf="mappeddata.profileStatus == 'SALES_APPROVED'"
+                                        style="font-weight: bold;color: green;">SALES APPROVED</td>
+                                    <td> <button (click)="viewHospitlas(mappeddata)" class="btn btn-warning">View
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="setsalesApprovedPage(i,$event)"
+                                    [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- SALES REJECTED SECTION -->
+    <section id="content4" class="tab-content">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-8 col-3">
+                    <h4 class="page-title">Sales Rejected</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Hospital Name</th>
+                                    <th>Contact No</th>
+                                    <th>Profile Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of rejectData">
+                                    <td>{{data.hospitalName}}</td>
+                                    <td>{{data.contactPhone}}</td>
+                                    <td *ngIf="data.profileStatus == 'SALES_REJECTED'"
+                                        style="font-weight: bold;color: green;">SALES REJECTED</td>
+                                    <td> <button (click)="viewHospitlas(data)" class="btn btn-warning">View
+                                        </button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="setsalesApprovedPage(i,$event)"
+                                    [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--  SALES ADDED DOCTORS-->
+    <section id="content5" class="tab-content">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Doctors</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <a class="btn btn btn-primary btn-rounded " (click)="pending()"> <i class="fa fa-eye"></i> Pending Doctors</a>
+                    &nbsp;
+                    <a class="btn btn btn-primary btn-rounded  " (click)="doctors()"><i class="fa fa-plus"></i> Add
+                        Doctors</a>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Doctor Name</th>
+                                    <th>Contact No</th>
+                                    <th>Profile Status</th>
+                                    <th>View</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let doctorsList of doctorsList">
+                                    <td>{{doctorsList.firstName}} {{doctorsList.lastName}}</td>
+                                    <td>{{doctorsList.mobNo}}</td>
+                                    <td style="color: green; font-weight: bold;">{{doctorsList.status}}</td>
+                                    <td><Button class="btn btn-warning" (click)="viewdoc(doctorsList)">View</Button></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                        <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="getdoctorpages(i,$event)"
+                                    [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

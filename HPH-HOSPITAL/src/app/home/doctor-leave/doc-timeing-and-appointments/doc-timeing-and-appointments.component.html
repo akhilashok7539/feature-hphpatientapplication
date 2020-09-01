@@ -1,0 +1,97 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="card" style="    width:15%;
+                    padding: 37px;height: 20%;
+                    background: #EAF7F4;
+                    margin-top: 29px;">
+                <div class="card-title" style="    color: #51A88F;
+                        font-weight: bold;">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i> Time Solts
+                </div>
+            </div>
+
+            <div class="card" style="       margin-left:10px;  width:20%;
+                    padding: 37px;
+                    background: #EAF7F4;
+                    margin-top: 29px;">
+                <div class="card-title">
+                    <p style="    color: #51A88F;"> </p>
+                    <select class="form-control" [(ngModel)]="selectedDate" (change)="dateselected()">
+                        <option value="" selected disabled>choose a date</option>
+                        <option *ngFor="let item of mapdata | keyvalue" [value]="item.key">{{item.key}} </option>
+                    </select>
+                    <!-- <div>{{dateselected()}}</div> -->
+                    <div style="    margin-top: 17px;"></div>
+                    <p *ngFor="let item of selectedTime" style=" text-align: center;"> {{item.timing}}</p>
+
+                    <p style="    text-align: center; color: #51A88F; font-weight: bold;"
+                        (click)="viewAppointments(selectedDate)">View all appointments of {{selectedDate}} </p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row" *ngIf="appoinmentsBydate">
+            <div class="card" style="    width:15%;
+                    padding: 30px;height: 23%;
+                    background: #FEE2E0;
+                    margin-top: 29px;">
+                <div class="card-title" style="     font-size: 13px;   color: #FB6E63;
+                        font-weight: bold;">
+                    <i class="fa fa-minus-circle" aria-hidden="true"></i> Appointments
+                    <p style="    font-size: 13px;
+                           color: #51A88F; text-align: center;
+                           margin-top: 33px;">Date :{{selectedDate}} </p>
+                </div>
+            </div>
+            <div class="card" style="margin-left:10px;  width:22%;  padding: 18px;
+                    background: #FEE2E0; margin-top: 29px;" *ngIf="appointmentsmessage == 'No appointments Found'">
+                <div class="card-tittle">
+                    <p style="margin-top: 13px; text-align: center;font-size: 17px;color: #fb6e63;font-weight: 600;">No
+                        Appointments Found on {{selectedDate}}</p>
+                </div>
+            </div>
+            <div class="card" style="margin-left:10px;  width:22%;
+                    padding: 18px;
+                    background: #FEE2E0;
+                    margin-top: 29px;" *ngFor="let appointments of appointments">
+                <div class="card-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>Date</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{appointments.date}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Booking Id</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{appointments.bookingId}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>Time</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>{{appointments.time}}</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p>status</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p style="font-weight: bold;color: #FB6E63;">{{appointments.status}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

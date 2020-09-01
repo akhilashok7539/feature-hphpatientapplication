@@ -1,0 +1,18 @@
+
+  <mat-card style="margin-bottom: 20px;">
+  <h6 style="text-align: center;font-size: 20px;font-weight: bold;">Top 5 Hospital</h6>
+    <h6 style="font-size: 11px;
+    font-style: italic;
+    text-align: center;">Based on Appoinments</h6>
+    <div style="display: block;">
+        <canvas baseChart 
+          [datasets]="barChartData"
+          [labels]="barChartLabels"
+          [options]="barChartOptions"
+          [plugins]="barChartPlugins"
+          [legend]="barChartLegend"
+          [chartType]="barChartType">
+        </canvas>
+      </div>
+      
+</mat-card>

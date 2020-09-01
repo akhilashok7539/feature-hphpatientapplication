@@ -1,0 +1,174 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <div class="container" style="background-color: white; margin-top: 25px;">
+        <div class="row">
+            <mat-tab-group mat-align-tabs="start" [selectedIndex]="values">
+                <mat-tab [disabled]="isSelected(i)" label="BASIC DETAILS">
+                 
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf="values != '0'">check_circle_outline</mat-icon> &nbsp; Basic Details -->
+                        Basic Details
+
+                    </ng-template>
+                    <div class="row" style="padding: 34px;">
+                        <div class="col-lg-12">
+                            <form [formGroup]="hospitalForm" >
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Hospital Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hospitalName.errors }" [(ngModel)]="doctormodel.hospitalName" formControlName="hospitalName" type="text">
+                                            <div *ngIf="submitted && f.hospitalName.errors" class="invalid-feedback">
+                                                <div *ngIf="f.hospitalName.errors.required">Hospital name is required</div>
+                                            </div>
+                                       
+                                       
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-8">
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Phone Number</label>
+                                            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" [(ngModel)]="doctormodel.phone" formControlName="phone" type="number">
+                                            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                                <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Email Id<span class="text-danger">*</span></label>
+                                            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [(ngModel)]="doctormodel.email" formControlName="email" type="text">
+                                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Contact Person Name <span class="text-danger">*</span></label>
+                                            <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactName.errors }" [(ngModel)]="doctormodel.contactName" formControlName="contactName" type="email">
+                                            <div *ngIf="submitted && f.contactName.errors" class="invalid-feedback">
+                                                <div *ngIf="f.contactName.errors.required">Contact name is required</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Contact Person Number <span class="text-danger">*</span></label>
+                                               
+                                                <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactPhone.errors }" [(ngModel)]="doctormodel.contactPhone" formControlName="contactPhone" type="text">
+                                                <div *ngIf="submitted && f.contactPhone.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.contactPhone.errors.required">Contact phone is required</div>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Contact Person Email Id <span class="text-danger">*</span></label>
+                                                <input class="form-control" [ngClass]="{ 'is-invalid': submitted && f.contactEmail.errors }" [(ngModel)]="doctormodel.contactEmail" formControlName="contactEmail" type="text">
+                                                <div *ngIf="submitted && f.contactEmail.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.contactEmail.errors.required">Contact person email is required</div>
+                                                </div>
+                                            </div>
+                                          
+                                    </div>
+                              
+                                    <div class="col-sm-4">
+                                            <div class="form-group">
+                                                <label>Select Hospital Type <span class="text-danger">*</span></label>
+                                                <!-- <input class="form-control" type="text"> -->
+                                                <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hospitalType.errors }" [(ngModel)]="doctormodel.hospitalType" formControlName="hospitalType">
+                                                    <option> CLINIC</option>
+                                                    <option>HOSPITAL</option>
+                                                </select>
+                                                <div *ngIf="submitted && f.hospitalType.errors" class="invalid-feedback">
+                                                    <div *ngIf="f.hospitalType.errors.required">Hospital type is required</div>
+                                                </div>
+        
+                                            </div>
+                                    </div>
+        
+        
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <label>Select City <span class="text-danger">*</span></label>
+                                            <!-- <input class="form-control" type="text"> -->
+                                            <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.cityId.errors }" [(ngModel)]="doctormodel.cityId" formControlName="cityId">
+                                                <option *ngFor="let c of citys" value="{{c.cityId}}"> {{c.cityName}}</option>
+                                            </select>
+                                            <div *ngIf="submitted && f.cityId.errors" class="invalid-feedback">
+                                                <div *ngIf="f.cityId.errors.required">City name is required</div>
+                                            </div>
+        
+                                        </div>
+                                </div>
+                    
+                                </div>
+                            
+                                <div class="m-t-20 text-center">
+                                    <!-- <button class="btn btn-primary submit-btn" (click)="back()"> <i class="fa fa-arrow-left" aria-hidden="true"></i>Back</button> -->
+                                    <button class="btn btn-primary submit-btn" style="border-radius: 0px; background: #0085B2;" (click)="Next()">Continue <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+                                    
+                                </div>
+                                
+                            </form>
+                        </div>
+                    </div>
+
+                </mat-tab>
+
+                <mat-tab [disabled]="isSelected(i)" label="LOCATION DETAILS">
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '1'">check_circle_outline</mat-icon> &nbsp; Location Details -->
+                       Location Details
+                      </ng-template>
+                      <app-edit-hospital-location-details (nextClick)="nextClicked()"></app-edit-hospital-location-details>
+                </mat-tab>
+
+                <mat-tab [disabled]="isSelected(i)" label="Establishment ID Proof">
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '2'">check_circle_outline</mat-icon> &nbsp; Establishment ID Proof -->
+                       Establishment Proof
+                      </ng-template>
+                      <app-edit-hospital-establishment-proof (nextClickest)="nextclickestablishment()" ></app-edit-hospital-establishment-proof>
+                </mat-tab>
+                <mat-tab [disabled]="isSelected(i)" label="Owner ID Proof">
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '3'">check_circle_outline</mat-icon> &nbsp; Owner ID Proof -->
+                       Owner Id Proof
+                      </ng-template>
+                      <app-edit-hospital-owner-id-proof></app-edit-hospital-owner-id-proof>
+                </mat-tab>
+
+                <mat-tab [disabled]="isSelected(i)" >
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '3'">check_circle_outline</mat-icon> &nbsp;  -->
+                       
+                      </ng-template>
+                </mat-tab>
+                <mat-tab [disabled]="isSelected(i)" >
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '3'">check_circle_outline</mat-icon> &nbsp;  -->
+                       
+                      </ng-template>
+                </mat-tab>
+                <mat-tab [disabled]="isSelected(i)" >
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '3'">check_circle_outline</mat-icon> &nbsp;  -->
+                       
+                      </ng-template>
+                </mat-tab>
+                <mat-tab [disabled]="isSelected(i)" >
+                    <ng-template mat-tab-label>
+                        <!-- <mat-icon *ngIf ="values > '3'">check_circle_outline</mat-icon> &nbsp;  -->
+                       
+                      </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <form [formGroup]="loginForm">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4 style="letter-spacing: 7.4px; font-weight: bold;">LOGIN BY OTP</h4>
+                            <p>Welcome back! Please login to your account.</p>
+                            <mat-form-field class="example-full-width" style="margin-top: 20px;">
+                                <input   [(ngModel)]="loginmodel.mobNo" formControlName="mobNo" matInput placeholder="Mobile Number" type="number">
+                                <mat-error *ngIf="loginForm.get('mobNo').hasError('required')">
+                                    Mobile Number is Required!
+                                  </mat-error>
+                                  <mat-error *ngIf="loginForm.get('mobNo').hasError('pattern')">
+                                    Enter a valid mobile number
+                                  </mat-error>
+                            </mat-form-field>
+                            
+                        </div>
+                        <div class="row" style="    margin: 0px;">
+                            <button class="loginbtn"   [disabled]="loginForm.invalid" (click)="sendOtp()">Send OTP</button> &nbsp; &nbsp;
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="container">
+
+            <div class="row">
+
+                <div class="col-sm-12" style="margin-top: 20px;">
+                    <mat-card>
+                        <h4 style="text-align: center;">Choose a IP Infra</h4>
+                        <hr>
+                        <select class="form-control" [(ngModel)]="infraId">
+                            <option value="" selected disabled>Choose an IP Infra</option>
+                            <option value="" *ngFor="let results of results" value="{{results.infraId}}">{{results.infraName}}</option>
+                        </select>
+                        <button class="btn btn-primary" (click)="submit()">Submit</button>
+                    </mat-card>
+                </div>
+            </div>
+    </div>
+</div>

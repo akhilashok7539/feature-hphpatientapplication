@@ -1,0 +1,39 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h4 class="page-title"> Choose a sales Person</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+               
+                <div class="row" >
+                    <div class="col-sm-12" >
+                        <div class="form-group">
+                            <label>Sales Person Name </label>
+                            <select class="form-control"   [(ngModel)]="salesId" >
+                                <option value="" selected disabled>Select a sales Person</option>
+                                <option *ngFor="let results of results" value="{{results.salesId}}">{{results.firstName}} {{results.lastName}}</option>
+                            </select>
+                        </div>
+                    </div>
+                 
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6" style="margin-left: auto;
+                        margin-right: auto;">
+                            <button class="btn btn-dark" (click)="back()" style="    margin-left: 61px;">Back</button>
+                          
+                            <button class="btn btn-danger" style="margin-left: 90px;" (click)="approveRequest()">Approve</button>
+
+                        </div>
+
+                    </div>
+            </div>
+            </div>
+</div>
+</div>

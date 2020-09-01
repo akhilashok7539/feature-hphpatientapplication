@@ -1,0 +1,23 @@
+<mat-card style="margin-bottom: 20px;">
+    <h6 style="text-align: center;font-size: 20px;font-weight: bold;">Appointments Trending</h6>
+
+    <div style="display: block;     height: 249px;">
+        <div class="row">
+            <select name="" id=""  [(ngModel)]="year" (change)="getYearselected(year)">
+                <option value="" disabled selected>Choose Criteria</option>
+                <option value="Year">Year</option>
+                <option value="Month">Month</option>
+
+
+            </select>
+            <!-- <select name="" id="" >
+                <option value="">Choose Month</option>
+            </select> -->
+        </div>
+        
+        <canvas baseChart  [datasets]="lineChartData" [labels]="lineChartLabels"
+            [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend"
+            [chartType]="lineChartType" [plugins]="lineChartPlugins">
+        </canvas>
+    </div>
+</mat-card>

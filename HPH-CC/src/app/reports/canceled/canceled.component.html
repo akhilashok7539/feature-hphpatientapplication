@@ -1,0 +1,91 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+ 
+           
+
+       
+        <div class="content">
+                <!-- <div class="section" style="background-color:rgb(33, 5, 77)">
+                   
+                        
+                     <button class="btn success" style="margin-left: 15px;" (click)="appointConfirm()" >Confirmed</button>  
+                     <button class="btn success" style="margin-left: 15px;" >Canceled</button>  
+                     <input class="form-control" type="text"  [(ngModel)]="searchString"  (change)="SearchSelected(searchString)" placeholder="Search appointmetns by time......" aria-label="Search">
+                   
+
+                </div> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="section" style="    background-color: #00b3da;">
+                            <input type="number" [(ngModel)]="search" class="form-control" placeholder="search by booking ID" style="    margin-left: 51%;
+                            position: absolute;
+                            width: 40%;
+                            margin-top: 12px;">
+                            <button class="search" (click)="searchs()"> <i class="fa fa-search"></i> </button>
+                            <button class="btn warning "  style="margin-left: 15px;"  (click)="appointConfirm()" >Completed</button>  
+                            <button class="btn success " style="margin-left: 15px;" >Canceled</button>  
+                        </div>
+                    </div>
+                   
+                </div>
+                
+            <div class="row">
+               
+
+            
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                       
+                   
+                  
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Booking ID</th>
+
+                                    <th> Time </th>
+                                    <th>Patient Name</th>
+                                    <th>Appointment Date</th>
+                                 
+                                    <th>Department</th>
+                                    <th>Doctor Name</th>
+                                    <th>Status</th>   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let canceled of results  | filter : 'time' : searchString; let i = index ">
+                                    <td>{{canceled.bookingId}}</td>
+                                   
+                                    <td>{{canceled.time}}</td>
+
+                                    <td>{{canceled.patient.firstName}} {{canceled.patient.lastName}}</td>
+                                    <td>{{canceled.date}}</td>
+                                   
+                                    <td>{{canceled.doctor.spec.description}}</td>
+                                    <td>{{canceled.doctor.firstName}} {{canceled.doctor.lastName}} </td>
+                                    <td style="color: red; font-weight: bold;"><strong>{{canceled.status}}</strong></td>
+                                    
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                        <ul class="nav nav-pills" style="padding-left: 40vw;
+                        margin-top: 48px;">
+                          <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+                        
+                          </li>
+                        </ul>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+     

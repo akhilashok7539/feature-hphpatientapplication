@@ -1,0 +1,135 @@
+<div class="row" style="    margin-top: 37px;">
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+                <h4 style="    padding-right: 27px;cursor: pointer;
+                float: right;font-weight: bold; color: #00B3DA;" (click)="edit()" *ngIf="!view">EDIT</h4>
+                <h4 style="    padding-right: 27px;cursor: pointer;
+                     float: right;font-weight: bold; color: #00B3DA;" (click)="next()" *ngIf="view">SAVE</h4>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 ">
+        <form [formGroup]="doctorForm">
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >Degree Name  </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <select class="form-control"  [(ngModel)]="doctormodel.degree" [ngClass]="{ 'is-invalid': submitted && f.degree.errors }" formControlName="degree">
+                            <option *ngFor ="let d of degree" value="{{d.degreeId}}">
+                                    {{d.degreeName}}
+                            </option>
+                        </select>
+                        <div *ngIf="submitted && f.degree.errors" class="invalid-feedback">
+                            <div *ngIf="f.degree.errors.required">Degree Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  >College/Institute  </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        
+                        <select class="form-control" [(ngModel)]="doctormodel.college" [ngClass]="{ 'is-invalid': submitted && f.college.errors }" formControlName="college">
+                        
+                            <option *ngFor ='let cl of college' value="{{cl.collegeId}}">
+                                    {{cl.collegeName}}
+                            </option>
+                           
+                          
+
+                        </select>
+                        <div *ngIf="submitted && f.college.errors" class="invalid-feedback">
+                            <div *ngIf="f.college.errors.required">College Name is required</div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2nd roww -->
+            <div class="row">
+
+                <div class="col-md-2">
+                    <label  >State Council Name </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <select class="form-control"  [(ngModel)]="doctormodel.stateCouncilName"[ngClass]="{ 'is-invalid': submitted && f.stateCouncilName.errors }" formControlName="stateCouncilName">
+                        
+                            <option *ngFor ='let coun of council' value="{{coun.councilId}}">
+                                    {{coun.councilName}}
+                            </option>
+                           
+                          
+                        </select>
+                        <div *ngIf="submitted && f.stateCouncilName.errors" class="invalid-feedback">
+                            <div *ngIf="f.stateCouncilName.errors.required">State Councile Name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  > Council Number </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.stateCouncilregNumber" [ngClass]="{ 'is-invalid': submitted && f.stateCouncilregNumber.errors }" formControlName="stateCouncilregNumber">
+                        <div *ngIf="submitted && f.stateCouncilregNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.stateCouncilregNumber.errors.required">State Council Registration Number is required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 3rd rowww -->
+
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >Completion Year </label>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.yearOfcompletion" [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }" formControlName="yearOfcompletion">
+                        <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                            <div *ngIf="f.pincode.errors.required">Completion Year is required</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-2">
+                <label  >Year Of Experience </label>
+            </div>
+            <div class="col-sm-4">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.yearOfExperience" [ngClass]="{ 'is-invalid': submitted && f.yearOfExperience.errors }" formControlName="yearOfExperience">
+                        <div *ngIf="submitted && f.yearOfExperience.errors" class="invalid-feedback">
+                            <div *ngIf="f.yearOfExperience.errors.required">Year of Experience is required</div>
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-2">
+                <label  >Qualification </label>
+            </div>
+            <div class="col-sm-4">
+                    <div class="form-group">
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.qualificationname" [ngClass]="{ 'is-invalid': submitted && f.qualificationname.errors }" formControlName="qualificationname">
+                        <div *ngIf="submitted && f.qualificationname.errors" class="invalid-feedback">
+                            <div *ngIf="f.qualificationname.errors.required">Qualification Name is required</div>
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </form>
+    </div>
+</div>

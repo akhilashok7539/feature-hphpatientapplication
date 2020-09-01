@@ -1,0 +1,64 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-6 ">
+                <h4 class="page-title" style="font-size: 26px;font-weight: 500;margin-top: 10px; ">Approval Request</h4>
+
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                       
+
+                        <mat-table #table [dataSource]="dataSource">
+
+                          
+                            <ng-container matColumnDef="doctname">
+                                <mat-header-cell *matHeaderCellDef>DOCTOR NAME </mat-header-cell>
+                                <mat-cell *matCellDef="let doctors"> {{doctors.firstName}} {{doctors.lastName}}</mat-cell>
+                            </ng-container>
+                       
+                            <ng-container matColumnDef="phone">
+                                <mat-header-cell *matHeaderCellDef> PHONE NUMBER</mat-header-cell>
+                                <mat-cell *matCellDef="let doctors"> {{doctors.mobNo}}</mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="proof">
+                                <mat-header-cell *matHeaderCellDef> PROOF</mat-header-cell>
+                                <mat-cell *matCellDef="let doctors"> <img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png"> </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="approve">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let doctors"> 
+                                   
+                                    <button (click)="approve(doctors)" style="font-weight: 400; border: none; background: none; cursor: pointer; font-size: 17px;letter-spacing: 0.18px;color: #27AE60;" (click)="approve(doctors)" [disabled]="isLoading"> <i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{buttonapprove}}</button>
+                                    <button (click)="reject(doctors)" style="font-weight: 400; border: none; background: none;cursor: pointer; font-size: 17px;letter-spacing: 0.18px;color: #E74C3C;" (click)="reject(doctors)" [disabled]="isLoadingReject"> <i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoadingReject, 'fa-close': !isLoadingReject}"></i> {{buttonreject}}</button>
+                                    <button (click)="view(doctors)" style="     border: none;background: #0087B3; border-radius: 30px; height: 32px;   width: 32px;    margin-left: 29px;" class="btn btn-warning"><i class="fa fa-eye" style="color: white;margin-left: -3px;"></i></button>
+                                </mat-cell>
+                            </ng-container>
+        
+        
+        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+        
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                            (page)="changePage($event)">
+                        </mat-paginator>
+
+                    </div>
+            </div>
+            </div>
+            </div>

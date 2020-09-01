@@ -1,0 +1,88 @@
+<div class="row" style="padding: 32px;">
+    <div class="col-lg-12">
+        <form [formGroup]="doctorForm" >
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>House Name <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.houseName.errors }"  [(ngModel)]="doctormodel.houseName" formControlName="houseName">
+                        <div *ngIf="submitted && f.houseName.errors" class="invalid-feedback">
+                            <div *ngIf="f.houseName.errors.required">House Name is required</div>
+                        </div>
+                    
+                    
+                    </div>
+                </div>
+            
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Street Name <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text"  [ngClass]="{ 'is-invalid': submitted && f.streetName.errors }"  [(ngModel)]="doctormodel.streetName" formControlName="streetName">
+                    <div *ngIf="submitted && f.streetName.errors" class="invalid-feedback">
+                        <div *ngIf="f.streetName.errors.required">Street Name is required</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>City   <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text"  [ngClass]="{ 'is-invalid': submitted && f.city.errors }"  [(ngModel)]="doctormodel.city" formControlName="city">
+                    <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                        <div *ngIf="f.city.errors.required">City Name is required</div>
+                    </div>
+                
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Location  <span class="text-danger">*</span> </label>
+                    <input class="form-control" type="text"   [ngClass]="{ 'is-invalid': submitted && f.location.errors }"  [(ngModel)]="doctormodel.location" formControlName="location">
+                    <div *ngIf="submitted && f.location.errors" class="invalid-feedback">
+                        <div *ngIf="f.location.errors.required">Location is required</div>
+                    </div>
+               
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>State <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text"  [ngClass]="{ 'is-invalid': submitted && f.state.errors }"  [(ngModel)]="doctormodel.state" formControlName="state">
+                    <div *ngIf="submitted && f.state.errors" class="invalid-feedback">
+                        <div *ngIf="f.state.errors.required">State is required</div>
+                    </div>
+                
+                </div>
+            </div>
+
+     
+          
+            <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Pincode <span class="text-danger">*</span></label>
+                        <input class="form-control" type="number"   [ngClass]="{ 'is-invalid': submitted && f.pincode.errors }"  [(ngModel)]="doctormodel.pincode" formControlName="pincode">
+                        <div *ngIf="submitted && f.pincode.errors" class="invalid-feedback">
+                            <div *ngIf="f.pincode.errors.required">Pincode is required</div>
+                        </div>
+                    
+                    </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Country <span class="text-danger">*</span></label>
+                    <input class="form-control" type="text"   [ngClass]="{ 'is-invalid': submitted && f.country.errors }"  [(ngModel)]="doctormodel.country" formControlName="country">
+                    <div *ngIf="submitted && f.country.errors" class="invalid-feedback">
+                        <div *ngIf="f.country.errors.required">Country is required</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="m-t-20 text-center">
+            <button class="btn btn-primary submit-btn" (click)="next()"> Next</button>
+        </div>
+         </form>
+         </div>
+         </div>

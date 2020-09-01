@@ -1,0 +1,88 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">Departments</h4>
+
+            </div>
+            <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="    width: 62%;color: white;border: none;" (click)="adddepartment()"><i
+                        class="fa fa-plus"></i> Add Department </a>
+            </div>
+            <div class="col-sm-5">
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-11">
+            <div class="table-responsive">
+                <!-- <table class="table table-border table-striped custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>DEPATMENT NAME</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let department of results">
+
+                            <td>{{department.departmentName}}</td>
+                            <td style="float: right;"> <button (click)="addDepartmentHead(department)">Add Department
+                                    Head</button>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <button style=" width: 77px;" (click)="edit(department)"> Edit </button>
+                                &nbsp;
+                                &nbsp;
+                                &nbsp;
+                                <button (click)="addDoctors(department)"> Add Doctors </button>
+
+                            </td>
+                        </tr>
+                    </tbody>
+
+                </table> -->
+                <mat-table #table [dataSource]="dataSource"  >
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="deptname">
+                        <mat-header-cell *matHeaderCellDef> DEPARTMENT NAME </mat-header-cell>
+                        <mat-cell *matCellDef="let department">{{department.departmentName}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="adddepart">
+                        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell *matCellDef="let department"><button (click)="addDepartmentHead(department)">Add Department
+                            Head</button> 
+                            <button style=" width: 77px;" (click)="edit(department)"> Edit </button>
+                            <button (click)="addDoctors(department)"> Add Doctors </button>
+                        </mat-cell>
+                    </ng-container>
+                
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+
+                <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" (page)="changePage($event)">
+                </mat-paginator>
+                <h4 style="text-align: center; margin-top: 97px;" *ngIf="error == 'No Departments found'"> No
+                    Departments found</h4>
+
+            </div>
+        </div>
+    </div>

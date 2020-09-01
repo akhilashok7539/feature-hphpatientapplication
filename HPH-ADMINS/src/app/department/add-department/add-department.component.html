@@ -1,0 +1,35 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add Speciality</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form [formGroup]="departmentForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label> Speciality Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" [(ngModel)]="departmentModel.departmentName" 
+                                    [ngClass]="{ 'is-invalid': submitted && f.departmentName.errors }" 
+                                    formControlName="departmentName" type="text">
+                                    <div *ngIf="submitted && f.departmentName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.departmentName.errors.required">Department Name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn"   (click)="create()">Create </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

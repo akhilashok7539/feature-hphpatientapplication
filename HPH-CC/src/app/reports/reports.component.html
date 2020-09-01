@@ -1,0 +1,83 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="section" style="    background-color: #00b3da;">
+                    <input type="number" [(ngModel)]="search" class="form-control" placeholder="search by booking ID"
+                        style="    margin-left: 51%;
+                            position: absolute;
+                            width: 40%;
+                            margin-top: 12px;">
+                    <button class="search" (click)="searchs()"> <i class="fa fa-search"></i> </button>
+
+
+                    <button class="btn success " style="margin-left: 15px;"
+                        (click)="appointConfirm()">Completed</button>
+                    <button class="btn warning" style="margin-left: 15px;" (click)="canceled()">Canceled</button>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-8 col-9 text-right m-b-20">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Booking ID</th>
+                                <th> Time </th>
+                                <th>Patient Name</th>
+                                <th>Appointment Date</th>
+
+                                <th>Department</th>
+                                <th>Doctor Name</th>
+                                <th>Status</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let confirmed of results ">
+                                <td>{{confirmed.bookingId}}</td>
+
+                                <td>{{confirmed.time}}</td>
+                                <td>{{confirmed.patient.firstName}} {{confirmed.patient.lastName}}</td>
+                                <td>{{confirmed.date}}</td>
+
+                                <td>{{confirmed.doctor.spec.description}}</td>
+                                <td>{{confirmed.doctor.firstName}} {{confirmed.doctor.lastName}} </td>
+                                <td style="color: green; font-weight: bold;"><strong>{{confirmed.status}}</strong></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- <h6 *ngIf = "!results ">There is no appointments available</h6> -->
+                    <ul class="nav nav-pills" style="padding-left: 40vw;
+                        margin-top: 48px;">
+                        <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    <!-- <div class="btn-group" (click)="onButtonGroupClick($event)">
+            <button class="btn btn-secondary" type="button" value="1">Premier bouton</button>
+            <button class="btn btn-secondary" type="button">Second bouton</button>
+            <button class="btn btn-secondary" type="button">Troisième bouton</button>
+            <button class="btn btn-secondary" type="button">Quatrième bouton</button>
+          </div> -->

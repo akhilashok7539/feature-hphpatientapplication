@@ -1,0 +1,41 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+        <form [formGroup]="registerOtp">
+
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>OTP Verification</h4>
+                            <p>Please verify OTP to create your account.</p>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-sm-12">
+                                    <label for="otp">OTP</label>
+                                    <input type="number" [(ngModel)]="loginmodel.otp" formControlName="otp"
+                                        class="form-control" placeholder="Enter your OTP" name="otp">
+                                </div>
+                            </div>
+                            <div class="row" style="    margin-top: 21px;">
+                                
+                                <div class="col-sm-6">
+                                    <button class="loginbtn" (click)="sendOtp()">Resend OTP</button>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <button class="loginbtn" (click)="verify()">Verify</button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

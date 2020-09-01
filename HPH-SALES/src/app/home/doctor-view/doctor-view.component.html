@@ -1,0 +1,91 @@
+
+<app-header></app-header>
+
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <h4 class="page-title"> Profile  Details</h4>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <img src="{{apiUrl}}/doctor/profilePic/{{doctorId}}" class="imges">
+                    <div class="row" >
+                        <div class="col-sm-12" >
+                            <div class="form-group">
+                                <label>Doctor Name </label>
+                                <h6 class="alignment" >{{doctormodel.firstName}} {{doctormodel.lastName}}</h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <h6 class="alignment" >{{doctormodel.mobNo}}</h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Email Id</label>
+                                <h6 class="alignment" >{{doctormodel.email}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Gender</label>
+                                <h6 class="alignment" >{{doctormodel.gender}}</h6>
+                            </div>
+                        </div>
+
+                  
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>City</label>
+                                <h6 class="alignment" >{{doctormodel.cityId}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Speciality</label>
+                                <h6 class="alignment" >{{doctormodel.specId}}</h6>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Hospital Name</label>
+                                <h6 class="alignment" >{{doctormodel.hospitalName}}</h6>
+                            </div>
+                        </div>
+            
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Medical Registration Proof</label>
+                                <h6 class="alignment" ><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png" (click)="downloadMedicalRegistrationProof()"></h6>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Doctor Id Proof</label>
+                                <h6 class="alignment" ><img src="https://img.icons8.com/cute-clipart/64/000000/pdf.png" (click)="downloadIdproof()"></h6>
+                            </div>
+                        </div>
+
+
+                        <div class="col-sm-6">
+                          
+                    </div>
+        
+                    </div>
+                
+                    <div class="m-t-20 text-center">
+                       
+                    </div>
+               
+            </div>
+        </div>
+    </div>

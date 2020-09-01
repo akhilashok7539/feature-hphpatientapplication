@@ -1,0 +1,61 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="page-wrapper">
+ 
+           
+
+       
+        <div class="content">
+                
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">View Patients </h4>
+                   
+                </div>
+
+            
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                       
+                   
+                  
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Patient Name</th>
+                                    <th>Appointment Date</th>
+                                    <th>Appointment Time</th>
+                                    <th>Phone Number </th>
+                                    <!-- <th>Action</th> -->
+                                    
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let res of results">
+                                   
+                                    <td>{{res.firstName}} {{res.lastName}}</td>
+                                    <td>{{dates}}</td>
+                                    <td>{{times}}</td>
+                                    <td>{{res.mobNo}}</td>
+                                    <!-- <td><button class="btn btn-primary" (click)="cancel()">Cancel</button></td> -->
+                                  
+                                   
+                                    
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+        <app-header></app-header>
+        <app-sidebar></app-sidebar>

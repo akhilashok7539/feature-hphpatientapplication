@@ -1,0 +1,21 @@
+.row{
+    padding: 25px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+
+}
+h3{
+    text-align: center;
+}
+button{
+    border: none;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    display: block;
+    margin-top: 28px;
+    background: #0085b2;
+    padding: 18px;
+    width: 17%;
+}

@@ -1,0 +1,97 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Command Center</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <input class="form-control" type="text" name="searchString" [(ngModel)]="searchString"
+                    placeholder="Search here" aria-label="Search" (keyup)="applyFilter(searchString)">
+            </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <!-- <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Contact No</th>
+                                    <th>Email Id</th>
+                                    <th>Profile Status</th>
+                                    <th>Edit</th>
+                                    <th>View</th>
+                                    <th>Status</th>
+                                    <th></th>
+                                
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let command of results">
+                                   
+                                    <td>{{command.name}}</td>
+                                    <td>{{command.mobNo}}</td>
+                                    <td>{{command.email}}</td>
+                                    <td style="font-weight: bold;color: green;">{{command.profileStatus}}</td>
+                                    <td><button (click)="edit(command)" class="btn btn-success"><i class="fa fa-pencil" ></i> Edit</button></td>
+                                    <td><button (click)="view(command)" class="btn btn-warning"><i class="fa fa-pencil" ></i>View</button></td>
+                                    <td><button (click)="status(command)" class="btn btn-primary"  *ngIf = "command.profileStatus == 'ACTIVE'"><i class="fa fa-trash"></i>InActive</button>
+                                    <button (click)="statuschange(command)" class="btn btn-danger" *ngIf = "command.profileStatus == 'INACTIVE'"><i class="fa fa-trash"></i>Active</button></td>
+                            </tr>
+                            </tbody>
+
+
+
+
+                        </table>
+
+                        <ul class="nav nav-pills" style="padding-left: 40vw;
+                        margin-top: 48px;">
+                          <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{'active':i==page}">{{i+1}}</a>
+                        
+                          </li>
+                        </ul> -->
+                        <mat-table   #table [dataSource]="dataSource" >
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="CCname">
+                                <mat-header-cell *matHeaderCellDef> CC Name </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="number">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.mobNo}} </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.email}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="status">
+                                <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.profileStatus}} </mat-cell>
+                            </ng-container>
+        
+        
+        
+        
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+        
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                            (page)="changePage($event)">
+                        </mat-paginator>
+
+                    </div>
+            </div>
+            </div>
+    
+        </div>

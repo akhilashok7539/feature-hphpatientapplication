@@ -1,0 +1,70 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+		<form [formGroup]="registrationForm" >
+
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <div class="card">
+                    <div class="card-title">
+                        <h4>Patient Registration</h4>
+                        <p>Please complete to create your account.</p>
+                        <!-- <input type="text" matInput placeholder="Phone Number"> -->
+                      <div class="row" style="margin-top: 10px;">
+                          <div class="col-sm-6">
+                              <label for="">First Name</label>
+                              <input type="text" [(ngModel)]="model.firstName"
+						[ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" 
+						formControlName="firstName" name="firstName" id="first_name" class="form-control">
+					<div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+						<div *ngIf="f.firstName.errors.required">First name is required</div>
+					</div>
+                          </div>
+                          <div class="col-sm-6">
+                              <label for="">Last Name</label>
+                              <input type="text" [(ngModel)]="model.lastName"
+                              [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" 
+                              formControlName="lastName" name="lastName" id="last_name" class="form-control">
+                          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                              <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                          </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-top: 15px;">
+                            <label for="">Mobile Number</label>
+                            <input type="number" [(ngModel)]="model.mobNo" [ngClass]="{ 'is-invalid': submitted && f.mobNo.errors }"
+                             formControlName="mobNo" name="mobNo" id="mobNo" class="form-control"
+                            required>
+                        <div *ngIf="submitted && f.mobNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobNo.errors.required">Mobile number is required</div>
+                            <div *ngIf="f.mobNo.errors.pattern">Please enter a valid number</div>
+                        </div>
+                        </div>
+                        <div class="col-sm-12" style="margin-top: 15px; margin-bottom: 0px;">
+                            <p> I agree with terms and conditions</p>
+                        </div>
+                      </div>
+                          <div class="row" style="    margin-top: 10px;">
+                            <div class="col-sm-6">
+                              <button class="loginbtn" (click)="sendOtp()">Register</button>
+
+                                </div>
+                                <div class="col-sm-6">
+                                    <p routerLink="/login" style="text-align: center; outline: none; cursor: pointer;">Already have an account? Login</p>
+
+                                </div>
+
+                          </div>
+
+                          <p style="margin-top: 50px;text-align: center;">Term of use. Privacy policy</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </form>
+        
+    </div>
+</div>

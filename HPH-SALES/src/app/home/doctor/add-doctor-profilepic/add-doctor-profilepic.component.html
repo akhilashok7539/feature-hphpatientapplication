@@ -1,0 +1,39 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Doctor Profile Picture</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+
+                                <span style="color:red;" *ngIf="message">{{message}}</span>
+                                <label>Photo <span class="text-danger">*</span></label>
+                                <input #file type="file" (change)="addPhoto($event)" accept='image/*'
+                                    class="form-control" (change)="preview(file.files)" />
+                                <img [src]="imgURL" *ngIf="imgURL" style="width: 200px; height: 200px;">
+                               
+
+                            </div>
+                            <span style="color:red;">Note : Upload a professional photo</span>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn" (click)="next()"> Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

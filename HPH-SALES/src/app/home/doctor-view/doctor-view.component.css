@@ -1,0 +1,17 @@
+.alignment{
+    margin-left: 279px;
+    margin-top: -30px;
+    font-size: 19px;
+}
+
+.imges{
+    margin-bottom: 30px;
+    width: 160px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.page-wrapper{
+    margin-left: 0px;
+}

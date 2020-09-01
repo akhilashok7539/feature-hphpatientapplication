@@ -1,0 +1,163 @@
+<div class="row">
+
+    <div class="col-md-3">
+        <img  *ngIf="!pic" src="{{apiUrl}}/doctor/profilePic/{{DoctorId}}" alt="s" height="231px" width="231px">
+        <input *ngIf="pic" #file type="file" (change)="addPhoto($event)" accept='image/*' class="form-control" (change)="preview(file.files)" />
+        <div *ngIf="pic">
+
+    
+        <img [src]="imgURL"  *ngIf="imgURL"  style="width: 200px; height: 200px;">  
+    </div>
+        
+        <button *ngIf="!pic" (click)="editProfilePicture()" class="btn btn-primary" style="font-weight: 500;
+        border: 2px solid #00B3DA;padding: 6px 57px; display: flex;    color: #00B3DA;    display: flex;  background: white;">Edit Profile Picture </button>
+     <button *ngIf="pic" (click)="updateProfilePicture()" class="btn btn-primary" 
+     style="margin-top: 10px; margin-left: auto; margin-right: auto;font-weight: 500;border: 2px solid rgb(0, 179, 218);padding: 6px 57px; color: rgb(0, 179, 218);display: flex;background: white;">Update Profile Picture </button>   
+</div>
+
+    <div class="col-md-9">
+        <div class="row" style="    margin-top: 14px;">
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+
+            </div>
+            <div class="col-md-3">
+                <h4 style="    padding-right: 27px;cursor: pointer;
+                float: right;font-weight: bold; color: #00B3DA;" (click)="edit()" *ngIf="!view">EDIT</h4>
+                <h4 style="    padding-right: 27px;cursor: pointer;
+                     float: right;font-weight: bold; color: #00B3DA;" (click)="save()" *ngIf="view">SAVE</h4>
+            </div>
+        </div>
+        <!-- FIRST ROW -->
+        <form [formGroup]="doctorForm">
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >First Name </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input [disabled]="!view" [(ngModel)]="doctormodel.firstName"
+                            [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" formControlName="firstName"
+                            class="form-control" type="text" style="display: inline-block;">
+                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                            <div *ngIf="f.firstName.errors.required">First name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  >Last Name </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input [disabled]="!view" [(ngModel)]="doctormodel.lastName"
+                            [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" formControlName="lastName"
+                            class="form-control" type="text" style="display: inline-block;">
+                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                            <div *ngIf="f.lastName.errors.required">Last name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- 2ND ROW -->
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >Email Id </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input disabled [(ngModel)]="doctormodel.email" formControlName="email"
+                            [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control" type="text"
+                            style="display: inline-block;">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                            <div *ngIf="f.email.errors.required">Email ID is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  >Phone Number </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input [disabled]="!view" [(ngModel)]="doctormodel.mobNo"
+                            [ngClass]="{ 'is-invalid': submitted && f.mobNo.errors }" formControlName="mobNo"
+                            class="form-control" type="text" style="display: inline-block;">
+                        <div *ngIf="submitted && f.mobNo.errors" class="invalid-feedback">
+                            <div *ngIf="f.mobNo.errors.required">Phone number is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 3RD ROW -->
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >Date of Birth </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <input [disabled]="!view" [(ngModel)]="doctormodel.dob"
+                            [ngClass]="{ 'is-invalid': submitted && f.dob.errors }" formControlName="dob"
+                            class="form-control" type="date" style="display: inline-block;">
+                        <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                            <div *ngIf="f.dob.errors.required">Date of birth is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  >City </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select disabled class="form-control" [(ngModel)]="doctormodel.cityId" formControlName="cityId"
+                            [ngClass]="{ 'is-invalid': submitted && f.cityId.errors }">
+                            <option *ngFor="let c of city" value="{{c.cityId}}"> {{c.cityName}}</option>
+                        </select>
+                        <div *ngIf="submitted && f.cityId.errors" class="invalid-feedback">
+                            <div *ngIf="f.cityId.errors.required">City is required</div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- 4th row -->
+            <div class="row">
+                <div class="col-md-2">
+                    <label  >Gender </label>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <select [disabled]="!view" [(ngModel)]="doctormodel.gender"
+                            [ngClass]="{ 'is-invalid': submitted && f.gender.errors }" formControlName="gender"
+                            class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                            <div *ngIf="f.gender.errors.required">Gender is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <label  >Speciality </label>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-control" [(ngModel)]="doctormodel.specId" formControlName="specId"
+                        [ngClass]="{ 'is-invalid': submitted && f.specId.errors }">
+
+                        <option *ngFor='let spec of speciality' value="{{spec.specId}}"> {{spec.description}} </option>
+
+                    </select>
+                    <div *ngIf="submitted && f.specId.errors" class="invalid-feedback">
+                        <div *ngIf="f.specId.errors.required">Speciality is required</div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

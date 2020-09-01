@@ -1,0 +1,54 @@
+<div class="row" style="padding: 32px;">
+    <div class="col-lg-12">
+        <form > 
+            <div class="row"> 
+                <div class="col-lg-12">
+                    <h4 style="font-size: 32px;
+                    text-align: center;">Upload your Profile Picture</h4>
+                    <p style="text-align: center;">They prefer physicians in business attire and a white coat</p>
+                </div>
+              
+                <!-- <div class="col-sm-6">
+                    <div class="form-group">
+                        
+                    <span style="color:red;" *ngIf="message">{{message}}</span>
+              
+                    <label>Photo  <span class="text-danger">*</span></label>
+                    <input #file type="file" (change)="addPhoto($event)" accept='image/*' class="form-control" (change)="preview(file.files)" />
+                    <img [src]="imgURL"  *ngIf="imgURL" style="width: 200px; height: 200px;">  
+                    
+                    </div>
+                    <span style="color:red;">Note :  Upload a professional photo</span>    
+
+                </div> -->
+                <div class="uploader" >
+                    <!-- <img src="https://img.icons8.com/dusk/64/000000/upload-to-cloud.png"/> -->
+                    <h5 *ngIf="!imgURL" style="font-size: 21px; text-align: center;     margin-top: 82px;
+                    margin-bottom: -43px;"> DRAG & DROP</h5>
+                 
+                
+                    <div class="image-container">
+                        <!-- <img [src]="imgURL"  *ngIf="imgURL" style="width: 200px; height: 200px;">  
+                        <img src="https://www.w3schools.com/howto/img_avatar.png" class=""> <br/>
+                        <input type='file' (change)="addPhoto($event)" (change)="preview(file.files)" class="select-profile-picture">
+                        <span class="message">Tap here to select your picture</span> -->
+                        <input #file type="file" *ngIf="!imgURL" (change)="addPhoto($event)" accept='image/*'  class="select-profile-picture" (change)="preview(file.files)" />
+                        <img [src]="imgURL"  *ngIf="imgURL" style="    width: 296px;position: relative;
+                        height: 301px;"> 
+                        <input #file type="file" *ngIf="imgURL" style="    display: inline-flex;
+                        margin-left: -29px;
+                        margin-top: -73px;" (change)="addPhoto($event)" accept='image/*'  id="img" class="select-profile-picture" (change)="preview(file.files)" />
+                       
+                        <!-- <img src="https://www.w3schools.com/howto/img_avatar.png" *ngIf="!imgURL"class=""> <br/> 
+                        <span class="message">Tap here to select your picture</span>  -->
+                       </div>
+                     </div>
+                   
+                    </div>
+        
+            <div class="m-t-20 text-center">
+                <button class="btn btn-primary submits-btn" (click)="next()"> Continue</button>
+            </div>
+        </form>
+        </div>
+        </div>

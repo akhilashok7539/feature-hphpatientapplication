@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+    <h5>Add Relative Health History</h5>
+    <p>Please add your previous health record here</p>
+    <form [formGroup]="editHealth"> 
+
+    <div class="row" style="padding: 20px;  height: 220px;">
+        <label class="filelabel">
+            <!-- <i class="fa fa-paperclip">
+            </i> -->
+            <div class="row">
+                <img src="./assets/img/urn_aaid_sc_US_54d95aff-6c21-4f2a-832b-080fd07ffe2c (6).png" style="    margin-left: auto;
+                margin-right: auto;
+                height: 100px;" alt="">
+
+            </div>
+            <!-- <span class="title">
+                Add File
+            </span> -->
+            <input class="FileUpload1" (change)="addIdProof($event)" style="font-size: 9px;    margin-left: 57px;
+            margin-top: 19px;" name="booking_attachment" type="file" />
+        </label>
+    </div>
+    <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+        <div class="col-sm-3">
+            <label for="">Choose a relative</label>
+            <select [(ngModel)]="healthhistoryModel.relativename" formControlName="relativename" class="form-control" > 
+                <option value="{{relatives.unregPatId}}" *ngFor="let relatives of relatives">{{relatives.firstName}} {{relatives.lastName}} </option>
+            </select>
+        </div>
+        <div class="col-sm-3">
+            <label for="">Test Name</label>
+            <input type="text" [(ngModel)]="healthhistoryModel.testName" formControlName="testName" class="form-control">
+        </div>
+        <div class="col-sm-3">
+            <label for="">Test Description</label>
+            <input type="text" [(ngModel)]="healthhistoryModel.testDescription" formControlName="testDescription" class="form-control">
+        </div>
+        <div class="col-sm-3">
+            <label for="">Test Date</label>
+            <input type="date" [(ngModel)]="healthhistoryModel.dateofTest" formControlName="dateofTest" class="form-control">
+        </div>
+
+    </div>
+</form>
+<div class="row" style="margin-top: 63px;">
+    <button class="cancelbtn" (click)="close()">Cancel</button>
+    <!-- <button class="apptbtn">Appointment Booking</button> -->
+    <button class="apptbtn" (click)="submit()" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}}</button>
+
+</div>
+</div>

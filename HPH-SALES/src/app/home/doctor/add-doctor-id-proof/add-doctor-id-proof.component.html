@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Doctor Id Proof</h4>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form [formGroup]="doctorIdProofForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+
+                                <label>Doctor Id Proof <span class="text-danger">*</span></label>
+                                <!-- <span style="color:red;" *ngIf="message">{{message}}</span>
+                                <label>Photo  <span class="text-danger">*</span></label>
+                                <input #file type="file" accept='image/*' class="form-control" (change)="preview(file.files)" />
+                                <img [src]="imgURL"  *ngIf="imgURL">   -->
+
+                                <input type="file" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submitted && f.doctorIdproof.errors }"
+                                    formControlName="doctorIdproof" #doctorIdproof (change)="getdocIdProofFile($event)">
+
+                                <div *ngIf="submitted && f.doctorIdproof.errors" class="invalid-feedback">
+                                    <div *ngIf="f.doctorIdproof.errors.required">Doctor ID proof is required</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn" (click)="upload()"> Next</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

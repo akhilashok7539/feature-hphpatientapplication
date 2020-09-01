@@ -1,0 +1,88 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title"> Sales</h4>
+                </div>
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <a  (click)="addsales()" class="btn btn btn-primary" style="color: white;"><i class="fa fa-plus"></i> Add Sales </a>
+                    <input class="form-control" type="text" name="searchString" [(ngModel)]="searchString"
+                    placeholder="Search here" aria-label="Search" (keyup)="applyFilter(searchString)" >
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <!-- <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Sales Person Name</th>
+                                    <th>Phone Number</th>
+                                    <th>Email</th>
+                                    <th>DOB</th>
+                                    <th>Gender</th>
+                                    <th>Edit</th>
+
+                                
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                   <tr *ngFor="let results of results">
+                                    <td>{{results.firstName}} {{results.lastName}}</td>
+                                    <td>{{results.phone}}</td>
+                                    <td>{{results.email}}</td>
+                                    <td>{{results.dob}}</td>
+                                    <td>{{results.gender}}</td>
+                                    <td><button (click)="edit(results)" class="btn btn-danger">Edit</button> </td>
+                            </tr>
+                            </tbody>
+                        </table> -->
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <!-- Position Column -->
+                            <ng-container matColumnDef="salespersonname">
+                                <mat-header-cell *matHeaderCellDef>Sales Person Name </mat-header-cell>
+                                <mat-cell *matCellDef="let results"> {{results.firstName}} {{results.lastName}}</mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="phone">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let results"> {{results.phone}} </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="Email">
+                                <mat-header-cell *matHeaderCellDef> Email ID</mat-header-cell>
+                                <mat-cell *matCellDef="let results"> {{results.email}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="dob">
+                                <mat-header-cell *matHeaderCellDef> Dob</mat-header-cell>
+                                <mat-cell *matCellDef="let results"> {{results.dob}} </mat-cell>
+                            </ng-container>
+        
+                            <ng-container matColumnDef="gender">
+                                <mat-header-cell *matHeaderCellDef> Gender</mat-header-cell>
+                                <mat-cell *matCellDef="let results"> {{results.gender}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="edit">
+                                <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                <mat-cell *matCellDef="let results"><button (click)="edit(results)" class="btn btn-danger">Edit</button> </mat-cell>
+                            </ng-container>
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+        
+        
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                            (page)="changePage($event)">
+                        </mat-paginator>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+
+        

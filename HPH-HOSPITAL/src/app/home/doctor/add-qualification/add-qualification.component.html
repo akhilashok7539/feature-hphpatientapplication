@@ -1,0 +1,108 @@
+<div class="row" style="padding: 32px;">
+    <div class="col-lg-12">
+        <form [formGroup]="doctorForm">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Degree Name <span class="text-danger">*</span></label>
+                       
+                        <select class="form-control" [ngClass]="{ 'is-invalid': submitted && f.degree.errors }"   [(ngModel)]="doctormodel.degree" formControlName="degree">
+                            <option value="" disabled selected hidden>Choose your Degree</option>
+                            <option *ngFor ='let d of degree' value="{{d.degreeId}}">
+                                    {{d.degreeName}}
+                            </option>
+                           
+                          
+                        </select>
+
+                        <div *ngIf="submitted && f.degree.errors" class="invalid-feedback">
+                            <div *ngIf="f.degree.errors.required">Degree is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label> College/Institute Name <span class="text-danger">*</span></label>
+                        <option value="" disabled selected hidden>Choose your College/Institute</option>
+                        <select class="form-control" [(ngModel)]="doctormodel.college"  [ngClass]="{ 'is-invalid': submitted && f.college.errors }"   formControlName="college">
+                        
+                            <option *ngFor ='let cl of college' value="{{cl.collegeId}}">
+                                    {{cl.collegeName}}
+                            </option>
+                           
+                          
+                        </select>
+                        <div *ngIf="submitted && f.college.errors" class="invalid-feedback">
+                            <div *ngIf="f.college.errors.required">College/Institute name is required</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>State Council Name<span class="text-danger">*</span> </label>
+                        <select class="form-control"  [(ngModel)]="doctormodel.stateCouncilName" [ngClass]="{ 'is-invalid': submitted && f.stateCouncilName.errors }"  formControlName="stateCouncilName">
+                            <option value="" disabled selected hidden>Choose your State Council Name</option>
+                            <option *ngFor ='let coun of council' value="{{coun.councilId}}">
+                                    {{coun.councilName}}
+                            </option>
+                           
+                          
+                        </select>
+                        <div *ngIf="submitted && f.stateCouncilName.errors" class="invalid-feedback">
+                            <div *ngIf="f.stateCouncilName.errors.required">State council name is required</div>
+                        </div>
+                    </div>
+                </div>
+             
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>State Council Number <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.stateCouncilregNumber" [ngClass]="{ 'is-invalid': submitted && f.stateCouncilregNumber.errors }" formControlName="stateCouncilregNumber">
+                        <div *ngIf="submitted && f.stateCouncilregNumber.errors" class="invalid-feedback">
+                            <div *ngIf="f.stateCouncilregNumber.errors.required">State council registration number is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Completion Year <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" [(ngModel)]="doctormodel.yearOfcompletion" [ngClass]="{ 'is-invalid': submitted && f.yearOfcompletion.errors }" formControlName="yearOfcompletion">
+                            <div *ngIf="submitted && f.yearOfcompletion.errors" class="invalid-feedback">
+                                <div *ngIf="f.yearOfcompletion.errors.required">Year of completion is required</div>
+                            </div>
+                        </div>
+                </div>
+                <div class="col-sm-6">
+                        <div class="form-group">
+                            <label>Year Of Experience <span class="text-danger">*</span></label>
+                            <input class="form-control" type="text" [(ngModel)]="doctormodel.yearOfExperience" [ngClass]="{ 'is-invalid': submitted && f.yearOfExperience.errors }" formControlName="yearOfExperience">
+                            <div *ngIf="submitted && f.yearOfExperience.errors" class="invalid-feedback">
+                                <div *ngIf="f.yearOfExperience.errors.required">Year of experience is required</div>
+                            </div>
+                        </div>
+                </div>
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Display Qualification <span class="text-danger">*</span></label>
+                        <input class="form-control" type="text" [(ngModel)]="doctormodel.qualificationname" [ngClass]="{ 'is-invalid': submitted && f.qualificationname.errors }" formControlName="qualificationname">
+                        <div *ngIf="submitted && f.qualificationname.errors" class="invalid-feedback">
+                            <div *ngIf="f.qualificationname.errors.required">Display Qualification Name is required</div>
+                        </div>
+                    </div>
+            </div>
+
+
+               
+         
+
+            </div>
+        
+            <div class="m-t-20 text-center">
+                <button class="btn btn-primary submit-btn" (click)="next()"> Next</button>
+            </div>
+        </form>
+        </div>
+        </div>

@@ -1,0 +1,18 @@
+.card {
+    height: 130px;
+    margin-bottom: 30px;
+    box-shadow: 0px 2px 6px #00000033;
+    border: 0;
+}
+h6{
+    padding: 15px;
+    /* font: Light 19px/26px Open Sans; */
+    font-family: sans-serif;
+    font-size: 13px;
+    letter-spacing: 0px;
+    color: #6F707B;
+    opacity: 1;
+}
+h5{
+    padding-left: 16px;
+}

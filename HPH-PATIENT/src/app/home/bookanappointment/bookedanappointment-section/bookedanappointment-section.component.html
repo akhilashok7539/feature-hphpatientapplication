@@ -1,0 +1,109 @@
+<div class="page-wrapper">
+    <h6 style="color: black !important;">Appointment Booking</h6>
+    <p style="font-size: 10px;">Select for whom you are booking and enter the date and <br> timeslot for the appointment</p>
+    <h6 *ngIf="messages == 'No TimeSlots Available For this Doctor'"> No TimeSlots Available For this Doctor</h6>
+    <form [formGroup]="bookingForm">
+   
+    <div class="row" style="margin-top: 30px;">
+
+        <div class="col-sm-12">
+            <label for="">Booking for:</label>
+            <select  [(ngModel)]="bookingFor" [ngModelOptions]="{standalone: true}"  class="form-control">
+                <option value="" selected disabled>Choose a option</option>
+                <option value="Myself">Myself</option>
+                <option value="Relative">Relative</option>
+            </select>
+        </div>
+
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <label for="">Select a Date:</label>
+
+            <select  formControlName="date" [(ngModel)]="selectedDate" (change)="dateselected()" class="form-control" >
+                <!-- <option value="" disabled selected> Choose your date</option> -->
+                <option *ngFor="let item of mapdata | keyvalue" [value]="item.key" >
+                    {{item.key}} 
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-6" style="margin-top: 30px;">
+            <label for="">Select a TimeSlots:</label>
+
+            <select  formControlName="time" [(ngModel)]="selectedtimesolts" class="form-control" >
+                <!-- <option value="" disabled selected> Choose your timeslot</option> -->
+                <option *ngFor="let item of selectedTime" [value]="item.timing">
+                    {{item.timing}}
+                </option>
+            </select>
+        </div>
+       
+       
+
+    
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <div *ngIf="relativeFielddisable== false">
+            <label style="    font-size: 13px;">Choose a Relationship:</label>
+            <select class="form-control" [(ngModel)]="bookingModel.realtionship" formControlName="realtionship">
+                <option value="{{results.relationshipId}}" *ngFor="let results of Relationships">{{results.relationshipName}}</option>
+            </select>
+         
+            </div>
+            <div *ngIf="relativeFielddisable== true">
+                <label for=""> Select a person</label>
+                <select [(ngModel)]="bookingModel.relativename" (change)="relativePerson(bookingModel.relativename)" formControlName="relativename" class="form-control" > 
+                    <option value="{{relatives.unregPatId}}" *ngFor="let relatives of relatives">{{relatives.firstName}} {{relatives.lastName}} </option>
+                </select>
+            </div>
+
+        </div>
+        <div class="col-sm-12" *ngIf="bookingFor =='Relative'" style="margin-top: 28px;
+        margin-bottom: -14px;">
+            <input type="checkbox" formControlName="check"  (change)="checkbox($event.target.checked)"> Already Registered person?
+        </div>
+        
+
+
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <label style="    font-size: 13px;">Enter Relative's First Name:</label>
+            <input  [(ngModel)]="bookingModel.unregFirstName" formControlName="unregFirstName" type="text" class="form-control">
+        </div>
+        
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <label  style="    font-size: 13px;">Enter Relative's Last Name:</label>
+            <input [(ngModel)]="bookingModel.unregLastName"  formControlName="unregLastName" type="text" class="form-control">
+            
+        </div>
+        
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <label  style="    font-size: 13px;">Enter Relative's Mobile Number:</label>
+            <input [(ngModel)]="bookingModel.unregMob" formControlName="unregMob" type="number" class="form-control">
+            
+        </div>
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <label  style="    font-size: 13px;">Enter Relative's DOB:</label>
+            <input [(ngModel)]="bookingModel.dob" formControlName="dob" type="date" class="form-control">
+            
+        </div>
+        <div class="col-sm-12" style="margin-top: 30px;" *ngIf="bookingFor =='Relative'">
+            <label  style="    font-size: 13px;">Choose Gender</label>
+            <select  [(ngModel)]="bookingModel.gender" formControlName="gender" class="form-control" id="">
+                <option value="Male"> Male</option>
+                <option value="Female">Female</option>
+                <option value="Others">Others</option>
+            </select>
+            <!-- <input type="number" class="form-control"> -->
+            
+        </div>
+        
+  
+
+    </div>
+</form>
+    <div class="row" style="margin-top: 63px;">
+        <button class="cancelbtn" (click)="cancel()">Cancel</button>
+        <!-- <button class="apptbtn">Appointment Booking</button> -->
+        <button class="apptbtn" (click)="bookAppointment()" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}}</button>
+
+    </div>
+</div>
+
+

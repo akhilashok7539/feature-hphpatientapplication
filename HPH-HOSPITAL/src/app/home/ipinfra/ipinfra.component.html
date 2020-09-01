@@ -1,0 +1,72 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">IP Infra</h4>
+
+            </div>
+            <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="  cursor: pointer;  width: 62%;color: white;border: none;" routerLink="/add-ipinfra"><i
+                        class="fa fa-plus"></i> Add IP Infra </a>
+            </div>
+            <div class="col-sm-5">
+                
+            </div>
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-11">
+            <div class="table-responsive">
+                
+
+
+                <mat-table #table [dataSource]="dataSource">
+
+                    <!-- Position Column -->
+                    <ng-container matColumnDef="Room">
+                        <mat-header-cell *matHeaderCellDef> ROOM NAME </mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.infraName}} </mat-cell>
+                    </ng-container>
+                    <!-- Name Column -->
+                 
+                    <ng-container matColumnDef="cost">
+                        <mat-header-cell *matHeaderCellDef> COST</mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.infraCost}} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="feature">
+                        <mat-header-cell *matHeaderCellDef> FEATURE</mat-header-cell>
+                        <mat-cell *matCellDef="let req"> {{req.infraDescription}}</mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="edit">
+                        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                        <mat-cell *matCellDef="let req"> <button (click)="edit(req)"> Edit </button> </mat-cell>
+                    </ng-container>
+
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                </mat-table>
+                <!-- <h4 style="text-align: center; margin-top: 97px;" *ngIf="error == 'No Departments found'"> No Departments found</h4> -->
+
+                <!-- [pageSizeOptions]="pageLimit" -->
+                <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                    (page)="changePage($event)">
+                </mat-paginator>
+              
+            </div>
+        </div>
+    </div>

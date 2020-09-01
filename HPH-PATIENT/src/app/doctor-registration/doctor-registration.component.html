@@ -1,0 +1,148 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+		<form [formGroup]="registrationForm"  >
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card">
+                    <h4>Doctor Registration</h4>
+                    <p>Please complete to create your account.</p>
+                    <div class="row" style="margin-top: 16px;">
+                        <div class="col-sm-6">
+                            <label for="">First Name</label>
+                            <input type="text" [(ngModel)]="model.firstname" formControlName="firstname"
+                                placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstname.errors }"
+                                name="firstName" id="first_name" class="input-text" class="form-control">
+                            <div *ngIf="submitted && f.firstname.errors" class="invalid-feedback">
+                                <div *ngIf="f.firstname.errors.required" style="margin-top: 0px;">First name is
+                                    required</div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Last Name</label>
+                            <input type="text" [(ngModel)]="model.lastname" formControlName="lastname"
+                                [ngClass]="{ 'is-invalid': submitted && f.lastname.errors }" placeholder="Last Name "
+                                name="mobNo" id="mobNo" class="form-control" required>
+                            <div *ngIf="submitted && f.lastname.errors" class="invalid-feedback">
+                                <div *ngIf="f.lastname.errors.required" style="margin-top: 0px;">Last name is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for=""> Email Id</label>
+                            <input type="text" [(ngModel)]="model.emailId" formControlName="emailId"
+                                [ngClass]="{ 'is-invalid': submitted && f.emailId.errors }" placeholder="Email ID"
+                                name="mobNo" id="mobNo" class="form-control" required>
+                            <div *ngIf="submitted && f.emailId.errors" class="invalid-feedback">
+                                <div *ngIf="f.emailId.errors.required" style="margin-top: 0px;">Email ID is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Mobile Number</label>
+                            <input type="number" [(ngModel)]="model.mobNo" formControlName="mobNo"
+                                [ngClass]="{ 'is-invalid': submitted && f.mobNo.errors }" placeholder=" Phone number"
+                                name="mobNo" id="mobNo" class="form-control" required>
+                            <div *ngIf="submitted && f.mobNo.errors" class="invalid-feedback">
+                                <div *ngIf="f.mobNo.errors.required" style="margin-top: 0px;">Phone number is required
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Date of Birth</label>
+                            <input type="date"  [(ngModel)]="model.dob" formControlName="dob"class="form-control"  [ngClass]="{ 'is-invalid': submitted && f.dob.errors }"
+                            required>
+                            <div *ngIf="submitted && f.dob.errors" class="invalid-feedback">
+                                <div *ngIf="f.dob.errors.required" style="margin-top: 0px;">DOB is required</div>
+                            </div>	 
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Gender</label>
+                            <select  [(ngModel)]="model.gender" class="form-control" formControlName="gender"  [ngClass]="{ 'is-invalid': submitted && f.gender.errors }">
+                                <option value="" selected disabled>Select a gender</option>
+                                <option value="Male"> Male</option>
+                                <option value="Female">Female</option>
+                                </select>   
+                                <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
+                                    <div *ngIf="f.gender.errors.required" style="margin-top: 0px;">Gender is required</div>
+                                </div>	    
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Select city</label>
+                            <select  class="form-control" [(ngModel)] = "citySelected" (change)="getcategroyType(citySelected)" formControlName="city"  [ngClass]="{ 'is-invalid': submitted && f.city.errors }">
+                                <!-- <option value="" disabled selected>select a city</option> -->
+                                <option value="" selected disabled>Select City</option>
+                                <option *ngFor="let c of city" value="{{c.cityId}}" > {{c.cityName}}</option>
+                            </select>  
+                            <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                <div *ngIf="f.city.errors.required" style="margin-top: 0px;">City is required</div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Select Hospital</label>
+                            <select  [(ngModel)]="model.hospitalname" class="form-control"  formControlName="hospitalname"  [ngClass]="{ 'is-invalid': submitted && f.hospitalname.errors }">
+                                <!-- <option value="" selected >select a Hospital name</option> -->
+                                <option value="" selected disabled>Select Hospital name</option>
+                                <option *ngFor="let c of hospitalList" value="{{c.hospitalId}}" > {{c.hospitalName}}</option>
+                            </select>   
+                            <div *ngIf="submitted && f.hospitalname.errors" class="invalid-feedback">
+                                <div *ngIf="f.hospitalname.errors.required" style="margin-top: 0px;">Hospital name is required</div>
+                            </div>	 
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Select Speciality</label>
+                            <select  [(ngModel)]="model.spec" class="form-control"  formControlName="spec"  [ngClass]="{ 'is-invalid': submitted && f.spec.errors }">
+                                <option value="" selected disabled>Select Speciality</option>
+                                <option *ngFor="let c of speciality" value="{{c.specId}}" > {{c.description}}</option>
+                            </select>  
+                            <div *ngIf="submitted && f.spec.errors" class="invalid-feedback">
+                                <div *ngIf="f.spec.errors.required" style="margin-top: 0px;">Speciality is required</div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Joining Date</label>
+                            <input type="date"  [(ngModel)]="model.joiningDate" formControlName="joiningDate"  [ngClass]="{ 'is-invalid': submitted && f.joiningDate.errors }"
+                            placeholder="Enter your joiningDate"  name="mobNo" id="mobNo" class="form-control"
+                            required>
+                            <div *ngIf="submitted && f.joiningDate.errors" class="invalid-feedback">
+                                <div *ngIf="f.joiningDate.errors.required" style="margin-top: 0px;">Joining date  is required</div>
+                            </div>	 
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="">Consultation Fee</label>
+                            <input type="text"  [(ngModel)]="model.consoltationfee" formControlName="consoltationfee"
+                            [ngClass]="{ 'is-invalid': submitted && f.consoltationfee.errors }" placeholder="Enter your Consultation fee"  name="mobNo" id="mobNo"  class="form-control"
+                                required>
+                                <div *ngIf="submitted && f.consoltationfee.errors" class="invalid-feedback">
+                                    <div *ngIf="f.consoltationfee.errors.required" style="margin-top: 0px;">Consultation fee is required</div>
+                                </div>	 
+                        </div>
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6">
+
+                            <p style="margin-top: 20px;"> &nbsp; I agree with terms and
+                                conditions</p>
+
+                        </div>
+                        <div class="col-sm-6"></div>
+
+                        <div class="col-sm-6" style="margin-top:40px;">
+                            <!-- <button class="loginbtn">Register</button> -->
+					        <button style="height: 50px;" class="loginbtn" (click)="next()" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}} </button>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        </form>
+    </div>
+</div>

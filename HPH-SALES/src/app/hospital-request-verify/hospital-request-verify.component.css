@@ -1,0 +1,15 @@
+.form-control{
+    border-radius: 25px;
+    border:   1px solid rgb(13, 114, 230);
+    padding: 20px; 
+    width: 500px;
+    height: 10px;  
+    float: right;
+    margin-left: 38px;
+    margin-right: -2px;
+    margin-top: -3px;
+}
+  .btn-info{
+      padding-left: 10px;
+  }
+    

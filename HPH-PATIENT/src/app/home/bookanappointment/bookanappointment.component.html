@@ -1,0 +1,149 @@
+<app-navigation></app-navigation>
+
+
+
+
+
+
+<div class="s002" style=" background-image: url('assets/img/arseny-togulev-DE6rYp1nAho-unsplash.jpg')">
+  <form [formGroup]="searchform"  >
+    <!-- <fieldset>
+      <legend>SEARCH DOCTOR</legend>
+    </fieldset> -->
+    <div><h1 style="color: #0085B2; font-weight: 500;    margin-left: 17px;">Search Doctor</h1></div>
+    <div class="inner-form">
+      <div class="input-field third-wrap ">
+       
+        <select class="form-control search-slt" formControlName="cityName" [(ngModel)]="citySelected" placeholder="search" required (change)= "getcityselected(citySelected)" >
+          <option value="" disabled selected >Select a City </option>
+          <option *ngFor='let c of city' value="{{c.cityId}}" >
+            {{c.cityName}}
+          </option>
+        </select>
+
+
+      </div>
+      <div class="input-field second-wrap">
+      
+        <select  class="form-control search-slt" formControlName="category" [(ngModel)]="CategorySelected"
+        (change)="getcategroyType(CategorySelected)">
+        <option value="" selected disabled>Select a Category</option>
+        <option *ngFor='let category of categorys' value="{{category.categoryName}}">
+          {{category.categoryName}}
+        </option>
+      </select>
+    
+
+      </div>
+      <div class="input-field first-wrap ">
+       
+
+        <!-- <input id="search" type="text" placeholder="What are you looking for?" /> -->
+        <ng-autocomplete  
+        formControlName="searchname" 
+        class="ng-autocomplete" 
+        [data]="categoryitems" 
+        id="search" 
+        [(ngModel)]="searchresults"
+        [searchKeyword]="keyword" 
+        (selected)='selectEvent($event)'
+         placeHolder="Search {{catselect}} here.."
+        (inputChanged)='onChangeSearch($event)' 
+        (inputFocused)='onFocused($event)'
+        [itemTemplate]="itemTemplate" 
+        [notFoundTemplate]="notFoundTemplate">
+        </ng-autocomplete>
+
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item.key" (click)="select(item.id)"></a>
+      </ng-template>
+      <ng-template #notFoundTemplate let-notFound>
+        <div [innerHTML]="notFound"></div>
+      </ng-template>
+      </div>
+ 
+      <div class="input-field fifth-wrap">
+        <button class="btn-search" style="background: #0085B2;border-top-right-radius: 11px;border-bottom-right-radius: 11px;" type="button" (click)="newSearch()">Search</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+
+
+<!-- *ngIf="results != 'null'"  -->
+
+
+<!-- <div class="row">
+   
+    <div class="col-sm-3">
+        <p style="padding-top: 27px;
+        margin-bottom: -33px;
+        font-weight: bold;
+        padding-left: 69px;
+        letter-spacing: 1.36px;
+        color: #8A8A8A;">Search Result</p>
+    </div>
+</div> -->
+
+<div class="row">
+  
+    <div class="col-sm-6" style="margin-bottom: 20px;" *ngFor ="let doc of results ">
+        <div class="card flex-row flex-wrap">
+            <div class="card-header border-0">
+                <img src="{{apiUrl}}/doctor/profilePic/{{doc.doctorId}}" style="height: 137px;width: 118px;" alt="">
+                <i (click)="docinfo(doc)" matTooltip="info" style="cursor: pointer;color: #0085b2; right: 20px; position:absolute;" class="fa fa-info-circle" aria-hidden="true"></i>
+            </div>
+            <div class="card-block px-2">
+                <!-- <p>Verified</p> -->
+                
+                <h6 style="font-weight: bold;">Dr.{{doc.firstName}} {{doc.lastName}} &nbsp;&nbsp;  <img src="./assets/img/verified-blue-tick-clipart-1 (1).png" alt="" style="    position: absolute;
+                  width: 19px;
+                 "></h6>
+
+                <P  style="font-size: 12px; margin-bottom: 6.5px;">Speciality: {{doc.spec.description}}</P>
+                <P style="font-size: 12px; margin-bottom: 6.5px;">Hospital Name: {{doc.hospital.hospitalName}}</P>
+                <P style="font-size: 12px;margin-bottom: 6.5px;">City: {{doc.city.cityName}}</P>
+                <p style="font-size: 12px; margin-bottom: 6.5px;">Fees: {{doc.fee}}</p>
+                <button class="button" (click)="openDialog(doc.doctorId)">Book an Appointment</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+<div class="row" style="    margin-left: auto;
+margin-right: auto;">
+  <ul class="nav nav-pills" style="justify-content: center; margin-top: 10px;     margin-left: auto;
+  margin-right: auto;margin-bottom: 10px;">
+    <!-- <a class="nav-link " (click)="prevpage()" >Previous</a> -->
+    <li class="nav-item" *ngFor="let p of pages; let i=index">
+      
+      <a class="nav-link " style="cursor: pointer;" (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+      
+    </li>
+    <!-- <a class="nav-link " (click)="nextpage()" >Next</a> -->
+  </ul> 
+
+
+</div>
+  
+<div class="panel-body p-4"  *ngIf="listdetails == 'Search Not Found'">
+  <div class="row" style="background: white;" >
+     <div class="col-md-12 ">
+        <div class="media text-center">
+          
+           <div class="media-body align-self-center">
+              <img src="https://static.qkdoc.com/static/pw_v3/images/hospital-placeholder.png" class="align-self-center mr-3">
+              
+             
+              <h5 class="mb-0 mt-2 text-center" style="color: rgb(161, 160, 160);">No results found</h5>
+              <p class="mb-0"></p>
+           </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+ 
+
+<app-footer></app-footer>

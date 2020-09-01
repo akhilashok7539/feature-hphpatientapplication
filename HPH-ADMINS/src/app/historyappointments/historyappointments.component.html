@@ -1,0 +1,181 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <!-- <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Hospital</h4>
+                   
+                   
+                </div>
+               
+              
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                    <input class="form-control" type="text"  name="searchString"  [(ngModel)]="searchString"  (keyup)="onKey($event)" placeholder="Search here......" aria-label="Search">
+                    <a  class="btn btn btn-primary btn-rounded  " style="color: white;" (click)="addHsopital()"><i class="fa fa-plus"></i> Add Hospital</a>
+                   
+                
+                </div>
+                  
+                <a  class="btn btn btn-danger btn-rounded float-right " style="color: white;margin-bottom: 5px;margin-left: 8px;" (click)="buttonselected('Active')">Active</a>
+                <a  class="btn btn btn-warning btn-rounded float-right " style="color: white; margin-bottom: 5px;margin-left: 8px;" (click)="buttonselected('Pending')">Pending</a>
+                <a  class="btn btn btn-success btn-rounded float-right " style="color: white;margin-bottom: 5px;margin-left: 8px;" (click)="buttonselected('In-Active')">Inactive</a>
+  
+      
+              
+            </div> -->
+        <div class="row">
+            <div class="col-sm-8">
+                <h4 class="page-title">Appointments History</h4>
+
+            </div>
+            
+
+            
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                <a class="btn btn btn-success    " style="color: white;margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                   routerLink="/completedappointments" >Confirmed</a>
+
+                <a class="btn btn btn-danger   " style="color: white;margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                routerLink="/historyofappointments" >History</a>
+
+                <a class="btn btn btn-success   " style="color: white;margin-bottom: 5px;width: 125px;margin-left: 8px;"
+                routerLink="/pendingappointments" >Pending</a>
+
+
+
+            </div>
+            <div class="col-sm-1"></div>
+            <div class="col-sm-2">
+                <select [(ngModel)]="filter" (change)="filterselect(filter)" class="form-control" style="     margin-right: -27px;
+                float: right;
+                margin-top: 3px;
+                margin-bottom: 10px;
+                min-height: 52px;
+            float: right;">
+                    <option value="">Choose a filter</option>
+                    <option value="bookingid">Filter By Booking ID</option> 
+                    <option value="hospital">Filter By Hospital</option>
+                    <option value="date">Filter By Date</option>
+                    <option value="doctor">Filter By Doctor</option>
+
+                    <!-- <option value="">Filter By Booking ID</option> -->
+
+                </select>
+            </div>
+            <div class="col-sm-2 ">
+
+                <input type="text" *ngIf="filter == 'bookingid' || filter == 'date' ||filter == ''  " [(ngModel)]="bookingIdvalue" class="form-control"
+                    placeholder=" search" style="    margin-top: 3px;
+                    margin-bottom: 10px;
+                    min-height: 52px;
+                    width: 198px;">
+                    <form class="example-form" *ngIf="filter == 'hospital' || filter == 'doctor'">
+                        <mat-form-field  appearance="outline" >
+                            <mat-label>search</mat-label>
+                          <input type="text"
+                                 aria-label="Number"
+                                 [(ngModel)]="searchseleted"
+                                 matInput
+                              
+                                 [formControl]="myControl"
+                                 [matAutocomplete]="auto">
+                          <mat-autocomplete #auto="matAutocomplete" >
+                            <mat-option *ngFor="let option of filteredOptions | async" [value]="option.name">
+                             <p (click)="select(option)">{{option.name}}</p> 
+                            </mat-option>
+                          </mat-autocomplete>
+                          
+                        </mat-form-field>
+                      </form>
+            </div>
+            <div class="col-sm-2">
+                <button class="buttonsearch" (click)="search()"> <i class="fa fa-search"></i> </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <!-- <table class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Patient Name</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Doctor Name</th>
+                               
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            | filter : 'hospitalName' : searchString; let i = index 
+                            <tr *ngFor="let history of history">
+
+                                <td>{{history.patient.firstName}} {{history.patient.lastName}}</td>
+                                <td>{{history.date}}</td>
+                                <td>{{history.time}}</td>
+                                <td >{{history.doctor.firstName}} {{history.doctor.lastName}}</td>
+                              
+
+                            </tr>
+                        </tbody>
+                    </table> -->
+
+                    <mat-table #table [dataSource]="dataSource">
+                        <ng-container matColumnDef="bookId">
+                            <mat-header-cell *matHeaderCellDef> Booking Id  </mat-header-cell>
+                            <mat-cell *matCellDef="let appointmets"> {{appointmets.bookingId}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="patname">
+                            <mat-header-cell *matHeaderCellDef> Patient Name </mat-header-cell>
+                            <mat-cell *matCellDef="let appointmets"> {{appointmets.patient.firstName}} {{appointmets.patient.lastName}} </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="date">
+                            <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                            <mat-cell *matCellDef="let appointmets"> {{appointmets.date}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="time">
+                            <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                            <mat-cell *matCellDef="let appointmets"> {{appointmets.time}} </mat-cell>
+                        </ng-container>
+    
+                        <ng-container matColumnDef="docname">
+                            <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                            <mat-cell *matCellDef="let appointmets"> {{appointmets.doctor.firstName}} {{appointmets.doctor.lastName}}</mat-cell>
+                        </ng-container>
+    
+    
+    
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+    
+                    <!-- [pageSizeOptions]="pageLimit" -->
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                    </mat-paginator>
+
+                    <!-- <ul class="nav nav-pills" style="padding-left: 40vw;  margin-top: 48px;">
+                        <li class="nav-item" *ngFor="let p of pages; let i=index">
+                            <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+                        </li>
+                    </ul> -->
+
+                </div>
+            </div>
+        </div>
+       
+    </div>
+   
+</div>

@@ -1,0 +1,63 @@
+
+    
+
+<div class="sidebar" id="sidebar">
+    <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+            <ul>
+         
+                <li  routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/Doctor"><i class="fa fa-dashboard"></i>
+                        <span>Doctor</span></a>
+                </li>
+                <li  routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/commandcenter">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Command Center</span></a>
+                </li>
+                <li  routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/appointments">
+                        <i class="fa fa-dashboard"></i>
+                         <span>Appointments</span></a>
+                </li >
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE' && hospitalStautsUser =='HOSPITAL'">
+                    <a routerLink ="/user">
+                        <i class="fa fa-dashboard"></i>
+                         <span>User</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/doctorLeave">
+                        <i class="fa fa-dashboard"></i>
+                        <span>Doctors Leave</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/approval-request">
+                        <i class="fa fa-dashboard"></i>
+                         <span>Approval Request</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE' && hospitalStautsUser =='HOSPITAL'">
+                    <a routerLink ="/ipinfra">
+                        <i class="fa fa-dashboard"></i>
+                         <span>IP Infra</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/profile">
+                        <i class="fa fa-dashboard"></i>
+                         <span>Profile</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/department">
+                        <i class="fa fa-dashboard"></i>
+                         <span>Department</span></a>
+                </li>
+                <li routerLinkActive="active" *ngIf="show=='ACTIVE'">
+                    <a routerLink ="/reset-password">
+                        <i class="fa fa-dashboard"></i>
+                         <span>Reset Password</span></a>
+                </li>
+              
+                
+            </ul>
+        </div>
+    </div>
+</div>

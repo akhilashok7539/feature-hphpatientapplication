@@ -1,0 +1,43 @@
+<div class="row">
+
+    <div class="col-md-3">
+        <img  *ngIf="!pic" src="{{apiUrl}}/doctor/profilePic/{{DoctorId}}" alt="s" height="231px" width="195px">
+        <input *ngIf="pic" #file type="file" (change)="addPhoto($event)" accept='image/*' class="form-control" (change)="preview(file.files)" />
+        <div *ngIf="pic">
+
+    
+        <img [src]="imgURL"  *ngIf="imgURL"  style="width: 200px; height: 195px;">  
+    </div>
+        
+        <button *ngIf="!pic" (click)="editProfilePicture()" class="btn btn-primary" style="font-weight: 500;
+        border: 2px solid #00B3DA;padding: 6px 57px; display: flex;    color: #00B3DA;    display: flex;  background: white;">Edit Profile Picture </button>
+     <button *ngIf="pic" (click)="updateProfilePicture()" class="btn btn-primary" 
+     style="margin-top: 10px; margin-left: auto; margin-right: auto;font-weight: 500;border: 2px solid rgb(0, 179, 218);padding: 6px 57px; color: rgb(0, 179, 218);display: flex;background: white;">Update Profile Picture </button>   
+   
+    </div>
+
+
+
+    <div class="col-sm-3">
+        <!-- <img src="" alt="" height="231px" width="231px"> -->
+        <img   *ngIf="!upadteIdProof" (click)="downloadEstaIdProof()" src="https://img.icons8.com/cute-clipart/90/000000/pdf.png" height="231px" width="195px"/>
+        <input *ngIf="upadteIdProof" type="file" class="form-control"  #doctorIdproof (change)="getdocIdProofFile($event)" >
+       
+        <button  *ngIf="!upadteIdProof" (click)="updateId()" class="btn btn-primary" style="font-weight: 500;
+        border: 2px solid #00B3DA;padding: 6px 57px 7px 75px; display: flex;  width: 100%;  color: #00B3DA;    display: flex;  background: white;">Edit ID proof </button>
+     <button  *ngIf="upadteIdProof" (click)="uploadIDproof()"class="btn btn-primary" 
+     style="margin-top: 10px; margin-left: auto; margin-right: auto;font-weight: 500;border: 2px solid rgb(0, 179, 218);padding: 6px 57px; color: rgb(0, 179, 218);display: flex;background: white;"> UpdateID proof</button>   
+   
+    </div>
+    <div class="col-sm-3">
+        <!-- <img src="" alt="" height="231px" width="231px"> -->
+        <img *ngIf="!updateMedicalProof" (click)="downloadOwnerIdProof()"src="https://img.icons8.com/cute-clipart/90/000000/pdf.png" height="231px" width="195px    "/>
+        <input *ngIf="updateMedicalProof" type="file" class="form-control" (change)="getMediProof($event)"   #doctorIdproof >
+
+        <button *ngIf="!updateMedicalProof" (click)="updateMedical()" class="btn btn-primary" style="font-weight: 500;
+        border: 2px solid #00B3DA;padding: 7px 43px; display: flex;    color: #00B3DA;    display: flex;  background: white;">Edit Medical Reg Proof </button>
+     <button *ngIf="updateMedicalProof" (click)="upload()" class="btn btn-primary" 
+     style="margin-top: 10px; margin-left: auto; margin-right: auto;font-weight: 500;border: 2px solid rgb(0, 179, 218);padding: 6px 57px; color: rgb(0, 179, 218);display: flex;background: white;"> UpdateMedical Reg Proof</button>   
+   
+    </div>
+</div>

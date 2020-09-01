@@ -1,0 +1,74 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Basic Details</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Patient Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Appointment Date</label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Appointment Time<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Department <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Doctor Name <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text">
+                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Phone Number <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="number">
+                                    </div>
+                            </div>
+                      
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Chooose status <span class="text-danger">*</span></label>
+                                        <select class="form-control">
+                                            <option>Confirmed</option>
+                                            <option>Cancelled</option>
+                                            </select>
+                                    </div>
+                            </div>
+                         
+                          
+                        </div>
+                    
+                        <div class="m-t-20 text-center">.
+                            <button class="btn btn-primary submit-btn" (click)="back()"><i class="fa fa-arrow-left" style="margin-right: 10px;" aria-hidden="true"></i>Back</button>
+                            <button class="btn btn-primary submit-btn" style="margin-left: 10px;">Save<i class="fa fa-arrow-right" style="margin-left: 10px;" aria-hidden="true"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

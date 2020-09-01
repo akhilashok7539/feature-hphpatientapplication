@@ -1,0 +1,464 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+    <div class="tab_container">
+        <input style=" clear: both; padding-top: 10px;display: none;" id="tab1" type="radio" name="tabs" checked>
+        <label (click)="Pending()" for="tab1"><i class="fa fa-calendar" aria-hidden="true"></i><span>
+                <h5>Pending Request</h5>
+            </span></label>
+
+        <input (click)="firstcall()" style=" clear: both; padding-top: 10px;display: none;" id="tab2" type="radio"
+            name="tabs">
+        <label (click)="firstcall()" for="tab2"><i class="fa fa-ticket"></i><span>
+                <h5>First call confirmed</h5>
+            </span></label>
+        <input (click)="secondcallconfirm()" style=" clear: both; padding-top: 10px; display: none;" id="tab3"
+            type="radio" name="tabs">
+        <label (click)="secondcallconfirm()" for="tab3"><i class="fa fa-tasks"></i><span>
+                <h5>Second call confirmed</h5>
+            </span></label>
+        <input (click)="confirmedappointmnets()" style=" clear: both; padding-top: 10px; display: none;" id="tab4"
+            type="radio" name="tabs">
+        <label (click)="confirmedappointmnets()" for="tab4"><i class="fa fa-map-marker"></i><span>
+                <h5>Reached</h5>
+            </span></label>
+        <!-- <input style=" clear: both; padding-top: 10px; display: none;" id="tab6" type="radio" name="tabs">
+        <label for="tab6"><i class="fa fa-spinner"></i><span>
+                <h5>Onprogress</h5>
+            </span></label> -->
+
+
+        <input (click)="completedappointmnets()" style=" clear: both;padding-top: 10px;display: none;" id="tab5"
+            type="radio" name="tabs">
+        <label (click)="completedappointmnets()" for="tab5"><i class="fa fa-check"></i><span>
+                <h5>Completed</h5>
+            </span></label>
+
+        <!-- VIEW PATIENT BOOKINGS -->
+        <section id="content1" class="tab-content">
+            <div class="content">
+                <form [formGroup]="patientList">
+                    <div class="row">
+                        <div class="col-sm-4 col-3">
+                            <h4 class="page-title">View Patients</h4>
+                            <!-- <input type="text"> -->
+                        </div>
+
+
+                        <!-- <div class="col-sm-8 col-9 text-right m-b-20">
+
+                            <input class="form-control" type="text" formControlName="search" name="searchString"
+                                (keyup)="onKey($event)" [(ngModel)]="searchString"
+                                placeholder="Search {{searchKeyword}} here">
+
+
+                            <select class="btn btn btn-primary btn-rounded float-right" style="height: 39px;"
+                                formControlName="list" [(ngModel)]="categorySelected" formControlName="list"
+                                (change)="getListByCategory(categorySelected)">
+                                <option value="" disabled selected>Choose a filter</option>
+                                <option value="Doctor">Doctor</option>
+                                <option value="Hospital">Hospital</option>
+                            </select>
+
+
+                        </div> -->
+                    </div>
+                </form>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <mat-table #table [dataSource]="dataSource">
+                                <ng-container matColumnDef="bookingId">
+                                    <mat-header-cell *matHeaderCellDef> Booking Id </mat-header-cell>
+                                    <mat-cell *matCellDef="let element">{{element.bookingId}} </mat-cell>
+                                </ng-container>
+                                <!-- Position Column -->
+                                <ng-container matColumnDef="patientId">
+                                    <mat-header-cell *matHeaderCellDef> Patient Id </mat-header-cell>
+                                    <mat-cell *matCellDef="let element">{{element.patient.patientId}} </mat-cell>
+                                </ng-container>
+                                <!-- Name Column -->
+                                <ng-container matColumnDef="patientName">
+                                    <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.patient.firstName}}
+                                        {{element.patient.lastName}}
+                                    </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="date">
+                                    <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="time">
+                                    <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.time}}</mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="department">
+                                    <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                    <mat-cell *matCellDef="let element"> {{element.doctor.spec.description}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="docname">
+                                    <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">{{element.doctor.firstName}}
+                                        {{element.doctor.lastName}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="phoneNumber">
+                                    <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                    <mat-cell *matCellDef="let element">{{element.patient.mobNo}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="complete">
+                                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"><button (click)="confirm(element)"
+                                            class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"></i>
+                                            Confirm</button> </mat-cell>
+                                </ng-container>
+                                &nbsp;
+                                <ng-container matColumnDef="cancel">
+                                    <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                    <mat-cell *matCellDef="let element"><button (click)="openDialog(element.bookingId)"
+                                            class="btn btn-danger"> <i class="fa fa-trash"></i> Cancel</button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+
+                            <!-- [pageSizeOptions]="pageLimit" -->
+                            <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                                (page)="changePagepending($event)">
+                            </mat-paginator>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section id="content2" class="tab-content">
+            <div class="content">
+                <!-- <form [formGroup]="patientList"> -->
+                <div class="row">
+                    <div class="col-sm-12 ">
+                        <h4 class="page-title">View first call confirmed Appointments</h4>
+                        <!-- <input type="text"> -->
+                        <!-- <app-first-call-confirmed-appointments ></app-first-call-confirmed-appointments> -->
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="bookingId">
+                                <mat-header-cell *matHeaderCellDef> Booking Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.bookingId}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="patientId">
+                                <mat-header-cell *matHeaderCellDef> Patient Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.patientId}} </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="patientName">
+                                <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.patient.firstName}}
+                                    {{element.patient.lastName}}
+                                </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="date">
+                                <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="time">
+                                <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.time}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="department">
+                                <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.doctor.spec.description}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="docname">
+                                <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.doctor.firstName}}
+                                    {{element.doctor.lastName}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="phoneNumber">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.mobNo}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="complete">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button (click)="firstcallconfirm(element)"
+                                        class="btn btn-primary"> <i class="fa fa-check" aria-hidden="true"></i>
+                                        Confirm</button> </mat-cell>
+                            </ng-container>
+                            &nbsp;
+                            <ng-container matColumnDef="cancel">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button (click)="openDialog(element.bookingId)"
+                                        class="btn btn-danger"> <i class="fa fa-trash"></i> Cancel</button> </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                            (page)="changePageforfirstcall($event)">
+                        </mat-paginator>
+
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content3" class="tab-content">
+            <div class="content">
+                <!-- <form [formGroup]="patientList"> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">View second call confirmed Appointment</h4>
+                        <!-- <input type="text"> -->
+                        <!-- <app-second-call-confirmed-appointments ></app-second-call-confirmed-appointments> -->
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="bookingId">
+                                <mat-header-cell *matHeaderCellDef> Booking Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.bookingId}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="patientId">
+                                <mat-header-cell *matHeaderCellDef> Patient Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.patientId}} </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="patientName">
+                                <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.patient.firstName}}
+                                    {{element.patient.lastName}}
+                                </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="date">
+                                <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="time">
+                                <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.time}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="department">
+                                <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.doctor.spec.description}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="docname">
+                                <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.doctor.firstName}}
+                                    {{element.doctor.lastName}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="phoneNumber">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.mobNo}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="complete">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button
+                                        (click)="secondcallconfirmappintment(element)" class="btn btn-primary"> <i
+                                            class="fa fa-check" aria-hidden="true"></i>
+                                        Confirm</button> </mat-cell>
+                            </ng-container>
+                            &nbsp;
+                            <ng-container matColumnDef="cancel">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button (click)="openDialog(element.bookingId)"
+                                        class="btn btn-danger"> <i class="fa fa-trash"></i> Cancel</button> </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                            (page)="changePageforsecondcall($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="content4" class="tab-content">
+            <div class="content">
+                <!-- <form [formGroup]="patientList"> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">View Confirmed Appointment</h4>
+                        <!-- <input type="text"> -->
+                        <!-- <app-confirmed-appointments></app-confirmed-appointments> -->
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="bookingId">
+                                <mat-header-cell *matHeaderCellDef> Booking Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.bookingId}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="patientId">
+                                <mat-header-cell *matHeaderCellDef> Patient Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.patientId}} </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="patientName">
+                                <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.patient.firstName}}
+                                    {{element.patient.lastName}}
+                                </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="date">
+                                <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="time">
+                                <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.time}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="department">
+                                <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.doctor.spec.description}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="docname">
+                                <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.doctor.firstName}}
+                                    {{element.doctor.lastName}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="phoneNumber">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.mobNo}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="complete">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button (click)="complteappointmnet(element)"
+                                        class="btn btn-primary" style="padding: 6px;"> <i class="fa fa-check" aria-hidden="true"></i>
+                                        Complete</button> </mat-cell>
+                            </ng-container>
+                            &nbsp;
+                            <ng-container matColumnDef="cancel">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"><button  (click)="openDialog(element.bookingId)"
+                                        class="btn btn-danger"> <i class="fa fa-trash"></i> Cancel</button> </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                            (page)="getconfirednext($event)">
+                        </mat-paginator>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="content5" class="tab-content">
+            <div class="content">
+                <!-- <form [formGroup]="patientList"> -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">View Completed Appointment</h4>
+                        <!-- <input type="text"> -->
+                        <!-- <app-completed-appointments></app-completed-appointments> -->
+                        <mat-table #table [dataSource]="dataSource">
+
+                            <ng-container matColumnDef="bookingId">
+                                <mat-header-cell *matHeaderCellDef> Booking Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.bookingId}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="patientId">
+                                <mat-header-cell *matHeaderCellDef> Patient Id </mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.patientId}} </mat-cell>
+                            </ng-container>
+                            <!-- Name Column -->
+                            <ng-container matColumnDef="patientName">
+                                <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.patient.firstName}}
+                                    {{element.patient.lastName}}
+                                </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="date">
+                                <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.date}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="time">
+                                <mat-header-cell *matHeaderCellDef> Time</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.time}}</mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="department">
+                                <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.doctor.spec.description}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="docname">
+                                <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.doctor.firstName}}
+                                    {{element.doctor.lastName}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="phoneNumber">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element">{{element.patient.mobNo}} </mat-cell>
+                            </ng-container>
+
+                            <ng-container matColumnDef="complete">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> </mat-cell>
+                            </ng-container>
+                            &nbsp;
+                            <ng-container matColumnDef="cancel">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element"> </mat-cell>
+                            </ng-container>
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+
+                        <!-- [pageSizeOptions]="pageLimit" -->
+                        <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                            (page)="changecompletednext($event)">
+                        </mat-paginator>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- <section id="content6" class="tab-content">
+
+            <div class="content">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <h4 class="page-title">View OnProgress Appointment</h4>
+                    </div>
+                    <div class="col-sm-12" style="    margin-top: -70px;">
+                        <mat-tab-group>
+                            <mat-tab label="First" >
+                                
+                            </mat-tab>
+                            <mat-tab label="Second"> Content 2 </mat-tab>
+                            <mat-tab label="Third"> Content 3 </mat-tab>
+                        </mat-tab-group>
+                    </div>
+
+                </div>
+            </div>
+
+        </section> -->
+    </div>
+</div>

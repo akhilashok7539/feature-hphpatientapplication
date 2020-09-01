@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+
+<!-- 
+<div class="row">
+   
+    
+   
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12 mt-3">
+            <div class="card">
+                <div class="card-horizontal">
+                    
+                    <div class="card-body">
+                      
+                        <h5 class="card-text">Please click on this button for submitting your details. A mail will trigger to the mensioned mail id with login credentials</h5>
+                        <button class="btn btn-primary" (click)="changeStatus()">Complete Profile</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+ -->
+
+
+<div class="page-wrapper">
+        
+    <div class="content">
+    <div class="notice notice-lg">
+    <h5 class="text">Please click on this button for submitting your details. A Email will trigger to the mentioned Email ID with login credentials</h5>
+    <button class="btn btn-dark" (click)="changeStatus()" [disabled]="isLoading" ><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}}</button>
+    <!-- <h5 style="color: green; text-align: center;">{{messages}}</h5> -->
+ </div>
+</div>
+</div>
+ 

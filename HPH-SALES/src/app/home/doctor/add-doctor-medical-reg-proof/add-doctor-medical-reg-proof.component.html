@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Medical Registration Proof</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form [formGroup]="doctorIdProofForm">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label>Medical Registration Proof <span class="text-danger">*</span></label>
+                                <!-- <span style="color:red;" *ngIf="message">{{message}}</span>
+                                <label>Photo  <span class="text-danger">*</span></label>
+                                <input #file type="file" accept='image/*' class="form-control" (change)="preview(file.files)" />
+                                <img [src]="imgURL"  *ngIf="imgURL">   -->
+
+                                <!-- <input type="file" class="form-control" formControlName="medRegProof" #doctorIdproof (change)="getMediProof($event)" accept=".pdf"> -->
+
+                                <input #file type="file" (change)="getMediProof($event)"
+                                    [ngClass]="{ 'is-invalid': submitted && f.medRegProof.errors }"
+                                    formControlName="medRegProof" class="form-control" />
+
+                                <div *ngIf="submitted && f.medRegProof.errors" class="invalid-feedback">
+                                    <div *ngIf="f.medRegProof.errors.required">Doctor ID proof is required</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+                    </div>
+
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn" (click)="upload()"> NEXT</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

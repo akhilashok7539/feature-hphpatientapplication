@@ -1,0 +1,33 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Add City</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form [formGroup]="cityForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label> City Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" [(ngModel)]="cityModel.cityName" formControlName="cityName" type="text" [ngClass]="{ 'is-invalid': submitted && f.cityName.errors }">
+                                    <div *ngIf="submitted && f.cityName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cityName.errors.required">City name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn" (click)="create()">Create </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

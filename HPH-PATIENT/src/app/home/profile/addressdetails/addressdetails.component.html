@@ -1,0 +1,43 @@
+<div class="page-wrapper">
+    <div class="row" style="    color: #00B3DA;float: right;font-size: 20px;font-weight: bold;padding: 10px;">
+        <p (click)="updateAddress()" style="cursor: pointer;">Save</p>
+    </div>
+    <form [formGroup]="editProfileForm">
+
+        <div class="row" style="padding: 10px;">
+            <!-- <div class="col-sm-4">
+            </div> -->
+            <div class="col-sm-4">
+                <label for="house"> House Name</label>
+                <input [(ngModel)]="patientModel.house" type="text" class="form-control" 
+                    formControlName="house">
+            </div>
+            <div class="col-sm-4">
+                <label for="">Street</label>
+                <input [(ngModel)]="patientModel.street" type="text" 
+                 class="form-control"  formControlName="street">
+            </div>
+            <div class="col-sm-4">
+                <label for="city"> City</label>
+                <input [(ngModel)]="patientModel.city" type="text" 
+                 class="form-control"  formControlName="city">
+            </div>
+            <div class="col-sm-4" style="margin-top: 10px;">
+                <label for="state"> State</label>
+                <input [(ngModel)]="patientModel.state" type="text" 
+                    class="form-control" formControlName="state">
+            </div>
+            <div class="col-sm-4" style="margin-top: 10px;">
+                <label for="country"> Country</label>
+                <input [(ngModel)]="patientModel.country" type="text" 
+                class="form-control" formControlName="country">
+            </div>
+            <div class="col-sm-4" style="margin-top: 10px;">
+                <label for="pin"> Pincode</label>
+                <input [(ngModel)]="patientModel.pin" type="number" 
+                    class="form-control" formControlName="pin">
+            </div>
+        </div>
+    </form>
+
+</div>

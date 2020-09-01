@@ -1,0 +1,20 @@
+.form-control {
+    /* border-radius: 25px;
+    border: 1px solid rgb(13, 114, 230); */
+    padding: 20px;
+    width: 500px;
+    height: 10px;
+    float: right;
+    margin-left: 38px;
+    margin-right: -2px;
+    margin-top: -3px;
+}
+
+::ng-deep .mat-sort-header-container {
+    align-items: center;
+}
+
+::ng-deep .mat-header-cell {
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 16px;
+}

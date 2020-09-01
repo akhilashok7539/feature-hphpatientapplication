@@ -1,0 +1,12 @@
+h3{
+    text-align: center;
+}
+.btn{
+    margin-top: 20px;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block;
+    padding-left: 50px;
+    padding-right: 50px;
+
+}

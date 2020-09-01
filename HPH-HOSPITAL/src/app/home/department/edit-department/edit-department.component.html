@@ -1,0 +1,47 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <p style="padding-left: 29px; margin-top: 68px;font-size: 19px;"> <a routerLink="/department"><i
+                style="color: black;">Department</i></a> &nbsp; <i class="fa fa-angle-double-right"></i> &nbsp; <i
+            style="color:#1492E6;">Edit Department</i> </p>
+    <div class="container" style="    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px;
+    background-color: #F8FAFB;
+    margin-top: 25px;
+    margin-left: 31px;">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Department</h3>
+            </div>
+        </div>
+        <div class="row" style="     padding: 34px;   background-color: WHITE;">
+        <div class="col-lg-12">
+            
+            <form [formGroup]="departmentForm">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="form-group">
+                            <label> Department Name <span class="text-danger">*</span></label>
+                            <input class="form-control" [(ngModel)]="departmentModel.departmentName" formControlName="departmentName" type="text" 
+                            [ngClass]="{ 'is-invalid': submitted && f.departmentName.errors }">
+                            <div *ngIf="submitted && f.departmentName.errors" class="invalid-feedback">
+                                <div *ngIf="f.departmentName.errors.required"> Department Name is required</div>
+                            </div>
+                            <!-- <div *ngIf ="name.invalid && (name.dirty || name.touched)" class=" alert alert-danger">
+                            <div *ngIf = "name.errors.required">CC Name is required</div></div> -->
+                        
+                        </div>
+                    </div>
+               
+                 
+                           
+                </div>
+            
+                <div class="m-t-20 text-center">
+                    <button class="btn btn-primary submit-btn" (click)="create()">Update Department</button>
+                </div>
+                <!-- <div style="color: red; font-size: medium; text-align: center;">{{error}}</div> -->
+            </form>
+        </div>
+    </div>
+    </div>
+</div>

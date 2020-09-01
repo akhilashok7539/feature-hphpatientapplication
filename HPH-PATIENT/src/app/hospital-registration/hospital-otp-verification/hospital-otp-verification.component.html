@@ -1,0 +1,64 @@
+<!-- <button mat-button [(mat-dialog-close)]="status" cdkFocusInitial >Ok</button>
+<button (click)="click()"> Clickk</button>
+ -->
+
+
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+        <form [formGroup]="registrationForm">
+
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-title">
+
+                            <h4>Hospital Registration</h4>
+                            <p>Please enter the 4-digit verification code we sent via SMS:</p>
+
+                            <div class="col-sm-12" style="padding-left: 0px; ">
+                                <label for="">Enter your OTP</label>
+                                <input type="number" [(ngModel)]="otp" formControlName="otp"
+                                    maxlength="4" class="form-control">
+
+                                <!-- <div id="form">
+                                        <input type="number" [(ngModel)]="firstnumber" formControlName="firstnumber"
+                                            maxLength="1" size="1" />
+                                        <input type="number" [(ngModel)]="secondNumber" formControlName="secondNumber"
+                                            maxLength="1" size="1" />
+                                        <input type="number" [(ngModel)]="thirdnumber" formControlName="thirdnumber"
+                                            maxLength="1" size="1" />
+                                        <input type="number" [(ngModel)]="fourthNumber" formControlName="fourthNumber"
+                                            maxLength="1" size="1" />
+                                        <button class="btn btn-primary btn-embossed" [mat-dialog-close]="status"
+                                            (click)="verify()">Verify</button>
+                                    </div> -->
+                            </div>
+                            <div class="row" style="padding-top: 10px;">
+                                <div class="col-sm-12">
+                                    <button class="loginbtn" (click)="verify()">Verify</button>
+                                    <button class="signupbtn" (click)=resend()>Resend OTP</button>
+
+                                </div>
+
+                            </div>
+
+
+
+
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+

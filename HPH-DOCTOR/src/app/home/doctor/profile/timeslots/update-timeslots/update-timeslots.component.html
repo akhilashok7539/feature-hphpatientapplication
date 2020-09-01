@@ -1,0 +1,236 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <p style="padding-left: 29px; margin-top: 68px;font-size: 19px;"> <a routerLink="/profile"><i
+                style="color: black;">Doctor</i></a> &nbsp; <i class="fa fa-angle-double-right"></i> &nbsp; <i
+            style="color:#1492E6;">Edit timeslots</i> </p>
+    <div class="container" style="    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px;
+    background-color: #F8FAFB;
+    margin-top: 25px;
+    margin-left: 31px;">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Timing Update</h3>
+            </div>
+        </div>
+        <div class="row" style="     padding: 34px;   background-color: WHITE;">
+            <div class="row" style="margin-top: 10px;" >
+                <div class="col-sm-4"  style="margin-right: 125px;" *ngFor="let item of resultsarray; let i = index;">
+                    <div class="card">
+                      <div class="row">
+                        <div class="col-md-9">
+                            <!-- <h6>Hospital Name</h6> -->
+                        </div>
+                        <div class="col-md-3">
+                            <i (click)="removeItem(i)"  style="    padding: 15px;" class="fa fa-close"></i>
+                        </div>
+                      </div>
+                          
+                       <div class="row">
+                        <div class="col-md-3">
+                            <h5>DAY  : </h5> 
+                        </div>
+                        <div class="col-md-3">
+                            <h5 *ngIf="item.day == '6'">Sunday </h5>
+                            <h5 *ngIf="item.day == '0'">Monday </h5>
+                            <h5 *ngIf="item.day == '1'">Tuesday </h5>
+                            <h5 *ngIf="item.day == '2'" style="padding-left: 8px;">Wednesday </h5>
+                            <h5 *ngIf="item.day == '3'">Thursday </h5>
+                            <h5 *ngIf="item.day == '4'">Friday </h5>
+                            <h5 *ngIf="item.day == '5'">Saturday </h5>
+        
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-3">
+                            <h5>Session  :  </h5> 
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{item.timing}}</h5>
+                        </div>
+                       </div>
+                       <div class="row">
+                        <div class="col-md-3">
+                            <h5>Interval  :  </h5> 
+                        </div>
+                        <div class="col-md-6">
+                            <h5>{{item.interval}}</h5>
+                        </div>
+                       </div>
+
+                    </div>
+                </div>
+                
+            </div>
+        
+    <div class="col-lg-12">
+
+        <form [formGroup]="doctorForm">
+            <div class="row">
+                
+                <div class="col-sm-2">
+                    <label>Select a Day <span class="text-danger">*</span></label>
+                    <select [(ngModel)]="day" formControlName="day" (change)="changetimeslots(day)" class="form-control">
+                        <option selected value="">Select a Day</option>
+                        <option value="6">Sunday </option>
+                        <option value="0">Monday </option>
+                        <option value="1">Tuesday </option>
+                        <option value="2">Wednesday </option>
+                        <option value="3">Thursday </option>
+                        <option value="4">Friday </option>
+                        <option value="5">Saturday </option>
+                    </select>
+                </div>
+                <div class="col-sm-2">
+                    <label>Session Duration <span class="text-danger">*</span></label>
+                    <input  type="number" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.interval.errors }" [(ngModel)]="doctormodel.interval" formControlName="interval">
+                    <div *ngIf="submitted && f.interval.errors"class="invalid-feedback">
+                        <div *ngIf="f.interval.errors.required">Session interval is required
+                        </div>
+                        </div>
+
+
+
+                </div>
+
+            </div>
+            <div class="row" style="padding-top: 30px;">
+                <div class="col-sm-2">
+                    <h4>Session 1</h4>
+                </div>
+                <div class="col-sm-3" style="    padding: 0px 0px 0px 101px;">
+                    <button class="btn btn-primary" *ngIf="!session2"
+                        (click)="addSession()">Add Session</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Starting Time <span class="text-danger">*</span></label>
+                        <input class="form-control" atp-time-picker value=""
+                            placeholder="Select session "
+                            [ngClass]="{ 'is-invalid': submitted && f.timing.errors }"
+                            [(ngModel)]="doctormodel.timing" formControlName="timing" />
+                        <div *ngIf="submitted && f.timing.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f.timing.errors.required">Session1 is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Ending Time <span class="text-danger">*</span></label>
+                        <input class="form-control" atp-time-picker value=""
+                            placeholder="Select session "
+                            [ngClass]="{ 'is-invalid': submitted && f.timing2.errors }"
+                            [(ngModel)]="doctormodel.timing2"
+                            formControlName="timing2" />
+                        <div *ngIf="submitted && f.timing2.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f.timing2.errors.required">Session1 is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="session2">
+                <div class="col-sm-2">
+                    <h4>Session 2</h4>
+                </div>
+            </div>
+            <div class="row" *ngIf="session2">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label>Starting Time<span
+                                    class="text-danger">*</span></label>
+                            <input class="form-control" atp-time-picker value=""
+                                placeholder="Select session "
+                                [(ngModel)]="doctormodel.timing3"
+                                [ngClass]="{ 'is-invalid': submitted && f.timing3.errors }"
+                                formControlName="timing3" />
+                            <div *ngIf="submitted && f.timing3.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="f.timing3.errors.required">Session2 is
+                                    required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Ending Time<span class="text-danger">*</span></label>
+                        <input class="form-control" atp-time-picker value=""
+                            placeholder="Select session "
+                            [(ngModel)]="doctormodel.timing4"
+                            [ngClass]="{ 'is-invalid': submitted && f.timing4.errors }"
+                            formControlName="timing4" />
+                        <div *ngIf="submitted && f.timing4.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="f.timing4.errors.required">Session2 is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container"
+                style="     margin-left: 0px;width: 975px;   background: #ECF0F3; padding: 19px 14px 12px 18px;">
+
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label style="display: inline-block;margin-right: 22px;">Repeat
+                            Session
+                        </label>
+                        <label class="radioButtons">Yes
+                            <input type="radio" value="yes" checked name="radio2"
+                                [(ngModel)]="Practise"
+                                [ngModelOptions]="{standalone: true}">
+                            <span class="checkmark"
+                                style="    background-color: #fff;"></span>
+                        </label>
+                        <label class="radioButtons">No
+                            <input type="radio" value="no" name="radio2"
+                                [(ngModel)]="Practise"
+                                [ngModelOptions]="{standalone: true}">
+                            <span class="checkmark"
+                                style="    background-color: #fff;"></span>
+                        </label>
+                    </div>
+                </div>
+                <p *ngIf="Practise =='yes'"><i>Select the days to repeat the above sessions</i></p>
+                <p *ngIf="Practise =='no'"><i>Check In Yes, And repeat above sessions and timing to remaining working days</i> </p>
+
+                <div class="row" style="padding: 15px;" *ngIf="Practise =='yes'">
+                    <div class="radio-toolbar" *ngFor = "let repeatsessiondays of repeatsessiondays">
+                        <input formControlName="check" (change)="onChange(repeatsessiondays.id, $event.target.checked)" type="checkbox" id="{{repeatsessiondays.day}}" name="radioFruit" value="{{repeatsessiondays.id}}" >
+                        <label for="{{repeatsessiondays.day}}">{{repeatsessiondays.day}}</label>
+                    
+                        <!-- <input type="checkbox" id="Monday" name="radioFruit" value="banana">
+                        <label for="Monday">Monday</label>
+                    
+                        <input type="checkbox" id="Tuesday" name="radioFruit" value="orange">
+                        <label for="Tuesday">Tuesday</label> 
+                        <input type="checkbox" id="Wednesday" name="radioFruit" value="orange">
+                        <label for="Wednesday">Wednesday</label> 
+                        <input type="checkbox" id="Thursday" name="radioFruit" value="orange">
+                        <label for="Thursday">Thursday</label> 
+                        <input type="checkbox" id="Friday" name="radioFruit" value="orange">
+                        <label for="Friday">Friday</label> 
+                        <input type="checkbox" id="Saturday" name="radioFruit" value="orange">
+                        <label for="Saturday">Saturday</label>  -->
+                    </div>
+                </div>
+            </div>
+            <div class="m-t-20 text-center">
+                <button class="btn btn-primary submits-btn" (click)="addTimeSlots()"> <i class="fa fa-plus" aria-hidden="true"></i>Add </button>
+                <button class="btn btn-primary submits-btn" style="margin-left: 10px;" (click)="next()">Update</button>
+            </div>
+
+        </form>
+    </div>
+                    </div>
+    </div>
+</div>

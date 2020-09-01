@@ -1,0 +1,46 @@
+<app-header></app-header>
+<div class="page-wrapper">
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-8 col-3">
+                <h4 class="page-title">Pending Doctors Request</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <table class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Hospital Name</th>
+                                <th>Contact No</th>
+                                <th>Profile Status</th>
+                                <th>View</th>
+                             
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let mappeddata of doctorsList">
+                                <td>{{mappeddata.firstName}} {{mappeddata.lastName}}</td>
+                                <td>{{mappeddata.mobNo}}</td>
+                                <td >{{mappeddata.status}}</td>
+                                <td><Button class="btn btn-warning" (click)="viewdoc(mappeddata)">View</Button></td>
+
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <ul class="nav nav-pills" >
+                            <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " (click)="getdoctorpages(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <h4 class="page-title">Update Establishment ID Proof</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <form [formGroup]="hospitalForm">
+                    <div class="row">
+                        
+                  
+                    
+                      
+
+                        <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label> Establishment ID proof</label>
+                                    <div class="profile-upload">
+                                       
+                                        <div class="upload-input">
+                                           
+                                            <input #file type="file" (change)="addIdProof($event)"   [(ngModel)]="getfiles" formControlName="estRegProof"  class="form-control"  />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+                    </div>
+                
+                    <div class="m-t-20 text-center">
+                        <button class="btn btn-primary submit-btn" (click)="next()" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}}</button>
+                   
+                    </div>
+                   
+                </form>
+               
+            </div>
+        </div>
+    </div>

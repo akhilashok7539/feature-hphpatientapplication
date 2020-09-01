@@ -1,0 +1,59 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+<div class="page-wrapper">
+ 
+           
+
+       
+        <div class="content">
+                
+            <div class="row">
+                <div class="col-sm-4 col-3">
+                    <h4 class="page-title">Doctor Leave</h4>
+                   
+                </div>
+
+            
+                <div class="col-sm-8 col-9 text-right m-b-20">
+                       
+                   
+                  
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-border table-striped custom-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Department</th>
+                                    <th>Leave Date</th>
+                                    <th>Time slots </th>
+                                    <th>Action</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = "let docLeave of docLeaveDetails">
+                                   
+                                    <td>{{docLeave.doctor.firstName}} {{docLeave.doctor.lastName}}</td>
+                                    <td>{{docLeave.doctor.spec.description}}</td>
+                                    <td>{{docLeave.date}}</td>
+                                   
+                                    <td> {{docLeave.time}} </td>
+                                  
+
+                                   
+                                    <td><button class="btn btn-primary" (click)="viewPatients(docLeave)">View Patients</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            </div>
+    
+        </div>
+        <app-header></app-header>
+        <app-sidebar></app-sidebar>

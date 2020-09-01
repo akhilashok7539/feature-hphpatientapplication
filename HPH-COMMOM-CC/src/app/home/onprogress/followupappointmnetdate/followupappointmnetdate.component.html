@@ -1,0 +1,42 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="container">
+        <form [formGroup]="bookingForm">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <mat-card>
+                        <h4 style="text-align: center;">Choose a date</h4>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label for="">Choose a date</label>
+                                <select formControlName="date" class="form-control search-slt" [(ngModel)]="selectedDate" (change)="dateselected()">
+                                    <option value="" disabled selected> Choose your date</option>
+                                     <option *ngFor="let item of mapdata | keyvalue" [value]="item.key" >
+                                         {{item.key}} 
+                                     </option>
+                                 </select>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="">Choose a Time</label>
+                                <select class="form-control search-slt" formControlName="time" [(ngModel)]="selectedtimesolts">
+                                    <option value="" disabled selected> Choose your timeslot</option>
+                                    <option *ngFor="let item of selectedTime" [value]="item.timing">
+                                        {{item.timing}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <Button class=" btn btn-primary" (click)="Submit()">Submit</Button>
+                        </div>
+
+                    </mat-card>
+
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

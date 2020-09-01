@@ -1,0 +1,39 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+        <form [formGroup]="registrationForm">
+
+            <div class="row">
+                <div class="col-sm-7">
+
+                </div>
+                <div class="col-sm-5">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Hospital Registration</h4>
+                            <p>Please complete to create your account.</p>
+                            <div class="col-sm-12" style="padding-left: 0px; ">
+                                <label for="">Mobile Number</label>
+                                <input type="number" [ngClass]="{ 'is-invalid': submitted && f.mobNo.errors }"
+                                    [(ngModel)]="model.mobNo" formControlName="mobNo" 
+                                    name="mobNo" id="mobNo" class="form-control" required>
+                                <div *ngIf="submitted && f.mobNo.errors" class="invalid-feedback">
+                                    <div *ngIf="f.mobNo.errors.required">Phone number is required</div>
+                                    <div *ngIf="f.mobNo.errors.pattern"> Phone number must be valid number</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <button class="loginbtn" (click)="sendOtp()">Register</button>
+        
+                                  </div>
+                        </div>
+                    </div>
+                </div>
+             
+            </div>
+        </form>
+    </div>
+</div>

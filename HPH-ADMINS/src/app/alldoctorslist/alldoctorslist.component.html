@@ -1,0 +1,144 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title"> Doctors List</h4>
+            </div>
+            <div class="col-sm-2">
+                <select [(ngModel)]="citySelected" (change)= "getcityselected(citySelected)" class="form-control">
+                    <option value="" disabled>City Name</option>
+                    <option value="{{citys.cityId}}" *ngFor="let citys of citys">{{citys.cityName}}</option>
+                </select>
+            </div>
+            <div class="col-sm-2">
+                <select class="form-control" [(ngModel)]="CategorySelected"
+                (change)="getcategroyType(CategorySelected)">
+                    <option value="" disabled>Category</option>
+                    <option value="Specility"> Specility</option>
+                    <option value="Hospital"> Hospital</option>
+                    <option value="Doctor"> Doctor</option>
+
+                    
+                </select>
+              
+
+            </div>
+            <div class="col-sm-2">
+                <form class="example-form">
+                    <mat-form-field  appearance="outline" >
+                        <mat-label>search</mat-label>
+                      <input type="text"
+                             aria-label="Number"
+                             [(ngModel)]="searchseleted"
+                             matInput
+                          
+                             [formControl]="myControl"
+                             [matAutocomplete]="auto">
+                      <mat-autocomplete #auto="matAutocomplete" >
+                        <mat-option *ngFor="let option of filteredOptions | async" [value]="option.description">
+                         <p (click)="select(option.specId)">{{option.description}}</p> 
+                        </mat-option>
+                      </mat-autocomplete>
+                      
+                    </mat-form-field>
+                  </form>
+                  
+                  
+            </div>
+            <div class="col-sm-2">
+               <button class="btn btn-warning" (click)="search()"><i style="color: black;" class="fa fa-search"></i> </button>
+             </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    <!-- <table  class="table table-border table-striped custom-table mb-0">
+                        <thead>
+                            <tr>
+                                <th>Doctor Name</th>
+                                <th>Speciality</th>
+                                <th>Hospital Name</th>
+                                <th>Image</th>
+                               
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let c of doctors ">
+                               
+                              <td> {{c.firstName}} {{c.lastName}}</td>
+                              <td> {{c.spec.description}} </td>
+                              <td *ngIf="c.hospital != null"> {{c.hospital.hospitalName}}</td>
+                              <td *ngIf="c.hospital == null">No hospital is Mapped</td>
+                                <td> <img src="{{apiUrl}}/doctor/profilePic/{{c.doctorId}}" alt="No images uploaded" style="height: 45px; width: 45px;"></td>
+                        </tr>
+                        </tbody>
+                    </table> -->
+                    <mat-table #table [dataSource]="dataSource">
+
+                        <ng-container matColumnDef="docId">
+                            <mat-header-cell *matHeaderCellDef> Doctor Id </mat-header-cell>
+                            <mat-cell *matCellDef="let c">
+                          
+                               {{c.doctorId}} 
+
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="docname">
+                            <mat-header-cell *matHeaderCellDef> Doctor Name </mat-header-cell>
+                            <mat-cell *matCellDef="let c">
+                          
+                               {{c.firstName}} {{c.lastName}} 
+
+                            </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="spec">
+                            <mat-header-cell *matHeaderCellDef> Speciality </mat-header-cell>
+                            <mat-cell *matCellDef="let c"> {{c.spec.description}}</mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="hospname">
+                            <mat-header-cell *matHeaderCellDef> Hospital Name </mat-header-cell>
+                            <mat-cell *matCellDef="let c">
+                                <h6 style="    margin-top: 5px;
+                                font-size: 0.75rem;
+                                font-size: 14px;
+                                font-weight: 400;" *ngIf="c.hospital != null"> {{c.hospital.hospitalName}}</h6>
+                                <h6 style="    margin-top: 5px;
+                                font-size: 0.75rem;
+                                font-size: 14px;
+                                font-weight: 400;" *ngIf="c.hospital == null"> No hospital is Mapped</h6>
+
+                            </mat-cell>
+
+                        </ng-container>
+
+                        <ng-container matColumnDef="pic">
+                            <mat-header-cell *matHeaderCellDef> Profile Picture </mat-header-cell>
+                            <mat-cell *matCellDef="let c"> <img src="{{apiUrl}}/doctor/profilePic/{{c.doctorId}}"
+                                    alt="No images uploaded" style="height: 45px; width: 45px;"> </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="view">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let c">
+                                <button (click)="view(c)" matTooltip="view"  matTooltipPosition="right">  <i class="fa fa-eye"></i> </button>
+                            </mat-cell> 
+
+                        </ng-container>
+
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <!-- [pageSizeOptions]="pageLimit" -->
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </div>
+    </div>

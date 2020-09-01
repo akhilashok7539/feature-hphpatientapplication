@@ -1,0 +1,101 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px;">
+    <div class="container">
+		<form [formGroup]="registrationForm"  class="form-detail" id="myform">
+
+        <div class="row">
+            <div class="col-sm-12">
+                    <div class="card">
+                        <h4>Hospital Registration</h4>
+                        <p>Please complete to create your account.</p>
+                        <div class="row" style="margin-top: 16px;">
+                            <div class="col-sm-6">
+                                <label for="">Hospital Name</label>
+                                <input type="text" [(ngModel)]="model.hospitalname" formControlName="hospitalname"
+                                placeholder="Hospital Name" [ngClass]="{ 'is-invalid': submitted && f.hospitalname.errors }"
+                                name="firstName" id="first_name" class="form-control">
+                                <div *ngIf="submitted && f.hospitalname.errors" class="invalid-feedback">
+                                   <div *ngIf="f.hospitalname.errors.required" style="margin-top: 0px;">Hospital Name is required</div>
+                               </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="">Contact Person Name</label>
+                                <input type="text" [ngClass]="{ 'is-invalid': submitted && f.contactPersonName.errors }"  [(ngModel)]="model.contactPersonName" formControlName="contactPersonName"
+                                placeholder="Contact person name"  name="mobNo" id="mobNo" class="form-control"
+                                required>
+                                <div *ngIf="submitted && f.contactPersonName.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactPersonName.errors.required" style="margin-top: 0px;">Contact Person Name is required</div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for=""> Hopsital Type</label>
+                                <select  [(ngModel)]="model.hospitalType" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.hospitalType.errors }"   formControlName="hospitalType">
+                                    <option value="" selected disabled>Select Hospital Type</option>
+                                    <option value="CLINIC"> CLINIC</option>
+                                    <option value="HOSPITAL">HOSPITAL</option>
+                                    </select> 
+                                    <div *ngIf="submitted && f.hospitalType.errors" class="invalid-feedback">
+                                        <div *ngIf="f.hospitalType.errors.required" style="margin-top: 0px;">Hospital Type is required</div>
+                                    </div> 
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="">Select City</label>
+                                <!-- <input type="text" class="form-control"> -->
+                                <select  [(ngModel)]="model.city" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.city.errors }" formControlName="city">
+                                    <option value="" selected disabled>Select City</option>
+                                    <option *ngFor="let c of city" value="{{c.cityId}}" > {{c.cityName}}</option>
+                                </select> 
+                                <div *ngIf="submitted && f.city.errors" class="invalid-feedback">
+                                    <div *ngIf="f.city.errors.required" style="margin-top: 0px;">City is required</div>
+                                </div> 
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="">Contact Person Email Id</label>
+                                <input type="text" [ngClass]="{ 'is-invalid': submitted && f.contactPersonemail.errors }"  [(ngModel)]="model.contactPersonemail" formControlName="contactPersonemail"
+                                placeholder="Contact person Email ID"  name="mobNo" id="mobNo" class="form-control"
+                                required>
+                                <!-- <p (click)="verifyemail()">Verify Email Id</p> -->
+                                <div *ngIf="submitted && f.contactPersonemail.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactPersonemail.errors.required" style="margin-top: 0px;">Contact Person Email ID is required</div>
+                                    <div *ngIf="f.contactPersonemail.errors.email" style="margin-top: 0px;">Email must be a valid email address</div>
+                                </div>
+                            </div>
+                          
+                          
+                            <div class="col-sm-6" style="margin-top: 22px;">
+                                <label for="">Contact Person Phone Number</label>
+                                <input type="number"  [ngClass]="{ 'is-invalid': submitted && f.contactpersonNumber.errors }" [(ngModel)]="model.contactpersonNumber" formControlName="contactpersonNumber"
+                                placeholder="Contact person number"  name="mobNo" id="mobNo" class="form-control"
+                                required>
+                                <!-- <p (click)="verifyemail()">Verify Email Id</p> -->
+                                <div *ngIf="submitted && f.contactpersonNumber.errors" class="invalid-feedback">
+                                    <div *ngIf="f.contactpersonNumber.errors.required" style="margin-top: 0px;">Contact Person Number is required</div>
+                                    <div *ngIf="f.contactpersonNumber.errors.pattern" style="margin-top: 0px;">Contact Person number must be valid number</div>
+                                </div>
+                            </div>
+                            <!-- <div class="col-sm-2" style="    margin-top: 54px;
+                            margin-left: -30px;">
+                               <button class="verfy">Verify OTP</button>
+                            </div> -->
+
+                            <div class="col-sm-6">
+                                <label for=""> </label>
+
+                                <p style="margin-top: 20px;"> &nbsp;   I agree with terms and conditions</p>
+                               
+                            </div>
+                            <div class="col-sm-6">
+                            </div>
+                            <div class="col-sm-6" style="margin-top:40px;">
+                                <button class="loginbtn"  (click)="register()">Register</button>
+                                </div>
+                        </div>
+                        </div>
+
+                      
+            </div>
+        </div>
+        </form>
+        </div>
+        </div>

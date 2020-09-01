@@ -1,0 +1,88 @@
+<div class="page-wrapper">
+    <h5>Add Health History</h5>
+    <p>Please add your previous health record here</p>
+    <form [formGroup]="editHealth"> 
+    <div class="row" style="padding: 20px;  height: 220px;">
+        <label class="filelabel">
+            <!-- <i class="fa fa-paperclip">
+            </i> -->
+            <div class="row">
+                <img src="./assets/img/urn_aaid_sc_US_54d95aff-6c21-4f2a-832b-080fd07ffe2c (6).png"  style="    margin-left: auto;
+                margin-right: auto;
+                height: 100px;" alt="">
+
+            </div>
+            <!-- <span class="title">
+                Add File
+            </span> -->
+            <input  class="FileUpload1"  (change)="addIdProof($event)"  style="font-size: 9px;    margin-left: 57px;
+            margin-top: 19px;" name="booking_attachment" type="file"/>
+        </label>
+    </div>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-4">
+            <label for="">Test Name</label>
+            <input type="text" [(ngModel)]="healthhistoryModel.testName" formControlName="testName" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="">Test Description</label>
+            <input type="text" [(ngModel)]="healthhistoryModel.testDescription" formControlName="testDescription" class="form-control">
+        </div>
+        <div class="col-sm-4">
+            <label for="">Test Date</label>
+            <input type="date" [(ngModel)]="healthhistoryModel.dateofTest" formControlName="dateofTest" class="form-control">
+        </div>
+    </div>
+</form>
+    <div class="row" style="margin-top: 63px;">
+        <button class="cancelbtn" (click)="close()">Cancel</button>
+        <!-- <button class="apptbtn">Appointment Booking</button> -->
+        <button class="apptbtn" (click)="submit()" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{button}}</button>
+
+    </div>
+</div>
+<!-- 
+<script>
+    $("#FileInput").on('change',function (e) {
+            var labelVal = $(".title").text();
+            var oldfileName = $(this).val();
+                fileName = e.target.value.split( '\\' ).pop();
+
+                if (oldfileName == fileName) {return false;}
+                var extension = fileName.split('.').pop();
+
+            if ($.inArray(extension,['jpg','jpeg','png']) >= 0) {
+                $(".filelabel i").removeClass().addClass('fa fa-file-image-o');
+                $(".filelabel i, .filelabel .title").css({'color':'#208440'});
+                $(".filelabel").css({'border':' 2px solid #208440'});
+            }
+            else if(extension == 'pdf'){
+                $(".filelabel i").removeClass().addClass('fa fa-file-pdf-o');
+                $(".filelabel i, .filelabel .title").css({'color':'red'});
+                $(".filelabel").css({'border':' 2px solid red'});
+
+            }
+  else if(extension == 'doc' || extension == 'docx'){
+            $(".filelabel i").removeClass().addClass('fa fa-file-word-o');
+            $(".filelabel i, .filelabel .title").css({'color':'#2388df'});
+            $(".filelabel").css({'border':' 2px solid #2388df'});
+        }
+            else{
+                $(".filelabel i").removeClass().addClass('fa fa-file-o');
+                $(".filelabel i, .filelabel .title").css({'color':'black'});
+                $(".filelabel").css({'border':' 2px solid black'});
+            }
+
+            if(fileName ){
+                if (fileName.length > 10){
+                    $(".filelabel .title").text(fileName.slice(0,4)+'...'+extension);
+                }
+                else{
+                    $(".filelabel .title").text(fileName);
+                }
+            }
+            else{
+                $(".filelabel .title").text(labelVal);
+            }
+        });
+</script> -->

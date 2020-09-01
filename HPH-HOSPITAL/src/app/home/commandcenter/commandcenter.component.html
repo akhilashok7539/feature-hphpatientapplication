@@ -1,0 +1,89 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-3 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">Command Center</h4>
+
+            </div>
+            <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="    width: 62%;color: white;border: none;" (click)="addcc()"><i
+                        class="fa fa-plus"></i> Add Command Center</a>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-border table-striped custom-table mb-0">
+
+
+                    <div class="example-container mat-elevation-z8">
+
+
+
+
+                        <mat-table #table [dataSource]="dataSource" >
+
+                            <ng-container matColumnDef="name">
+                                <mat-header-cell *matHeaderCellDef> NAME </mat-header-cell>
+                                <mat-cell *matCellDef="let command">
+                                    <span class="mobile-label">NAME:</span> {{command.name}}
+                                </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="contact">
+                                <mat-header-cell *matHeaderCellDef>PHONE NUMBER</mat-header-cell>
+                                <mat-cell *matCellDef="let command"><span class="mobile-label">PHONE NUMBER:</span>
+                                    {{command.mobNo}}</mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="email">
+                                <mat-header-cell *matHeaderCellDef> EMAIL ID</mat-header-cell>
+                                <mat-cell *matCellDef="let command"><span class="mobile-label">EMAIL ID:</span>
+                                    {{command.email}} </mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="active">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let command"> <span class="mobile-label">Active/Inactive:</span>
+                                    <button style="background: #0087B3;
+                            padding: 7px 24px;" (click)="status(command)" class="btn btn-primary"
+                                        *ngIf="command.profileStatus == 'ACTIVE'">Inactivate</button>
+                                    <button style="background: #0087B3;
+                        padding: 7px 24px; border: none;" (click)="statuschange(command)" class="btn btn-danger"
+                                        *ngIf="command.profileStatus == 'INACTIVE'">Activate</button></mat-cell>
+                            </ng-container>
+                            <ng-container matColumnDef="view">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let command"> <span class="mobile-label">View:</span> <button
+                                        (click)="view(command)"
+                                        style="    border: none;background: #0087B3; border-radius: 30px; height: 32px;   width: 32px;"
+                                        class="btn btn-warning"><i class="fa fa-eye"
+                                            style="color: white;margin-left: -2px;"></i></button></mat-cell>
+                            </ng-container>
+
+
+                            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                        </mat-table>
+                    </div>
+
+                </table>
+
+                <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" (page)="changePage($event)">
+                </mat-paginator>
+            </div>
+        </div>
+    </div>

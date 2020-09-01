@@ -1,0 +1,158 @@
+.row {
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 0px;
+    margin-left: -15px;
+}
+.project-tab {
+    padding: 2%;
+    margin-top: 0%;
+}
+.container {
+    max-width: 1443px;
+}
+input[type="radio"] {
+    margin-left:10px;
+}
+.page-wrapper {
+  background: #F3F5F7;
+  left: 0;
+  margin-left: 0px;
+  padding-top: 50px;
+  position: relative;
+  transition: all 0.4s ease;
+}
+.radioButtons {
+    display: inline;
+    position: relative;
+    padding-left: 35px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  /* Hide the browser's default radio button */
+  .radioButtons input {
+    position: relative;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  /* Create a custom radio button */
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 22px;
+    width: 22px;
+    background-color: #eee;
+    border-radius: 50%;
+  }
+
+  /* On mouse-over, add a grey background color */
+  .radioButtons:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+
+  /* When the radio button is checked, add a blue background */
+  .radioButtons input:checked ~ .checkmark {
+    background-color: white;
+    border: 2px solid #2196F3;
+  }
+
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+
+  /* Show the indicator (dot/circle) when checked */
+  .radioButtons input:checked ~ .checkmark:after {
+    display: block;
+  }
+
+  /* Style the indicator (dot/circle) */
+  .radioButtons .checkmark:after {
+    top: 3px;
+    left: 3.05px;
+    width: 12px;
+    height: 12px;
+	border-radius: 50%;
+	background: #2196F3;
+  }
+
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #0062cc;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #0f0f0f;
+    font-size: 15px;
+    font-weight: 500;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+.card
+{
+    background: #F6F6F6;
+    padding: 11px 51px 15px 13px;
+    width: 290px;
+}
+.page-wrapper {
+    left: 0;
+    margin-left: 0px;
+    padding-top: 50px;
+    position: relative;
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.submit-btn {
+    border-radius: 0px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    min-width: 365px;
+    padding: 8px 20px;
+    text-transform: uppercase;
+}

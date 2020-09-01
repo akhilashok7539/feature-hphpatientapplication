@@ -1,0 +1,89 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Approval Request</h4>
+
+
+            </div>
+
+
+            <div class="col-sm-8 col-9 text-right m-b-20">
+
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    
+                    <mat-table #table [dataSource]="dataSource">
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="HospitalName">
+                            <mat-header-cell *matHeaderCellDef>Hospital Name </mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.hospitalName}}</mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="phone">
+                            <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.phone}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef> Profile Status</mat-header-cell>
+                            <mat-cell *matCellDef="let results">
+                                <h6 *ngIf="results.profileStatus == 'UNAPPROVED'" style="font-weight: bold; color: green;"> UNAPPROVED</h6>
+                                <h6 *ngIf="results.profileStatus == 'SALES_APPROVED'" style="font-weight: bold; color: green;">SALES APPROVED</h6>
+                                <h6 *ngIf="results.profileStatus == 'ADMIN_UNAPPROVED'" style="font-weight: bold; color: green;">SALES ADDED</h6>
+
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="assign">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let results">
+                                <button *ngIf="results.sales == null " (click)="assign(results)"
+                                    class="btn btn-dark">Assign Sales</button>
+                            </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="view">
+                            <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                            <mat-cell *matCellDef="let results">
+                                <button (click)="view(results)" class="btn btn-warning"> View </button>
+
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="approve">
+                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                            <mat-cell *matCellDef="let results">
+                                <button (click)="statuschange(results)" class="btn btn-primary" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{buttonapprove}}</button>
+                            </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="reject">
+                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                            <mat-cell *matCellDef="let results">
+                                <button (click)="status(results)" class="btn btn-danger" [disabled]="isLoading"><i class="fa" [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-trash': !isLoading}"></i> {{buttonreject}}</button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" 
+                        (page)="changePage($event)">
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

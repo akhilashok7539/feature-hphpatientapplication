@@ -1,0 +1,58 @@
+<app-header></app-header>
+
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title"> Patients</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+               
+                <input class="form-control" type="text" name="searchString" [(ngModel)]="searchString"
+                    placeholder="Search here" aria-label="Search" (keyup)="applyFilter(searchString)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+                    
+                    <mat-table #table [dataSource]="dataSource">
+                        <ng-container matColumnDef="patientId">
+                            <mat-header-cell *matHeaderCellDef>Patient ID</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.patientId}} </mat-cell>
+                        </ng-container>
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="name">
+                            <mat-header-cell *matHeaderCellDef>Patient Name</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.firstName}} {{results.lastName}}</mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                       
+
+                        <ng-container matColumnDef="phone">
+                            <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.mobNo}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="date">
+                            <mat-header-cell *matHeaderCellDef> Registered Date</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.createdDate | slice:0:10}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="sex">
+                            <mat-header-cell *matHeaderCellDef> Gender</mat-header-cell>
+                            <mat-cell *matCellDef="let results"> {{results.gender}} </mat-cell>
+                        </ng-container>
+                        
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" (page)="changePage($event)">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

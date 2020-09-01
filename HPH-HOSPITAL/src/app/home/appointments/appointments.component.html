@@ -1,0 +1,130 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-6 ">
+                <h4 class="page-title" style="font-size: 26px;font-weight: 500;margin-top: 10px; ">Appointments</h4>
+
+            </div>
+            <!-- <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="color: white;border: none;" (click)="addDoctor()"><i
+                        class="fa fa-plus"></i> Add Doctor</a>
+            </div> -->
+
+
+
+
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-6" style="    margin-top: 17px;margin-bottom: 21px;">
+                <div class="tab-slider--nav">
+                    <ul class="tab-slider--tabs" style="   
+                height: 50px;    box-shadow: 0px 1px 6px #00000029;">
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                            (click)="viewMode ='tab1'" >CONFIRMED</li>
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                            (click)="viewMode ='tab2'" >CANCELLED </li>
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+                            (click)="viewMode ='tab3'" >PENDING </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tab-slider--container" [ngSwitch]="viewMode">
+            <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-border table-striped custom-table mb-0">
+
+
+
+
+
+
+
+                                    <mat-table #table [dataSource]="dataSource" >
+
+                                        <!-- Position Column -->
+                                        <ng-container matColumnDef="time">
+                                            <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed">  {{confirmed.time}} </mat-cell>
+                                        </ng-container>
+                                        <!-- Name Column -->
+                                        <ng-container matColumnDef="patname">
+                                            <mat-header-cell *matHeaderCellDef> Patient Name</mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed">  {{confirmed.patient.firstName}}
+                                                {{confirmed.patient.lastName}}</mat-cell>
+                                        </ng-container>
+                                        <ng-container matColumnDef="date">
+                                            <mat-header-cell *matHeaderCellDef> Date</mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed">  {{confirmed.date}} </mat-cell>
+                                        </ng-container>
+                                        <ng-container matColumnDef="dept">
+                                            <mat-header-cell *matHeaderCellDef> Department</mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed"> {{confirmed.doctor.spec.description}}
+                                            </mat-cell>
+                                        </ng-container>
+                                        <ng-container matColumnDef="docname">
+                                            <mat-header-cell *matHeaderCellDef> Doctor Name</mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed"> {{confirmed.doctor.firstName}}
+                                                {{confirmed.doctor.lastName}}</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="status">
+                                            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+                                            <mat-cell *matCellDef="let confirmed">{{confirmed.status}}</mat-cell>
+                                        </ng-container>
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                                    </mat-table>
+
+                                    <!-- [pageSizeOptions]="pageLimit" -->
+                                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit"
+                                        (page)="changePage($event)">
+                                    </mat-paginator>
+                                
+
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <!-- <table class="table table-border table-striped custom-table mb-0"> -->
+
+                            <app-cancelled-appointments></app-cancelled-appointments>
+                            <!-- </table> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <app-pending-appointments></app-pending-appointments>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

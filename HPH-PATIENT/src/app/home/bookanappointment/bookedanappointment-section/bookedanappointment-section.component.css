@@ -1,0 +1,25 @@
+::ng-deep .mat-dialog-container {
+    padding: 15px 15px 0px 15px;
+}
+
+.cancelbtn{
+    border: none;
+    color: white;
+    width: 50%;
+    padding: 19px;
+    background: #C6C6C6;
+}
+.apptbtn{
+    border: none;
+    color: white;
+    background: #0085B2;
+    width: 50%;
+}
+label{
+    font-size: 13px;
+}
+h6{
+    color: red;
+    text-align: center;
+    font-size: 14px !important;
+}

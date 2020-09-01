@@ -1,0 +1,36 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <form [formGroup]="OTPForm">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>Verify OTP</h4>
+                            <p>Please enter the 4-digit verification code we sent via SMS:</p>
+
+                            <!-- <div class="col-sm-12">
+                                <label for="">Enter your OTP</label>
+                                <input matInput type="number" class="form-control" [(ngModel)]="loginmodel.otp"
+                                    formControlName="otp">
+                            </div> -->
+                            <label for="">Enter your OTP</label>
+                                <input  placeholder="Enter your OTP"  type="number" [(ngModel)]="loginmodel.otp"
+                                formControlName="otp" class="form-control">
+                               
+                        </div>
+                        <div class="row" style="    margin: 0px;">
+                            <button class="loginbtn"    (click)="verify()">Verify OTP</button> &nbsp; &nbsp;
+                            <button class="signupbtn" (click)=sendOtp()>Resend OTP</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

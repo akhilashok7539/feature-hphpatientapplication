@@ -1,0 +1,113 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+        <div class="content">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <h4 class="page-title">Basic Details</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <form [formGroup]="hospitalForm">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Hospital Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text"  [ngClass]="{ 'is-invalid': submitted && f.hospitalName.errors }" [(ngModel)]="doctormodel.hospitalName" formControlName="hospitalName">
+                                    <div *ngIf="submitted && f.hospitalName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.hospitalName.errors.required">Hospital name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Phone Number <span class="text-danger">*</span></label>
+                                    <input class="form-control"[ngClass]="{ 'is-invalid': submitted && f.phone.errors }"  type="text" [(ngModel)]="doctormodel.phone" formControlName="phone">
+                                    <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
+                                        <div *ngIf="f.phone.errors.required">Phone number is required</div>
+                                        <div *ngIf="f.phone.errors.pattern">Phone number must be valid number</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Email ID<span class="text-danger">*</span></label>
+                                    <input class="form-control" type="text" disabled [ngClass]="{ 'is-invalid': submitted && f.email.errors }" [(ngModel)]="doctormodel.email" formControlName="email">
+                                    <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                        <div *ngIf="f.email.errors.required">Email ID is required</div>
+                                        <div *ngIf="f.email.errors.email">Email must be a valid Email ID</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Contact Person Name <span class="text-danger">*</span></label>
+                                    <input class="form-control" type="email" [ngClass]="{ 'is-invalid': submitted && f.contactName.errors }"  [(ngModel)]="doctormodel.contactName" formControlName="contactName">
+                                    <div *ngIf="submitted && f.contactName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.contactName.errors.required">Contact Person name is required</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Contact Person Number <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="number" [ngClass]="{ 'is-invalid': submitted && f.contactPhone.errors }" [(ngModel)]="doctormodel.contactPhone" formControlName="contactPhone">
+                                        <div *ngIf="submitted && f.contactPhone.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contactPhone.errors.required">Contact Person phone is required</div>
+                                        </div>
+                                    </div>
+                            </div>
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Contact Person Email ID <span class="text-danger">*</span></label>
+                                        <input class="form-control" type="text" [ngClass]="{ 'is-invalid': submitted && f.contactEmail.errors }"  [(ngModel)]="doctormodel.contactEmail" formControlName="contactEmail">
+                                        <div *ngIf="submitted && f.contactEmail.errors" class="invalid-feedback">
+                                            <div *ngIf="f.contactEmail.errors.required">Contact Person Email ID is required</div>
+                                            <div *ngIf="f.contactEmail.errors.email">Email must be a valid email address</div>
+                                        </div>
+                                    </div>
+                            </div>
+                      
+                            <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Select Hospital Type <span class="text-danger">*</span></label>
+                                        <!-- <input class="form-control" type="text"> -->
+                                        <select class="form-control" [(ngModel)]="doctormodel.hospitalType"[ngClass]="{ 'is-invalid': submitted && f.hospitalType.errors }"  formControlName="hospitalType">
+                                            <option> CLINIC</option>
+                                            <option>HOSPITAL</option>
+                                        </select>
+                                        <div *ngIf="submitted && f.hospitalType.errors" class="invalid-feedback">
+                                            <div *ngIf="f.hospitalType.errors.required">Hospital type is required</div>
+                                        </div>
+    
+
+                                    </div>
+                            </div>
+
+
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Select City <span class="text-danger">*</span></label>
+                                    <!-- <input class="form-control" type="text"> -->
+                                    <select class="form-control" [(ngModel)]="doctormodel.cityId" [ngClass]="{ 'is-invalid': submitted && f.cityId.errors }" formControlName="cityId">
+                                        <option *ngFor="let c of citys" value="{{c.cityId}}"> {{c.cityName}}</option>
+                                        
+                                    </select>
+                                    <div *ngIf="submitted && f.cityId.errors" class="invalid-feedback">
+                                        <div *ngIf="f.cityId.errors.required">City name is required</div>
+                                    </div>
+
+                                </div>
+                        </div>
+                           
+                        </div>
+                    
+                        <div class="m-t-20 text-center">
+                            <button class="btn btn-primary submit-btn" (click)="update()">Next</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>

@@ -1,0 +1,118 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+    <div class="row">
+        <div class="col-sm-8">
+            <h4 class="page-title" style="    margin-left: 21px;   font-weight: bold;">
+                Hi,Dr. {{Doctorfirstname}} {{Doctorlastname}}</h4>
+        </div>
+        <div class="col-sm-4">
+            <h4 class="page-title" style="  float: right;
+            font-weight: bold;
+            margin-right: 22px; ">Doctor Id : {{DoctorId}}</h4>
+
+        </div>
+
+        <div class="col-sm-4" *ngIf=ischanged>
+            <p (click)=save() style="float: right; font-weight: bold;color: #00a9d1;cursor: pointer;">Save</p>
+            
+            <select  class="form-control" [(ngModel)]="hospital" (change)="getchange(hospital)" style="    width: 94%;
+                margin-left: 35px;">
+                <option value="" selected disabled>Choose a hospital</option>
+                <option *ngFor="let doc of dochospitaldetail" [ngValue]="doc ">
+                    <p *ngIf="doc.privatePratice == true">Private practice</p>
+                    <p *ngIf="doc.privatePratice == false">{{doc.hospital.hospitalName}}</p>
+                </option>
+            </select>
+        </div>
+        <div class="col-sm-4" *ngIf=!ischanged>
+            <p (click)=change() style="float: right; font-weight: bold;color: #00a9d1;cursor: pointer;">Change</p>
+            <select disabled class="form-control" [(ngModel)]="hospitalselected"  style="    width: 94%;
+                margin-left: 35px;">
+
+                <option *ngFor="let doc of doctorDetails" [ngValue]="doc ">
+                    <p *ngIf="doc.privatePratice == true">Private practice</p>
+                    <p *ngIf="doc.privatePratice == false">{{doc.hospital.hospitalName}}</p>
+                </option>
+            </select>
+        </div>
+
+
+
+    </div> 
+
+    <mat-accordion>
+        <!-- Personal Details Section -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Personal Details
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-personaldetails></app-personaldetails>
+        </mat-expansion-panel>
+        <!-- hospital details Section -->
+        <!-- 
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Hospital Details
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+        </mat-expansion-panel> -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Location Details
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-locationdetails></app-locationdetails>
+        </mat-expansion-panel>
+        <!-- qualification details -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Qualification Details
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-qualificationdetails></app-qualificationdetails>
+        </mat-expansion-panel>
+        <!-- time slots -->
+
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Time Slots
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-timeslots></app-timeslots>
+        </mat-expansion-panel>
+        <!-- Selected Symptoms -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Selected Symptoms
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-symptoms></app-symptoms>
+        </mat-expansion-panel>
+        <!-- profile picture -->
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    Profile Picture & Attachment's
+                </mat-panel-title>
+
+            </mat-expansion-panel-header>
+            <app-profilepicture></app-profilepicture>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+</div>

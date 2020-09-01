@@ -1,0 +1,20 @@
+<div class="page-wrapper">
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let healthhistory of healthhistory">
+            <div class="card">
+                <img src="./assets/img/pdf.png" alt="" style="width:73px;margin-left:auto;margin-right: auto; height: 99px;">
+                <p>{{healthhistory.fileName | slice: 0: 20}}</p>
+                <p> {{healthhistory.createdDate}}</p>
+                <button (click)="delete(healthhistory)"><img src="./assets/img/del.png" alt="" > </button>
+                <button (click)="view(healthhistory)"><img src="./assets/img/eye.png" alt="" > </button>
+
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="cardadd" (click)="addHealthHistory()">
+                <img src="./assets/img/plus.png" alt="" style="margin-top: 85px; display: block; width:53px;margin-left:auto;margin-right: auto; height: 53px;">
+                <p style="color: #DDDDDD;margin-bottom: 85px;">Add Health Record</p>
+            </div>
+        </div>
+    </div>
+</div>

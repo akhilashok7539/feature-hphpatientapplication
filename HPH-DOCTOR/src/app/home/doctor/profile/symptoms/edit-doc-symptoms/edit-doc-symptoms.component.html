@@ -1,0 +1,54 @@
+<app-header></app-header>
+<div class="page-wrapper">
+    <p style="padding-left: 29px; margin-top: 68px;font-size: 19px;"> <a routerLink="/doctorLeave"><i
+                style="color: black;">Doctor</i></a> &nbsp; <i class="fa fa-angle-double-right"></i> &nbsp; <i
+            style="color:#1492E6;">Edit Symptoms</i> </p>
+    <div class="container" style="    box-shadow: 0px 3px 6px #00000029;
+    padding: 20px;
+    background-color: #F8FAFB;
+    margin-top: 25px;
+    margin-left: 31px;">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>Symptoms Update</h3>
+            </div>
+        </div>
+        <div class="row" style="     padding: 34px;   background-color: WHITE;">
+
+            <form [formGroup]="symptoms">
+
+                <div class="row" style="justify-content: center;    margin: 34px 2px 11px 2px;">
+            
+                    <div class="col-md-3" *ngFor="let symptoms of results">
+                        <div class="card" style="    padding: 11px 51px 15px 13px;
+                        width: 290px;">
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <h4> {{symptoms.sicknessName}}</h4>
+                                </div>
+            
+                                <div class="col-sm-2" >
+                                    <input type="checkbox" formControlName="check" 
+                                        (change)="onChange(symptoms.sicknessId, $event.target.checked)">
+                                </div>
+                            </div>
+            
+            
+                        </div>
+                    </div>
+            
+            
+            
+            
+            
+                </div>
+            
+            </form>
+            <div class="m-t-20 text-center m-b-30" style="margin-left: auto;
+            margin-right: auto;">
+                <button class="btn btn-primary submit-btn"  style="    border-radius: 0px;" (click)="next()" [disabled]="isLoading"> <i class="fa"
+                        [ngClass]="{' fa-spinner fa-spin': isLoading, 'fa-check': !isLoading}"></i> {{completeprofile}}</button>
+            </div>
+        </div>
+    </div>
+</div>

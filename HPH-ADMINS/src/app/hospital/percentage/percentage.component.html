@@ -1,0 +1,50 @@
+<app-header></app-header>
+<div class="page-wrapper" *ngIf="managePercentage == 'No percentage data found'">
+    <!-- <a  class="btn btn btn-primary  float-right" style="color: white;" (click)="city()"><i class="fa fa-plus"></i> Add City </a> -->
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+               
+                <mat-card>
+                    <h3>Calculate Percentage</h3>
+                    <hr>
+                    <label for="">Admin Percentage</label>
+                    <input [(ngModel)]="adminpercentage" type="text" class="form-control" type="number" >
+                    <label for="">Hospital Percentage</label>
+                    <input [(ngModel)]="Hospitalpercentage" type="text" class="form-control" type="number" >
+                    <label for="">Patient Percentage</label>
+                    <input [(ngModel)]="patienpercentage" type="text" class="form-control"  type="number">
+                    
+                    &nbsp;
+                    <h5 style="color: red;">{{messages}}</h5>
+                    <button class="btn btn-primary" (click)="submit()">Submit</button>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="page-wrapper" *ngIf="managePercentage == 'data found'">
+
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-12">
+               
+                <mat-card>
+                    <h3> Percentage</h3>
+                    <hr>
+                    <label for="">Admin Percentage</label>
+                    <input disabled  [(ngModel)]="adminpercentage" type="text" class="form-control" type="number" >
+                    <label disabledfor="">Hospital Percentage</label>
+                    <input disabled [(ngModel)]="Hospitalpercentage" type="text" class="form-control" type="number" >
+                    <label for="">Patient Percentage</label>
+                    <input disabled [(ngModel)]="patienpercentage" type="text" class="form-control"  type="number">
+                    
+                    &nbsp;
+                   
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<app-navigation></app-navigation>
+<div class="page-wrapper" style="margin-top: 62px; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <form [formGroup]="changePhonenumber">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4 style="text-align: left;">Change Mobile Number</h4>
+                            <p style="text-align: left;">Are your sure want to change your mobile number</p>
+                            <div class="col-sm-12" style="padding-left: 0px;">
+                                <label for="mobNo">Mobile Number</label>
+                                <input type="text" [(ngModel)]="loginmodel.mobNo" placeholder="Mobile Number" formControlName="mobNo"
+                                    name="mobNo" class="form-control">
+                            </div>
+                        </div>
+                        
+                        <div class="row" style="    margin: 0px;">
+                            <button class="loginbtn" (click)="sendOtp()">Send OTP</button> &nbsp; &nbsp;
+                        
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

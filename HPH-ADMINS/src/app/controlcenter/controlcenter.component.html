@@ -1,0 +1,67 @@
+<app-header></app-header>
+
+<app-sidebar></app-sidebar>
+<div class="page-wrapper">
+    <div class="content">
+        <div class="row">
+            <div class="col-sm-4 col-3">
+                <h4 class="page-title">Control Center</h4>
+            </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+                <a class="btn btn btn-primary btn-rounded float-right" style="    margin-bottom: 13px;color: white;"
+                    (click)="addCC()"><i class="fa fa-plus"></i> Add New CC</a>
+
+                <input class="form-control" type="text" name="searchString" [(ngModel)]="searchString"
+                    placeholder="Search here" aria-label="Search" (keyup)="applyFilter(searchString)">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive">
+
+                    <mat-table #table [dataSource]="dataSource">
+
+                        <!-- Position Column -->
+                        <ng-container matColumnDef="CCname">
+                            <mat-header-cell *matHeaderCellDef> CC Name </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <!-- <ng-container matColumnDef="number">
+                                <mat-header-cell *matHeaderCellDef> Phone Number</mat-header-cell>
+                                <mat-cell *matCellDef="let element"> {{element.mobNo}} </mat-cell>
+                            </ng-container> -->
+
+                        <ng-container matColumnDef="email">
+                            <mat-header-cell *matHeaderCellDef> Email</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.email}} </mat-cell>
+                        </ng-container>
+                        <ng-container matColumnDef="status">
+                            <mat-header-cell *matHeaderCellDef> Status</mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.profileStatus}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="button">
+                                <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+                                <mat-cell *matCellDef="let element">
+                                    <button class="btn btn-dark" (click)="disable(element)" *ngIf="element.profileStatus == 'ACTIVE'">Disable</button> 
+                                    <button class="btn btn-success" (click)="enable(element)" *ngIf="element.profileStatus == 'INACTIVE'">Enable</button> 
+                                
+                                </mat-cell>
+                        
+                            </ng-container>
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                    </mat-table>
+
+                    <!-- [pageSizeOptions]="pageLimit" (page)="changePage($event)"-->
+                    <mat-paginator #paginator [length]="totalLength" [pageSize]="limit" >
+                    </mat-paginator>
+
+                </div>
+            </div>
+        </div>
+
+    </div>

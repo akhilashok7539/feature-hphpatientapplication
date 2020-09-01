@@ -1,0 +1,117 @@
+<app-header></app-header>
+
+
+<app-header></app-header>
+<div class="page-wrapper">
+ 
+            <p style="padding-left: 29px; margin-top: 68px;font-size: 19px;" >  <a routerLink="/Doctor"><i style="color: black;">Doctor</i></a>  &nbsp;  <i class="fa fa-angle-double-right"></i > &nbsp; <i style="color:#1492E6;"> Doctor Profile View</i> </p>
+    
+
+<mat-accordion>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Personal Details
+        </mat-panel-title>
+        <!-- <mat-panel-description>
+          Type your name and age
+        </mat-panel-description> -->
+      </mat-expansion-panel-header>
+  
+      <!-- <mat-form-field>
+        <mat-label>First name</mat-label>
+        <input matInput>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Age</mat-label>
+        <input matInput type="number" min="1">
+      </mat-form-field> -->
+      <app-edit-doc-basic-detials></app-edit-doc-basic-detials>
+    </mat-expansion-panel>
+
+    <!-- <mat-expansion-panel >
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+        Hospital Detials
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <p>I'm visible because I am open</p>
+    </mat-expansion-panel>
+     -->
+    <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Location Detials
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <app-edit-location-details></app-edit-location-details>
+      </mat-expansion-panel>
+      
+    <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Qualification Detials
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <app-edit-qualification-details></app-edit-qualification-details>
+      </mat-expansion-panel>
+      
+    <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Time Solts 
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <app-edit-doc-timeslots></app-edit-doc-timeslots>
+      </mat-expansion-panel>
+      <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+        Medical Registraion Proof & Id Proof
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <app-edit-registration-proof></app-edit-registration-proof>
+      </mat-expansion-panel>
+
+    <mat-expansion-panel >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Selected Symptoms 
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header>
+        <app-edit-symptoms></app-edit-symptoms>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel *ngIf="docStatus == 'PENDING'">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+          Complete Profile
+          </mat-panel-title>
+     
+        </mat-expansion-panel-header>
+        <app-complete-profile></app-complete-profile>
+      </mat-expansion-panel>
+
+  </mat-accordion>
+  
+</div>
+  <!-- Copyright 2019 Google LLC. All Rights Reserved.
+      Use of this source code is governed by an MIT-style license that
+      can be found in the LICENSE file at http://angular.io/license -->

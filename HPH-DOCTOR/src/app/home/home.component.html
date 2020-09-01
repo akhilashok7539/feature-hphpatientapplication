@@ -1,0 +1,27 @@
+<app-sidebar></app-sidebar>
+<app-header></app-header>
+
+<div class="page-wrapper" *ngIf="show == 'PENDING'">
+        
+   <div class="content">
+<div class="notice notice-lg"  >
+   <h5 class="text">Please complete the profile for hospital verification</h5>
+   <button class="btn btn-dark" (click)="completeProfile()">Complete Profile</button>
+   <!-- <button *ngIf="length != 0" (click)="choose()" class="btn btn-dark" style="margin-top: 10px;">Choose Hospital</button> -->
+</div>
+</div>
+</div>
+<div class="page-wrapper" *ngIf="show == 'UNAPPROVED'">
+        
+   <div class="content">
+<div class="notice notice-lg"  >
+   <h5 class="text">Your profile is under Review</h5>
+   <!-- <button class="btn btn-dark" (click)="completeProfile()">Complete Profile</button> -->
+</div>
+
+</div>
+</div>
+<div *ngIf="show != 'UNAPPROVED' && show != 'PENDING'">
+<app-appointments></app-appointments>
+
+</div>

@@ -1,0 +1,15 @@
+<mat-card style="margin-bottom: 20px;">
+  <h6 style="text-align: center;font-size: 20px;font-weight: bold;">Hospital Registration</h6>
+   
+  <div style="display: block;">
+        <canvas baseChart 
+          [data]="pieChartData" 
+          [labels]="pieChartLabels" 
+          [chartType]="pieChartType"
+          [options]="pieChartOptions"
+          [plugins]="pieChartPlugins" 
+          [legend]="pieChartLegend">
+        </canvas>
+      </div>
+      <!-- [colors]="colors" -->
+</mat-card>

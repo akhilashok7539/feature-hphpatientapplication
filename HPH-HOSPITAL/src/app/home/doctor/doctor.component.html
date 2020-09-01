@@ -1,0 +1,285 @@
+<div class="page-wrapper" *ngIf="show == 'ADMIN_UNAPPROVED'">
+    <div class="content">
+        <div class="notice notice-lg">
+            <app-header></app-header>
+            <h5 class="text">Your registration process is under Process please wait until our representative contacts
+                you Thank You</h5>
+            <!--  <button class="btn btn-dark" (click)="completeProfile()">Complete Profile</button> -->
+        </div>
+    </div>
+</div>
+<div class="page-wrapper" *ngIf="show == 'MAPPED_TO_SALES'">
+    <div class="content">
+        <div class="notice notice-lg">
+            <app-header></app-header>
+            <h5 class="text">Your registration process is under Process please wait until our representative contacts
+                you Thank You</h5>
+            <!-- MAPPED_TO_SALES <button class="btn btn-dark" (click)="completeProfile()">Complete Profile</button> -->
+        </div>
+    </div>
+</div>
+<div class="page-wrapper" *ngIf="show == 'UNAPPROVED'">
+    <div class="content">
+        <div class="notice notice-lg">
+            <app-header></app-header>
+            <h5 class="text">Your registration process is under Process please wait until our representative contacts
+                you Thank You</h5>
+            <!-- <button class="btn btn-dark" (click)="completeProfile()">Complete Profile</button> -->
+        </div>
+    </div>
+</div>
+<div class="page-wrapper" *ngIf="show == 'PENDING'">
+
+    <div class="content">
+        <div class="notice notice-lg">
+            <app-header></app-header>
+            <h5 class="text">Please Complete the profile for admin verification</h5>
+            <button class="btn btn-dark" style="    margin-left: auto;
+            margin-right: auto;border:none;
+            display: block;" (click)="completeProfile()">Complete Profile</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="page-wrapper" *ngIf="show == 'ACTIVE'">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-2 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">Doctor</h4>
+
+            </div>
+            <div class="col-sm-4 ">
+                <a class="btn btn-dark" style="color: white;border: none;" (click)="addDoctor()"><i
+                        class="fa fa-plus"></i> Add Doctor</a>
+            </div>
+
+
+
+
+        </div>
+
+
+        <div class="row">
+            <!-- <div class="col-md-6">
+                <div class="container" style="     margin-bottom: 21px;
+                margin-top: 18px;   margin-left: -14px;">
+        
+                  <ul class="nav nav-pills" style="     border-radius: 30px;   width: 335px;font-weight: bold;
+                  box-shadow: 0px 1px 6px #00000029;">
+                    <li class="active" > <a >ACTIVE</a></li>
+                    <li ><a (click)="buttonselected('In-Active')">INACTIVE</a></li>
+                    <li  ><a (click)="buttonselected('Pending')">PENDING</a></li>
+      
+               
+                  </ul>
+                </div>
+            </div> -->
+            <div class="col-md-6" style="    margin-top: 17px;margin-bottom: 21px;">
+                <div class="tab-slider--nav">
+                    <ul class="tab-slider--tabs" style="   
+                height: 50px;    box-shadow: 0px 1px 6px #00000029;">
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab1'" rel="tab1"
+                            (click)="viewMode ='tab1'" (click)="getallactivedata()">Active</li>
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab2'" rel="tab2"
+                            (click)="viewMode ='tab2'" (click)="getallinactivedata()">Inactive </li>
+                        <li class="tab-slider--trigger" [class.active]="viewMode == 'tab3'" rel="tab3"
+                            (click)="viewMode ='tab3'" (click)="getallpendingdata()">Pending </li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-md-6" style="    padding: 12px;left: 104px;">
+                <div class="form-group has-feedback has-search">
+                    <input type="text" class="control" name="searchString" [(ngModel)]="searchString"
+                        (keyup)="onKey($event)" placeholder="Search">
+                    <i class="fa fa-search" style="    margin-left: -32px;"></i>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ACTIVE TABS WORKS HERE -->
+
+        <div class="tab-slider--container" [ngSwitch]="viewMode">
+            <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-border table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>DOCTOR NAME</th>
+                                        <th>CONTACT NUMBER</th>
+                                        <th>EMAIL ID</th>
+                                        <th></th>
+                                        <th></th>
+
+
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- | filter : 'firstName' : searchString; let i = index -->
+                                    <tr *ngFor="let doc of doctorslist ">
+                                        <td>{{doc.firstName}} {{doc.lastName}}</td>
+                                        <td>{{doc.mobNo}}</td>
+                                        <td>{{doc.email}}</td>
+                                        <td> <button style="background: #0087B3;    padding: 7px 24px;" class="btn btn-primary" (click)="status(doc)"
+                                                *ngIf="doc.status != 'PENDING' && doc.status == 'ACTIVE'"> Inactivate
+                                            </button>
+                                            <button class="btn btn-danger" (click)="statuschange(doc)"
+                                                *ngIf="doc.status != 'PENDING'  && doc.status == 'INACTIVE'"> Active
+                                            </button>
+                                        </td>
+                                      
+                                        <td><button (click)="view(doc)"
+                                                style="border: none; background: #0087B3; border-radius: 30px; height: 32px; width: 32px;"
+                                                title="See More"> <i class="fa fa-eye" style="color: white;"></i>
+                                            </button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <h5 *ngIf="Messages == 'No data found'"
+                                style="text-align: center; margin-top :88px;font-weight: bold; ">No Active doctors found
+                            </h5>
+                            <ul class="nav nav-pills" style="padding-left: 31vw; margin-top: 48px;">
+                             
+                                <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                    <a class="nav-link " style="color: white;    padding: 9px 17px;"
+                                        (click)="setPage(i,$event)" [ngClass]="{active:i==page}">{{i+1}}</a>
+
+                                </li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INACTIVE TABS WORKS HERE -->
+            <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-border table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>DOCTOR NAME</th>
+                                        <th>CONTACT NUMBER</th>
+                                        <th>EMAIL ID</th>
+                                        <th></th>
+                                        <th style="margin-left: 10px;"></th>
+                                       
+                                    
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr  *ngFor="let doc of doctorslist " >
+                                       
+                                        <td>{{doc.firstName}} {{doc.lastName}}</td>
+                                        <td>{{doc.mobNo}}</td>
+                                        <td>{{doc.email}}</td>
+                                        <td> <button class="btn btn-primary" (click)="status(doc)" *ngIf = "doc.status != 'PENDING' && doc.status == 'ACTIVE'">   Inactive </button> 
+                                         <button  style="background: #0087B3;  border: none;  padding: 7px 24px;"  class="btn btn-danger" (click)="statuschange(doc)" *ngIf = "doc.status != 'PENDING'  && doc.status == 'INACTIVE'" >  Activate </button></td> 
+                                         <td><button (click)="view(doc)" style="border: none; background: #0087B3; border-radius: 30px; height: 32px; width: 32px;"  title="See More"> <i class="fa fa-eye" style="color: white;"></i> </button></td>
+                               
+                                        </tr>
+                                </tbody>
+                            </table>
+                        <h5 *ngIf="Messages == 'No data found'" style="text-align: center; margin-top :88px;font-weight: bold; ">No Inactive doctors found</h5>
+        
+                            <ul class="nav nav-pills" style="padding-left: 31vw;
+                            margin-top: 48px;">
+                            <!-- <a style="font-weight: bold;padding: 10px;" *ngIf="Messages == 'Data found'">Previous</a> -->
+                              <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link " style="color: white;    padding: 9px 17px;" (click)="setinactivePage(i,$event)" [ngClass]="{active:i==pageInactive}">{{i+1}}</a>
+                            
+                              </li>
+                              <!-- <a style="font-weight: bold;padding: 10px;" *ngIf="Messages == 'Data found'">Next</a> -->
+                            </ul>
+                        </div>
+                </div>
+                </div>
+
+            </div>
+                   <!-- all pending will display here -->
+      
+            <div id="tab3" class="tab-slider--body" *ngSwitchCase="'tab3'">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="table-responsive">
+                            <table class="table table-border table-striped custom-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>DOCTOR NAME</th>
+                                        <th>CONTACT NUMBER</th>
+                                        <th>EMAIL ID</th>
+                                        <th></th>
+                                        <!-- <th style="margin-left: 10px;">Status</th> -->
+                                       
+                                    
+                                       
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                    <tr  *ngFor="let doc of doctorslist" >
+                                       
+                                        <td>{{doc.firstName}} {{doc.lastName}}</td>
+                                        <td>{{doc.mobNo}}</td>
+                                        <td>{{doc.email}}</td>
+                                        <td><button style="border: none; background: #0087B3; border-radius: 30px; height: 32px; width: 32px;"  class="btn btn-warning" (click)="view(doc)" >  <i style="color: white;    margin-left: -3px;" class="fa fa-eye"></i>   </button></td>
+                                        <!-- <td> <button class="btn btn-primary" (click)="status(doc)" *ngIf = "doc.status != 'PENDING' && doc.status == 'ACTIVE'">   Inactive </button> 
+                                         <button  class="btn btn-danger" (click)="statuschange(doc)" *ngIf = "doc.status != 'PENDING'  && doc.status == 'INACTIVE'" >  Active </button></td> 
+                                 -->
+                                        </tr>
+                                </tbody>
+                            </table>
+                            <h5 *ngIf="MessagesPending == 'No data found'" style="text-align: center; margin-top :88px;font-weight: bold; ">No Pending doctors found</h5>
+
+                            <ul class="nav nav-pills" style="padding-left: 31vw; margin-top: 48px;">
+                            <!-- <a style="font-weight: bold;padding: 10px;" *ngIf="MessagesPending == 'Data found'" (click)="pendingBack()">Previous</a> -->
+                              <li class="nav-item" *ngFor="let p of pages; let i=index">
+                                <a class="nav-link "  style="   padding: 9px 17px;" (click)="setPagePending(i,$event)" [ngClass]="{active:i==pagePending}">{{i+1}}</a>
+                            
+                              </li>
+                              <!-- <a style="font-weight: bold;padding: 10px;" *ngIf="MessagesPending == 'Data found'" (click)="nextpage()">Next</a> -->
+        
+                            </ul>
+                        </div>
+                </div>
+                </div>
+    </div>
+        </div>
+ 
+
+
+
+    </div>
+
+    <!-- <div class="tab-slider--container" [ngSwitch]="viewMode">
+        <div id="tab1" class="tab-slider--body" *ngSwitchCase="'tab1'">
+          <h2>First Tab</h2>
+          <p>Toggle switch style tab navigation. Currently only works with two tabs.</p>
+          <p>Donec ullamcorper nulla non metus auctor fringilla. Donec ullamcorper nulla non metus auctor fringilla. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Nullam id dolor id nibh ultricies vehicula ut id elit. Nulla
+            vitae elit libero, a pharetra augue.</p>
+        </div>
+        <div id="tab2" class="tab-slider--body" *ngSwitchCase="'tab2'">
+          <h2>Second Tab</h2>
+          <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Cras mattis consectetur purus sit amet fermentum. Nulla vitae elit libero, a pharetra augue. Cras mattis consectetur purus sit amet fermentum. Aenean eu leo
+            quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.
+            </p>
+        </div>
+      </div> -->
+</div>
+
+<app-header></app-header>
+<app-sidebar></app-sidebar>

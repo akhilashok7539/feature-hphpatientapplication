@@ -1,0 +1,38 @@
+<app-navigation></app-navigation>
+
+<div class="page-wrapper" style="margin-top: 62px; ">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-7">
+
+            </div>
+            <div class="col-sm-5">
+                <form [formGroup]="loginForm">
+                    <div class="card">
+                        <div class="card-title">
+                            <h4>LOGIN with OTP</h4>
+                            <p>Welcome back! Please login to your account.</p>
+                            <!-- <div class="col-sm-12">
+                                <label for="">Enter your OTP</label>
+                                <input matInput type="number" class="form-control" [(ngModel)]="loginmodel.otp"
+                                    formControlName="otp">
+                            </div> -->
+                            <mat-form-field class="example-full-width" style="margin-top: 20px;">
+                                <input matInput placeholder="Enter your OTP"  type="number" [(ngModel)]="loginmodel.otp"
+                                formControlName="otp">
+                                <mat-error *ngIf="loginForm.get('otp').hasError('required')">
+                                    OTP is required
+                                  </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="row" style="    margin: 0px;">
+                            <button class="loginbtn"   [disabled]="loginForm.invalid" (click)="verify()">Verify OTP</button> &nbsp; &nbsp;
+                            <button class="signupbtn" (click)=sendOtp()>Resend OTP</button>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<app-header></app-header>
+<app-sidebar></app-sidebar>
+
+<div class="page-wrapper">
+
+
+
+
+    <div class="content">
+
+        <div class="row">
+            <div class="col-sm-6 ">
+                <h4 class="page-title" style="margin-top: 10px;  text-transform: uppercase;">Doctor Leave Request</h4>
+
+            </div>
+            <div class="col-sm-3 ">
+                <!-- <a class="btn btn-dark" style="    width: 62%;color: white;border: none;" (click)="addLeave()"><i
+                        class="fa fa-plus"></i> Add Doctor Leave</a> -->
+            </div>
+            <div class="col-sm-3">
+                <h4  *ngIf="Request == 'Request Approving....'"  class="page-title" style="margin-top: 10px; 
+                font-size: 15px; color: #27AE60;
+             text-transform: uppercase;">{{Request}}</h4>
+                <h4 *ngIf="Request == 'Request Rejecting....'" class="page-title" style="margin-top: 10px;font-size: 15px; color:#E74C3C;
+                text-transform: uppercase;">{{Request}}</h4>
+            </div>
+
+        </div>
+        <div class="row">
+            <!-- <input type="date"   [(ngModel)]="dateSelected"   (change)="getLeaveBydate(dateSelected)" style="margin-bottom: 10px;"> -->
+
+        </div>
+
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-11">
+            <div class="table-responsive">
+                <table class="table table-border table-striped custom-table mb-0">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>DEPARTMENT</th>
+                            <th>Date</th>
+                            <th>REASON</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <tr *ngFor="let person of docLeaveDetails">
+
+                            <td>{{person.doctor.firstName}}</td>
+                            <td>{{person.doctor.spec.description}}</td>
+                            <td>{{person.date}}</td>
+                            <td>{{person.reason}}</td>
+                            <td style="color: #27AE60;" (click)="approve(person)"> <i class="fa fa-check"></i> Approve
+                            </td>
+                            <td style="color: #E74C3C;" (click)="reject(person)"><i class="fa fa-close"></i> Reject</td>
+                            <td (click)="click(person)"> <i style="cursor: pointer;" matTooltip="View Time Slots"
+                                    class="fa fa-history"></i> </td>
+
+
+
+                        </tr>
+
+
+                    </tbody>
+
+
+
+                </table>
+                <h5 *ngIf="message == 'No leave records available'">No Leave Request found</h5>
+
+
+                <!-- <ul class="nav nav-pills" style="padding-left: 40vw;
+                    margin-top: 48px;">
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link " (click)="setPage(i,$event)" [ngClass]="{'active':i==page}">{{i+1}}</a>
+
+                    </li>
+                </ul> -->
+
+
+                <!-- <ul class="nav nav-pills" style="padding-left: 31vw; margin-top: 48px;">
+                    <a style="font-weight: bold;padding: 10px;">Previous</a>
+                    <li class="nav-item" *ngFor="let p of pages; let i=index">
+                        <a class="nav-link " style="color: white;    padding: 9px 17px;" (click)="setPage(i,$event)"
+                            [ngClass]="{active:i==page}">{{i+1}}</a>
+
+                    </li>
+                    <a style="font-weight: bold; padding: 10px;">Next</a>
+                </ul> -->
+            </div>
+        </div>
+    </div>
